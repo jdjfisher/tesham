@@ -1,0 +1,176 @@
+//package random.dump;
+//
+//import com.graphics.component.Texture;
+//import com.maths.RNG;
+//import org.apache.commons.math3.util.FastMath;
+//
+//import java.awt.*;
+//
+///**
+// * Created by fisherj16 on 7/18/2017.
+// */
+//public class Material {
+//
+//    private static final float reflectance_DEFAULT = 32f;
+//
+//    private Texture texture;
+//
+//    private boolean useTexture;
+//
+//    private float reflectance;
+//
+//    private Color ambientColour;
+//
+//    private Color diffuseColour;
+//
+//    private Color specularColour;
+//
+//    private float density;
+//
+//    public Material() {
+//        this(null, RNG.Colour(), reflectance_DEFAULT);
+//    }
+//
+//    public Material(float reflectance) {
+//        this(null, RNG.Colour(), reflectance);
+//    }
+//
+//    public Material(Color colour) {
+//        this(null, colour, reflectance_DEFAULT);
+//    }
+//
+//    public Material(Color colour, float reflectance) {
+//        this(null, colour, reflectance);
+//    }
+//
+//    public Material(Texture texture) {
+//        this(texture, RNG.Colour(), reflectance_DEFAULT);
+//    }
+//
+//    public Material(Texture texture, Color colour) {
+//        this(texture, colour, reflectance_DEFAULT);
+//    }
+//
+//    public Material(Texture texture, float reflectance) {
+//        this(texture, RNG.Colour(), reflectance);
+//    }
+//
+//    public Material(Texture texture, Color colour, float reflectance) {
+//        this(texture, colour, colour, colour, reflectance);
+//    }
+//
+//    public Material(Texture texture, Color ambientColour, Color diffuseColour, Color specularColour){
+//        this(texture, ambientColour, diffuseColour, specularColour, reflectance_DEFAULT);
+//    }
+//
+//    public Material(Color ambientColour, Color diffuseColour, Color specularColour, float reflectance) {
+//        this(null , ambientColour, diffuseColour, specularColour, reflectance);
+//    }
+//
+//    public Material(Texture texture, Color ambientColour, Color diffuseColour, Color specularColour, float reflectance) {
+//        this.texture = texture;
+//        this.useTexture = texture != null;
+//        this.reflectance = FastMath.abs(reflectance);
+//        this.ambientColour = ambientColour;
+//        this.diffuseColour = diffuseColour;
+//        this.specularColour = specularColour;
+//        this.density = 1;
+//    }
+//
+//    public void dispose(){
+//        if(texture != null){
+//            texture.dispose();
+//        }
+//        reflectance = 0f;
+//        ambientColour = null;
+//        diffuseColour = null;
+//        specularColour = null;
+//    }
+//
+//    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//    public Color getAmbientColour() {
+//        return ambientColour;
+//    }
+//
+//    public void setAmbientColour(Color ambientColour) {
+//        this.ambientColour = ambientColour;
+//    }
+//
+//    public Color getDiffuseColour() {
+//        return diffuseColour;
+//    }
+//
+//    public void setDiffuseColour(Color diffuseColour) {
+//        this.diffuseColour = diffuseColour;
+//    }
+//
+//    public Color getSpecularColour() {
+//        return specularColour;
+//    }
+//
+//    public void setSpecularColour(Color specularColour) {
+//        this.specularColour = specularColour;
+//    }
+//
+//    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//    public float getReflectance() {
+//        return reflectance;
+//    }
+//
+//    public void setReflectance(float reflectance) {
+//        this.reflectance = FastMath.abs(reflectance);
+//    }
+//
+//    public void changeReflectance(float deltaReflectance){
+//        setReflectance(getReflectance() + deltaReflectance);
+//    }
+//
+//    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//    public void setColour(Color colour){
+//        this.ambientColour = colour;
+//        this.diffuseColour = colour;
+//        this.specularColour = colour;
+//    }
+//
+//    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//    public Texture getTexture() {
+//        return texture;
+//    }
+//
+//    public void setTexture(Texture texture) {
+//        this.texture = texture;
+//        if(texture != null){
+//            useTexture = true;
+//        }
+//    }
+//
+//    public boolean hasTexture(){
+//        return texture != null;
+//    }
+//
+//    public void setUseTexture(boolean value){
+//        useTexture = value;
+//    }
+//
+//    public void toggleUseTexture(){
+//        useTexture = !useTexture;
+//    }
+//
+//    public boolean isUseTexture(){
+//        return useTexture;
+//    }
+//
+//    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//    public float getDensity() {
+//        return density;
+//    }
+//
+//    public void setDensity(float density) {
+//        this.density = density;
+//    }
+//}

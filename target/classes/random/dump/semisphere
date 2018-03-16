@@ -1,0 +1,93 @@
+ public static Mesh3D semiSphere(float radius, int resolution){
+        resolution = resolution < 3 ? 3 : resolution;
+
+        radius = FastMath.abs(radius);
+
+        final int ringCount = resolution / 2;
+        final int meridianCount = resolution;
+
+        Vector3f[] vertices = new Vector3f[ringCount * meridianCount + 1];
+
+        final int northPoleIndex = vertices.length - 1;
+
+        vertices[northPoleIndex] = new Vector3f(0, radius,0);
+
+        double deltaAlpha = FastMath.PI / resolution;
+        double deltaTheta = 2 * FastMath.PI / resolution;
+        double alpha = 0;
+        double theta;
+
+        for(int ring = 0; ring < ringCount; ring++){
+            alpha -= deltaAlpha;
+            theta = 0;
+            for(int meridian = 0; meridian < meridianCount; meridian++){
+                float sinθ = (float)FastMath.sin(theta);
+                float cosθ = (float)FastMath.cos(theta);
+                float sinφ = (float)FastMath.sin(alpha);
+                float cosφ = (float)FastMath.cos(alpha);
+
+                vertices[(ring * meridianCount) + meridian] = new Vector3f(
+                        radius * sinφ * cosθ,
+                        radius * cosφ,
+                        radius * sinφ * sinθ
+                );
+                theta -= deltaTheta;
+            }
+        }
+
+        ArrayList<FaceMI> faces = new ArrayList<>();
+
+        for (int ring = 0; ring < ringCount - 1; ring++) {
+
+            final int currentRingIndexOffset = ring * meridianCount;
+            final int nextRingIndexOffset = (ring + 1) * meridianCount;
+
+            for (int meridian = 0; meridian < meridianCount - 1; meridian++) {
+
+                //faces
+                faces.add(new FaceMI(
+                        currentRingIndexOffset + meridian + 1,
+                        currentRingIndexOffset + meridian,
+                        nextRingIndexOffset  + meridian,
+                        nextRingIndexOffset + meridian + 1
+                ));
+            }
+
+            //filler faces
+            faces.add(new FaceMI(
+                    currentRingIndexOffset + 0,
+                    currentRingIndexOffset + meridianCount - 1,
+                    nextRingIndexOffset + meridianCount - 1,
+                    nextRingIndexOffset + 0
+            ));
+        }
+
+        final int bottomRingIndexOffset = ringCount * meridianCount - 1;
+
+        IndexSet[] bottomFaceIndexSets = new IndexSet[resolution];
+
+        for (int i = 0; i < resolution; i++) {
+            bottomFaceIndexSets[i] = new IndexSet(bottomRingIndexOffset - i);
+        }
+
+        //bottom face
+        faces.add(new FaceMI(bottomFaceIndexSets));
+
+        for (int meridian = 0; meridian < resolution - 1; meridian++) {
+            //top faces
+            faces.add(new FaceMI(
+                    northPoleIndex,
+                    meridian,
+                    meridian + 1
+            ));
+        }
+
+        //top faces filler
+        faces.add(new FaceMI(
+                northPoleIndex,
+                meridianCount - 1,
+                0
+        ));
+
+        return new Mesh3D(new MultiIndexMeshData(vertices, null, null, faces.toArray(new FaceMI[faces.size()])));
+    }

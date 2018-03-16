@@ -1,0 +1,229 @@
+//package com.graphics.component;
+//
+//import com.graphics.component.mesh._3D.FaceMI;
+//import com.maths.vectors.Vector2f;
+//import com.maths.vectors.Vector3i;
+//import com.utils.DataTypeUtils;
+//import org.lwjgl.system.MemoryUtil;
+//
+//import java.nio.FloatBuffer;
+//import java.nio.IntBuffer;
+//import java.util.List;
+//
+//import static org.lwjgl.opengl.GL11.*;
+//import static org.lwjgl.opengl.GL13.GL_TEXTURE0;
+//import static org.lwjgl.opengl.GL13.glActiveTexture;
+//import static org.lwjgl.opengl.GL15.*;
+//import static org.lwjgl.opengl.GL20.*;
+//import static org.lwjgl.opengl.GL30.*;
+//
+//public class Mesh2D {
+//
+//    private final int vaoId;
+//
+//    private int vertexPositionsVboId;
+//
+//    private int textureCoordsVboId;
+//
+//    private int vertexIndicesVboId;
+//
+//    private final int vertexCount;
+//
+//    private final boolean supportsTexture;
+//
+//    ////////////////////////////////////////////////////////////////
+//
+//    public Mesh2D(List<Vector2f> vertexPositions, List<Vector2f> textureCoordinates, List<FaceMI> faces){
+//        this(
+//                vertexPositions.toArray(new Vector2f[vertexPositions.size()]),
+//                textureCoordinates == null || textureCoordinates.size() == 0 ? null : textureCoordinates.toArray(new Vector2f[textureCoordinates.size()]),
+//                faces.toArray(new FaceMI[faces.size()])
+//        );
+//    }
+//
+//    public Mesh2D(Vector2f[] vertexPositions, Vector2f[] textureCoordinates, FaceMI[] faces){
+//        vaoId = glGenVertexArrays();
+//        vertexCount = 0;
+//        supportsTexture = false;
+//        supportsTexture = textureCoordinates != null;
+//
+//
+//
+//        int primitiveFaceCount = 0;
+//
+//        for(FaceMI face: faces){
+//            primitiveFaceCount += face.getPrimtiveFaceCount();
+//        }
+//
+//        vertexCount = primitiveFaceCount * 3;
+//
+//        Vector2f[] VertexPositions = new Vector2f[vertexCount];
+//        Vector2f[] TextureCoords = new Vector2f[vertexCount];
+//        Vector3i[] VertexIndices = new Vector3i[primitiveFaceCount];
+//
+//        int primitiveFaceIndex = 0;
+//
+//        for(FaceMI face: faces){
+//            int[] vertexPositionIndexs = face.getVertexPositionIndexs();
+//            int[] textureCoordinateIndexs = face.getTextureCoordinateIndexs();
+//            int faceOrder = vertexPositionIndexs.length;
+//
+//            for(int i = 1; i <= faceOrder - 2; i++){
+//                final int primitiveFaceIndexOffset = primitiveFaceIndex * 3;
+//
+//                Vector2f vertexPosition0 = vertexPositions[vertexPositionIndexs[0    ]];
+//                Vector2f vertexPosition1 = vertexPositions[vertexPositionIndexs[i    ]];
+//                Vector2f vertexPosition2 = vertexPositions[vertexPositionIndexs[i + 1]];
+//
+//                VertexPositions[primitiveFaceIndexOffset    ] = vertexPosition0;
+//                VertexPositions[primitiveFaceIndexOffset + 1] = vertexPosition1;
+//                VertexPositions[primitiveFaceIndexOffset + 2] = vertexPosition2;
+//
+//                if(supportsTexture) {
+//
+//                    Vector2f textureCoord0 = textureCoordinates[textureCoordinateIndexs[0    ]];
+//                    Vector2f textureCoord1 = textureCoordinates[textureCoordinateIndexs[i    ]];
+//                    Vector2f textureCoord2 = textureCoordinates[textureCoordinateIndexs[i + 1]];
+//
+//                    TextureCoords[primitiveFaceIndexOffset    ] = textureCoord0;
+//                    TextureCoords[primitiveFaceIndexOffset + 1] = textureCoord1;
+//                    TextureCoords[primitiveFaceIndexOffset + 2] = textureCoord2;
+//                }
+//
+//                VertexIndices[primitiveFaceIndex] = new Vector3i(
+//                        primitiveFaceIndexOffset + 0,
+//                        primitiveFaceIndexOffset + 1,
+//                        primitiveFaceIndexOffset + 2
+//                );
+//
+//                primitiveFaceIndex++;
+//            }
+//        }
+//
+//        vaoId = glGenVertexArrays();
+//        glBindVertexArray(vaoId);
+//
+//        createVertexPositionsVbo(VertexPositions);
+//        if(supportsTexture) {
+//            createTextureCoordsVbo(TextureCoords);
+//        }
+//        createVertexIndicesVbo(VertexIndices);
+//
+//        glBindBuffer(GL_ARRAY_BUFFER, 0);
+//        glBindVertexArray(0);
+//    }
+//
+//    private void createVertexPositionsVbo(Vector2f[] VertexPositions){
+//        float[] vertexPositions = DataTypeUtils.toFloatArray(VertexPositions);
+//        FloatBuffer vertexPositionsBuffer = null;
+//
+//        try {
+//            // Position VBO
+//            vertexPositionsVboId = glGenBuffers();
+//            vertexPositionsBuffer = MemoryUtil.memAllocFloat(vertexPositions.length);
+//            vertexPositionsBuffer.put(vertexPositions).flip();
+//            glBindBuffer(GL_ARRAY_BUFFER, vertexPositionsVboId);
+//            glBufferData(GL_ARRAY_BUFFER, vertexPositionsBuffer, GL_STATIC_DRAW);
+//            glVertexAttribPointer(0, 2, GL_FLOAT, false, 0, 0);
+//        }finally {
+//            if (vertexPositionsBuffer != null) {
+//                MemoryUtil.memFree(vertexPositionsBuffer);
+//            }
+//        }
+//    }
+//
+//    private void createTextureCoordsVbo(Vector2f[] TextureCoords){
+//        float[] textureCoords = DataTypeUtils.toFloatArray(TextureCoords);
+//        FloatBuffer textureCoordsBuffer = null;
+//
+//        try {
+//            // Texture coords VBO
+//            textureCoordsVboId = glGenBuffers();
+//            textureCoordsBuffer = MemoryUtil.memAllocFloat(textureCoords.length);
+//            textureCoordsBuffer.put(textureCoords).flip();
+//            glBindBuffer(GL_ARRAY_BUFFER, textureCoordsVboId);
+//            glBufferData(GL_ARRAY_BUFFER, textureCoordsBuffer, GL_STATIC_DRAW);
+//            glVertexAttribPointer(1, 2, GL_FLOAT, false, 0, 0);
+//        }finally {
+//            if (textureCoordsBuffer != null) {
+//                MemoryUtil.memFree(textureCoordsBuffer);
+//            }
+//        }
+//    }
+//
+//    private void createVertexIndicesVbo(Vector3i[] VertexIndices){
+//        int[] vertexIndices = DataTypeUtils.toIntArray(VertexIndices);
+//        IntBuffer vertexIndicesBuffer = null;
+//
+//        try {
+//            // Index VBO
+//            vertexIndicesVboId = glGenBuffers();
+//            vertexIndicesBuffer = MemoryUtil.memAllocInt(vertexIndices.length);
+//            vertexIndicesBuffer.put(vertexIndices).flip();
+//            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vertexIndicesVboId);
+//            glBufferData(GL_ELEMENT_ARRAY_BUFFER, vertexIndicesBuffer, GL_STATIC_DRAW);
+//
+//            glBindBuffer(GL_ARRAY_BUFFER, 0);
+//            glBindVertexArray(0);
+//        }finally {
+//            if (vertexIndicesBuffer != null) {
+//                MemoryUtil.memFree(vertexIndicesBuffer);
+//            }
+//        }
+//    }
+//
+//    public void render(){
+//        // Bind vertex data
+//        glBindVertexArray(vaoId);
+//        glEnableVertexAttribArray(0);
+//        if(supportsTexture) {
+//            glEnableVertexAttribArray(1);
+//        }
+//
+//        // Draw the mesh
+//        glDrawElements(GL_TRIANGLES, vertexCount, GL_UNSIGNED_INT, 0);
+//
+//        // Restore state
+//        glDisableVertexAttribArray(0);
+//        if(supportsTexture) {
+//            glDisableVertexAttribArray(1);
+//        }
+//        glBindVertexArray(0);
+//    }
+//
+//    public void render(Material material){
+//        final boolean bindTexture = supportsTexture && material.hasTexture() && material.isUseTexture();
+//
+//        if(bindTexture) { // Bind Texture
+//            glActiveTexture(GL_TEXTURE0);
+//            material.getTexture().bind();
+//        }
+//
+//        render();
+//
+//        if(bindTexture) { // Unbind Texture
+//            glBindTexture(GL_TEXTURE_2D, 0);
+//        }
+//    }
+//
+//    public void dispose() {
+//        // Disable the VAO
+//        glBindBuffer(GL_ARRAY_BUFFER, 0);
+//        glDisableVertexAttribArray(0);
+//
+//        // Delete the VBOs
+//        glDeleteBuffers(vertexPositionsVboId);
+//        if(supportsTexture) {
+//            glDeleteBuffers(textureCoordsVboId);
+//        }
+//        glDeleteBuffers(vertexIndicesVboId);
+//
+//        // Delete the VAO
+//        glBindVertexArray(0);
+//        glDeleteVertexArrays(vaoId);
+//    }
+//
+//    public boolean supportsTexture(){
+//        return supportsTexture;
+//    }
+//}

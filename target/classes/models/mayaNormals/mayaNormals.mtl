@@ -1,0 +1,49 @@
+# Blender MTL File: 'None'
+# Material Count: 4
+
+newmtl Hands
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.540000 0.540000 0.540000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd textures\SirenHands_Dif.png
+map_bump textures\SirenHands_Nrm.png
+
+newmtl Body
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd textures\SirenBody_Bm.png
+map_bump textures\SirenBody_Nrm.png
+
+newmtl Head
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.440000 0.440000 0.440000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd textures\SirenHead_Bm.png
+map_bump textures\SirenHead_Nrm.png
+
+newmtl Mouth
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd textures\Mouth.png

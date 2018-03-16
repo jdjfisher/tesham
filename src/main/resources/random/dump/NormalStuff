@@ -1,0 +1,95 @@
+public static Mesh3D normalTestMesh(float theta, float length, float height, float depth){ //Test
+        float halfHeight = height / 2;
+        double alpha = FastMath.toRadians(90 - theta/2);
+        float xl = length * (float) FastMath.sin(alpha);
+        float zl = length * (float) FastMath.cos(alpha);
+
+        Vector3f[] vertices = new Vector3f[]{
+                new Vector3f(-xl, -halfHeight ,0),
+                new Vector3f(0, -halfHeight ,zl),
+                new Vector3f(xl, -halfHeight , 0),
+                new Vector3f(-xl, halfHeight , 0),
+                new Vector3f(0, halfHeight ,zl),
+                new Vector3f(xl, halfHeight , 0),
+                new Vector3f(-xl, halfHeight , -depth),
+                new Vector3f(xl, halfHeight , -depth),
+        };
+
+        FaceMI[] faces = new FaceMI[]{
+                new FaceMI(
+                        4,
+                        3,
+                        0,
+                        1
+                ),
+                new FaceMI(
+                        5,
+                        4,
+                        1,
+                        2
+                ),
+                new FaceMI(
+                        6,
+                        3,
+                        4,
+                        5,
+                        7
+                )
+        };
+
+        return new Mesh3D(new MultiIndexMeshData(vertices, null, null, faces));
+    }
+
+    public static Mesh3D normalTestMeshManual(float theta, float length, float height, float depth){ //Test
+        float halfHeight = height / 2;
+        double alpha = FastMath.toRadians(90 - theta/2);
+        double beta = FastMath.toRadians(theta/2);
+        float xl = length * (float) FastMath.sin(alpha);
+        float zl = length * (float) FastMath.cos(alpha);
+
+        Vector3f[] vertices = new Vector3f[]{
+                new Vector3f(-xl, -halfHeight ,0),
+                new Vector3f(0, -halfHeight ,zl),
+                new Vector3f(xl, -halfHeight , 0),
+                new Vector3f(-xl, halfHeight , 0),
+                new Vector3f(0, halfHeight ,zl),
+                new Vector3f(xl, halfHeight , 0),
+                new Vector3f(-xl, halfHeight , -depth),
+                new Vector3f(xl, halfHeight , -depth),
+        };
+
+        float nx = (float) FastMath.sin(beta);
+        float nz = (float) FastMath.cos(beta);
+
+        Vector3f[] normals = new Vector3f[]{
+                new Vector3f(0, 1 ,0),
+                new Vector3f(-nx, 0 , nz),
+                new Vector3f(nx, 0 , nz),
+                new Vector3f(0, 0 , 1)
+        };
+
+
+        FaceMI[] faces = new FaceMI[]{
+                new FaceMI(new IndexSet[]{
+                        new IndexSet(4, 3, NULL_INDEX),
+                        new IndexSet(3, 1, NULL_INDEX),
+                        new IndexSet(0, 1, NULL_INDEX),
+                        new IndexSet(1, 3, NULL_INDEX)
+                }),
+                new FaceMI(new IndexSet[]{
+                        new IndexSet(5, 2, NULL_INDEX),
+                        new IndexSet(4, 3, NULL_INDEX),
+                        new IndexSet(1, 3, NULL_INDEX),
+                        new IndexSet(2, 2, NULL_INDEX)
+                }),
+                new FaceMI(new IndexSet[]{
+                        new IndexSet(6, 0, NULL_INDEX),
+                        new IndexSet(3, 0, NULL_INDEX),
+                        new IndexSet(4, 0, NULL_INDEX),
+                        new IndexSet(5, 0, NULL_INDEX),
+                        new IndexSet(7, 0, NULL_INDEX)
+                }),
+        };
+
+        return new Mesh3D(new MultiIndexMeshData(vertices, normals, null, faces));
+    }
