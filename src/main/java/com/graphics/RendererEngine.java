@@ -16,8 +16,8 @@ public class RendererEngine {
     public RendererEngine() {
     }
 
-    public void init(Window window) throws Exception{
-        basicShader = new ShaderProgram("basic");
+    public void init() throws Exception{
+        basicShader = new ShaderProgram("basic", "basic", "basic");
         basicShader.bind();
 //        basicShader.setColourRGBUniform("colour", Color.WHITE);
 

@@ -44,7 +44,7 @@ public class Engine {
                 loadOptions();
                 window.init();
                 System.err.println("WINDOW INITIALISED");
-                renderer.init(window);
+                renderer.init();
                 System.err.println("RENDERER INITIALISED");
                 world.init();
                 System.err.println("GAME INITIALISED");
@@ -158,7 +158,7 @@ public class Engine {
     private void render() {
         if (fpsTimer.getElapsedTime() > 1) {
             fpsTimer.restart();
-//            world.setFPS(frameCount);
+            window.appendToTitle(String.format("FPS: %d", frameCount));
             frameCount = 0;
         }
         frameCount++;

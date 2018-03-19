@@ -27,7 +27,7 @@ public class ShaderProgram {
 
     private static final int NULL = 0;
 
-    private final String shaderName;
+    private final String shaderProgramName;
     private final ShaderType shaderType;
 
     private final int programId;
@@ -38,28 +38,33 @@ public class ShaderProgram {
     private final HashMap<String, Integer> uniforms;
     private final HashMap<String, HashMap<String, String>> structs;
 
-    public ShaderProgram(String shaderName) throws Exception {
-        this.shaderName = shaderName;
+    public ShaderProgram(String shaderProgramName, String vertexShaderName, String fragmentShaderName) throws Exception {
+        this(shaderProgramName, vertexShaderName, null, fragmentShaderName);
+    }
+
+    public ShaderProgram(String shaderProgramName, String vertexShaderName, String geometryShaderName, String fragmentShaderName) throws Exception {
+        this.shaderProgramName = shaderProgramName;
+
         programId = glCreateProgram();
         if (programId == 0) {
-            throw new Exception(String.format("Could not create %s Shader", shaderName));
+            throw new Exception(String.format("Could not create %s shader program", shaderProgramName));
         }
 
-        final File vertexShaderFile   = new File(String.format("./src/main/resources/shaders/%s/vertex.vs",   shaderName));
-        final File geometryShaderFile = new File(String.format("./src/main/resources/shaders/%s/geometry.gs", shaderName));
-        final File fragmentShaderFile = new File(String.format("./src/main/resources/shaders/%s/fragment.fs", shaderName));
+        final File vertexShaderFile   = new File(String.format("./src/main/resources/shaders/vertex/%s.glsl",   vertexShaderName));
+        final File geometryShaderFile = new File(String.format("./src/main/resources/shaders/geometry/%s.glsl", geometryShaderName));
+        final File fragmentShaderFile = new File(String.format("./src/main/resources/shaders/fragment/%s.glsl", fragmentShaderName));
 
-        if(!vertexShaderFile.exists()){ throw new Exception(String.format("Could not find the %s vertex shader", shaderName)); }
+        if(!vertexShaderFile.exists()){ throw new Exception(String.format("Could not find the %s vertex shader", vertexShaderName)); }
         final boolean hasGeometryShader = geometryShaderFile.exists();
-        if(!fragmentShaderFile.exists()){ throw new Exception(String.format("Could not find the %s fragment shader", shaderName)); }
+        if(!fragmentShaderFile.exists()){ throw new Exception(String.format("Could not find the %s fragment shader", fragmentShaderName)); }
 
-        String vertexShaderCode   = loadFileAsString(String.format("./src/main/resources/shaders/%s/vertex.vs", shaderName));
-        String geometryShaderCode = hasGeometryShader ? loadFileAsString(String.format("./src/main/resources/shaders/%s/geometry.gs", shaderName)) : null;
-        String fragmentShaderCode = loadFileAsString(String.format("./src/main/resources/shaders/%s/fragment.fs", shaderName));
+        String vertexShaderCode   = loadFileAsString(vertexShaderFile);
+        String geometryShaderCode = hasGeometryShader ? loadFileAsString(geometryShaderFile) : null;
+        String fragmentShaderCode = loadFileAsString(fragmentShaderFile);
 
-        createVertexShader(vertexShaderCode);
-        if(hasGeometryShader){createGeometryShader(geometryShaderCode);}
-        createFragmentShader(fragmentShaderCode);
+        createVertexShader(vertexShaderCode, vertexShaderName);
+        if(hasGeometryShader){createGeometryShader(geometryShaderCode, geometryShaderName);}
+        createFragmentShader(fragmentShaderCode, fragmentShaderName);
 
         linkProgram();
 
@@ -73,20 +78,21 @@ public class ShaderProgram {
         autoCreateUniforms(fragmentShaderCode);
     }
 
-    private void createVertexShader(String shaderCode) throws Exception {
-        vertexShaderId = createShaderAttachment(shaderCode, GL_VERTEX_SHADER);
+    private void createVertexShader(String shaderCode, String vertexShaderName) throws Exception {
+        vertexShaderId = createShaderAttachment(shaderCode, vertexShaderName, GL_VERTEX_SHADER);
     }
 
-    private void createGeometryShader(String shaderCode) throws Exception {
-        geometryShaderId = createShaderAttachment(shaderCode, GL_GEOMETRY_SHADER);
+    private void createGeometryShader(String shaderCode, String geometryShaderName) throws Exception {
+        geometryShaderId = createShaderAttachment(shaderCode, geometryShaderName, GL_GEOMETRY_SHADER);
     }
 
-    private void createFragmentShader(String shaderCode) throws Exception {
-        fragmentShaderId = createShaderAttachment(shaderCode, GL_FRAGMENT_SHADER);
+    private void createFragmentShader(String shaderCode, String fragmentShaderName) throws Exception {
+        fragmentShaderId = createShaderAttachment(shaderCode, fragmentShaderName, GL_FRAGMENT_SHADER);
     }
 
-    private int createShaderAttachment(String shaderCode, int shaderTarget) throws Exception {
+    private int createShaderAttachment(String shaderCode, String shaderName, int shaderTarget) throws Exception {
         String shaderTypeName;
+
         switch (shaderTarget){
             case GL_VERTEX_SHADER:
                 shaderTypeName = "Vertex";
@@ -104,14 +110,14 @@ public class ShaderProgram {
 
         int shaderId = glCreateShader(shaderTarget);
         if (shaderId == NULL) {
-            throw new Exception(String.format("Error creating %s %s Shader", shaderName, shaderTypeName));
+            throw new Exception(String.format("Error creating %s %s shader", shaderName, shaderTypeName));
         }
 
         glShaderSource(shaderId, shaderCode);
         glCompileShader(shaderId);
 
         if (glGetShaderi(shaderId, GL_COMPILE_STATUS) == NULL) {
-            throw new Exception(String.format("Error compiling %s %s Shader: %s", shaderName, shaderTypeName, glGetShaderInfoLog(shaderId, 1024)));
+            throw new Exception(String.format("Error compiling %s %s shader: %s", shaderName, shaderTypeName, glGetShaderInfoLog(shaderId, 1024)));
         }
 
         glAttachShader(programId, shaderId);
@@ -122,7 +128,7 @@ public class ShaderProgram {
     private void linkProgram() throws Exception {
         glLinkProgram(programId);
         if (glGetProgrami(programId, GL_LINK_STATUS) == NULL) {
-            throw new Exception(String.format("Error linking %s Shader code: %s", shaderName, glGetProgramInfoLog(programId, 1024)));
+            throw new Exception(String.format("Error linking %s Shader program: %s", shaderProgramName, glGetProgramInfoLog(programId, 1024)));
         }
 
         if (vertexShaderId != NULL) {
@@ -140,7 +146,7 @@ public class ShaderProgram {
 
         glValidateProgram(programId);
         if (glGetProgrami(programId, GL_VALIDATE_STATUS) == NULL) {
-            throw new Exception(String.format("Warning validating %s Shader code: %s", shaderName, glGetShaderInfoLog(programId, 1024)));
+            throw new Exception(String.format("Warning validating %s shader program: %s", shaderProgramName, glGetShaderInfoLog(programId, 1024)));
         }
     }
 
@@ -287,7 +293,7 @@ public class ShaderProgram {
         final int uniformLocation = glGetUniformLocation(programId, name);
 
         if(uniformLocation == 0xFFFFFFFF){
-            throw new Exception(String.format("The uniform: '%s' for the '%s' shader program is not used", name, shaderName));
+            throw new Exception(String.format("The uniform: '%s' for the '%s' shader program is not used", name, shaderProgramName));
         }else {
             uniforms.put(name, uniformLocation);
         }
@@ -297,7 +303,7 @@ public class ShaderProgram {
 
     private int getUniform(String uniformName) throws Exception{
         if(!uniforms.containsKey(uniformName)){
-            throw new Exception(String.format("The %s shader does not contain the %s uniform", shaderName, uniformName));
+            throw new Exception(String.format("The %s shader does not contain the %s uniform", shaderProgramName, uniformName));
         }else {
             return uniforms.get(uniformName);
         }

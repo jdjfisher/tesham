@@ -184,6 +184,10 @@ public class Window {
         return new Vector2i(x[0], y[0]);
     }
 
+    public void appendToTitle(String string){
+        glfwSetWindowTitle(windowHandle, String.format("%s (%s)", title, string));
+    }
+
     public void setViewPort(){
         glViewport(0,0, currentWidth, currentHeight);
     }

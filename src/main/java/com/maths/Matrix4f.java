@@ -159,10 +159,10 @@ public class Matrix4f{
         final Matrix4f result = Identity();
         result.elements[0][0] = 2f / (right - left);
         result.elements[1][1] = 2f / (top - bottom);
-        result.elements[2][2] = 2f / (zFar - zNear);
-        result.elements[0][3] = (right + left) / (left - right);
-        result.elements[1][3] = (top + bottom) / (bottom - top);
-        result.elements[2][3] = (zFar + zNear) / (zNear - zFar);
+        result.elements[2][2] = -2f / (zFar - zNear);
+        result.elements[0][3] = -(right + left) / (right - left);
+        result.elements[1][3] = -(top + bottom) / (top - bottom);
+        result.elements[2][3] = -(zFar + zNear) / (zFar - zNear);
         return result;
     }
 
