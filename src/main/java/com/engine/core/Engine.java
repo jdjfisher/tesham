@@ -87,7 +87,9 @@ public class Engine {
             cumulativeTime += elapsedTime;
             loopTimer.start();
 
-            handleInput();
+            if(window.isFocused()) {
+                handleInput();
+            }
 
             while (cumulativeTime >= SECONDS_PER_UPDATE) {
                 update(SECONDS_PER_UPDATE);
@@ -97,6 +99,8 @@ public class Engine {
             if(!window.isMinimized()) {
                 render();
             }
+
+            window.update();
 
             if (isVSyncEnabled()) {
                 sync(SECONDS_PER_FRAME);
@@ -168,8 +172,6 @@ public class Engine {
         }catch (Exception e){
             e.printStackTrace();
         }
-
-        window.update();
     }
 
     public void stop() {

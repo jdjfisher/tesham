@@ -33,7 +33,6 @@ public class Window {
     private int currentHeight;
 
     private boolean hasResized;
-    private boolean minimized;
 
     private Matrix4f perspectiveMatrix;
     private Matrix4f orthographic2DMatrix;
@@ -83,13 +82,11 @@ public class Window {
             if(isWindowFullScreen()){
                 currentWidth = width;
                 currentHeight = height;
-            }else if(!minimized){
+            }else {
                 currentWidth = windowedWidth = width;
                 currentHeight = windowedHeight = height;
             }
         });
-
-        glfwSetWindowIconifyCallback(windowHandle, (window, state) -> minimized = state);
 
         glfwSetKeyCallback(windowHandle, new Keyboard());
         glfwSetMouseButtonCallback(windowHandle, new MouseButtons());
@@ -168,6 +165,14 @@ public class Window {
         glfwFocusWindow(windowHandle);
     }
 
+    public void setVisibility(boolean state){
+        if(state) {
+            glfwShowWindow(windowHandle);
+        }else {
+            glfwHideWindow(windowHandle);
+        }
+    }
+
     public void centreWindow(){
         glfwSetWindowPos(windowHandle, (fullScreenWidth - currentWidth) / 2, (fullScreenHeight - currentHeight) / 2);
     }
@@ -184,10 +189,6 @@ public class Window {
         return new Vector2i(x[0], y[0]);
     }
 
-    public void appendToTitle(String string){
-        glfwSetWindowTitle(windowHandle, String.format("%s (%s)", title, string));
-    }
-
     public void setViewPort(){
         glViewport(0,0, currentWidth, currentHeight);
     }
@@ -200,18 +201,6 @@ public class Window {
         return perspectiveMatrix;
     }
 
-    public boolean isOpen() {
-        return !glfwWindowShouldClose(windowHandle);
-    }
-
-    public boolean hasResized() {
-        return hasResized;
-    }
-
-    public boolean isMinimized() {
-        return minimized;
-    }
-
     public long getHandle(){
         return windowHandle;
     }
@@ -222,6 +211,10 @@ public class Window {
 
     public String getTitle() {
         return title;
+    }
+
+    public void appendToTitle(String string){
+        glfwSetWindowTitle(windowHandle, String.format("%s (%s)", title, string));
     }
 
     public int getWidth(){
@@ -238,5 +231,21 @@ public class Window {
 
     public int getRefreshRate() {
         return refreshRate;
+    }
+
+    public boolean hasResized() {
+        return hasResized;
+    }
+
+    public boolean isOpen() {
+        return !glfwWindowShouldClose(windowHandle);
+    }
+
+    public boolean isMinimized() {
+        return glfwGetWindowAttrib(windowHandle, GLFW_ICONIFIED) == 1;
+    }
+
+    public boolean isFocused(){
+        return glfwGetWindowAttrib(windowHandle, GLFW_FOCUSED) == 1;
     }
 }

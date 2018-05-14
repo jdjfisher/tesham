@@ -64,9 +64,9 @@ public class Camera {
             deltaCamPos.setX(0);
         }
 
-        if(MouseButtons.isButtonDown(GLFW_MOUSE_BUTTON_LEFT)){
+        if(Keyboard.isKeyDown(GLFW_KEY_Q)){
             deltaCamPos.setY(1);
-        } else if(MouseButtons.isButtonDown(GLFW_MOUSE_BUTTON_RIGHT)){
+        } else if(Keyboard.isKeyDown(GLFW_KEY_E)){
             deltaCamPos.setY(-1);
         } else{
             deltaCamPos.setY(0);
@@ -109,7 +109,7 @@ public class Camera {
     }
 
     public Vector3f getDirection(){
-        return Vector3f.Multiply(new Vector3f(0,0,-1), getRotation());
+        return Vector3f.Multiply(new Vector3f(0,0,-1), rotation);
     }
 
     public Quaternion getRotation(){

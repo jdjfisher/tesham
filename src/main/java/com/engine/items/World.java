@@ -1,9 +1,6 @@
 package com.engine.items;
 
-import com.componentSystem.Entity;
-import com.componentSystem.EntityManager;
-import com.componentSystem.MeshComponentManager;
-import com.componentSystem.TransformComponentManager;
+import com.componentSystem.*;
 import com.engine.core.Window;
 import com.engine.input.Cursor;
 import com.engine.input.Keyboard;
@@ -27,7 +24,6 @@ public class World {
     public static final Vector3f WORLD_FORWARD_VECTOR = Z_AXIS;
 
     private final Camera camera;
-    final Vector3f deltaCamPos;
 
     private final EntityManager entityManager;
     private final TransformComponentManager transformComponentManager;
@@ -35,7 +31,6 @@ public class World {
 
     public World() {
         camera = new Camera(new Vector3f(0,0,5));
-        deltaCamPos = Vector3f.Identity();
 
         entityManager = new EntityManager();
         transformComponentManager = new TransformComponentManager();
