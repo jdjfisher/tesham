@@ -18,7 +18,7 @@ public abstract class AbstractComponentManager <ComponentT extends AbstractCompo
 
     public void subscribe(Entity entity){
         indexMap.put(entity, components.size());
-        components.add(new ComponentT(entity));
+//        components.add(new ComponentT(entity));
     }
 
     public void destroy(Entity entity){

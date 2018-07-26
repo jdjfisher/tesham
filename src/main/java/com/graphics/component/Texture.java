@@ -15,9 +15,7 @@ import static org.lwjgl.opengl.GL30.glGenerateMipmap;
 public class Texture {
 
     private int id;
-
     private int width;
-
     private int height;
 
     public Texture(BufferedImage bufferedImage){
@@ -55,10 +53,6 @@ public class Texture {
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
 
         glGenerateMipmap(GL_TEXTURE_2D);
-    }
-
-    public Texture(int id) {
-        this.id = id;
     }
 
     public void bind(){

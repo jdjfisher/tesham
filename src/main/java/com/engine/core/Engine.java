@@ -100,7 +100,7 @@ public class Engine {
                 render();
             }
 
-            window.update();
+            window.pollEvents();
 
             if (isVSyncEnabled()) {
                 sync(SECONDS_PER_FRAME);
@@ -122,7 +122,7 @@ public class Engine {
     }
 
     private void handleInput() {
-        if(Keyboard.isKeyTapped(GLFW_KEY_M)) {
+        if(Keyboard.isKeyTapped(GLFW_KEY_F3)) {
             toggleFullScreenMode();
         }
 

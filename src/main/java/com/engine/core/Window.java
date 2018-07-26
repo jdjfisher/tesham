@@ -1,5 +1,6 @@
 package com.engine.core;
 
+import static com.engine.core.Options.*;
 import com.engine.input.Cursor;
 import com.engine.input.Keyboard;
 import com.engine.input.MouseButtons;
@@ -10,17 +11,17 @@ import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
 
-import static com.engine.core.Options.*;
 import static java.sql.Types.NULL;
 import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.glfw.GLFW.glfwWindowHint;
 import static org.lwjgl.opengl.GL43.GL_MIPMAP;
 
 public class Window {
 
     private long windowHandle;
-    private final String title;
+    private String title;
     private int refreshRate;
 
     private int windowedWidth;
@@ -29,10 +30,8 @@ public class Window {
     private int fullScreenWidth;
     private int fullScreenHeight;
 
-    private int currentWidth;
-    private int currentHeight;
-
-    private boolean hasResized;
+    private IResizeCallback resizeCallback;
+    private boolean fullScreen;
 
     private Matrix4f perspectiveMatrix;
     private Matrix4f orthographic2DMatrix;
@@ -41,9 +40,8 @@ public class Window {
         this.windowedWidth = width;
         this.windowedHeight = height;
         this.title = title;
-        currentWidth = windowedWidth;
-        currentHeight = windowedHeight;
-        hasResized = false;
+        this.resizeCallback = null;
+        fullScreen = false;
     }
 
     public void init() {
@@ -62,11 +60,10 @@ public class Window {
         glfwWindowHint(GLFW_VISIBLE, GL_FALSE);
         glfwWindowHint(GLFW_RESIZABLE, GL_TRUE);
         glfwWindowHint(GLFW_REFRESH_RATE, refreshRate);
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5);
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
         glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-        glfwWindowHint(GLFW_SAMPLES, 4);
 
         windowHandle = glfwCreateWindow(windowedWidth, windowedHeight, title, NULL, NULL);
 
@@ -78,13 +75,13 @@ public class Window {
 
         // Setup resize callback
         glfwSetFramebufferSizeCallback(windowHandle, (window, width, height) -> {
-            hasResized = true;
-            if(isWindowFullScreen()){
-                currentWidth = width;
-                currentHeight = height;
-            }else {
-                currentWidth = windowedWidth = width;
-                currentHeight = windowedHeight = height;
+            if(!fullScreen){
+                windowedWidth = width;
+                windowedHeight = height;
+            }
+
+            if(resizeCallback != null) {
+                resizeCallback.invoke(width, height);
             }
         });
 
@@ -110,15 +107,7 @@ public class Window {
         glfwShowWindow(windowHandle);
     }
 
-
-
     public void preRender(){
-        if(isWindowFullScreen() && (glfwGetWindowMonitor(windowHandle) != glfwGetPrimaryMonitor())){
-            setFullScreen(true);
-        }else if(!isWindowFullScreen() && glfwGetWindowMonitor(windowHandle) == glfwGetPrimaryMonitor()){
-            setFullScreen(false);
-        }
-
         if (isVSyncEnabled()) {
             glfwSwapInterval(1);
         }else {
@@ -131,8 +120,7 @@ public class Window {
         orthographic2DMatrix = Matrix4f.Orthographic2D(0, getWidth(), getHeight(), 0);
     }
 
-    public void update() {
-        hasResized = false;
+    public void pollEvents() {
         glfwSwapBuffers(windowHandle);
         glfwPollEvents();
     }
@@ -144,25 +132,32 @@ public class Window {
         glfwSetErrorCallback(null).free();
     }
 
-    private void setFullScreen(boolean state){
-        glfwHideWindow(windowHandle);
+    public boolean isFullScreen() {
+        return fullScreen;
+    }
 
-        glfwSetWindowMonitor(
-                windowHandle,
-                state ? glfwGetPrimaryMonitor() : NULL,
-                (fullScreenWidth - currentWidth) / 2 ,
-                (fullScreenHeight - currentHeight) / 2,
-                state ? fullScreenWidth : windowedWidth,
-                state ? fullScreenHeight : windowedHeight,
-                refreshRate
-        );
+    public void setFullScreen(boolean state){
+        if(fullScreen != state) {
+            fullScreen = state;
+            glfwHideWindow(windowHandle);
 
-        if(!state){
-            centreWindow();
+            glfwSetWindowMonitor(
+                    windowHandle,
+                    state ? glfwGetPrimaryMonitor() : NULL,
+                    (fullScreenWidth - getWidth()) / 2,
+                    (fullScreenHeight - getHeight()) / 2,
+                    getWidth(),
+                    getHeight(),
+                    refreshRate
+            );
+
+            glfwShowWindow(windowHandle);
+            glfwFocusWindow(windowHandle);
         }
+    }
 
-        glfwShowWindow(windowHandle);
-        glfwFocusWindow(windowHandle);
+    public void toggleFullScreen(){
+        setFullScreen(!isFullScreen());
     }
 
     public void setVisibility(boolean state){
@@ -174,7 +169,7 @@ public class Window {
     }
 
     public void centreWindow(){
-        glfwSetWindowPos(windowHandle, (fullScreenWidth - currentWidth) / 2, (fullScreenHeight - currentHeight) / 2);
+        glfwSetWindowPos(windowHandle, (fullScreenWidth - getWidth()) / 2, (fullScreenHeight - getHeight()) / 2);
     }
 
     public void changeWindowPosition(Vector2i deltaPosition){
@@ -190,7 +185,7 @@ public class Window {
     }
 
     public void setViewPort(){
-        glViewport(0,0, currentWidth, currentHeight);
+        glViewport(0,0, getWidth(), getHeight());
     }
 
     public Matrix4f getOrthographic2DMatrix() {
@@ -205,12 +200,13 @@ public class Window {
         return windowHandle;
     }
 
-    public void setTitle(String title) {
-        glfwSetWindowTitle(windowHandle, title);
-    }
-
     public String getTitle() {
         return title;
+    }
+
+    public void setTitle(String title){
+        this.title = title;
+        glfwSetWindowTitle(windowHandle, title);
     }
 
     public void appendToTitle(String string){
@@ -218,11 +214,11 @@ public class Window {
     }
 
     public int getWidth(){
-        return currentWidth;
+        return fullScreen ? fullScreenWidth : windowedWidth;
     }
 
     public  int getHeight(){
-        return currentHeight;
+        return fullScreen ? fullScreenHeight : windowedHeight;
     }
 
     public float getAspectRatio(){
@@ -233,8 +229,8 @@ public class Window {
         return refreshRate;
     }
 
-    public boolean hasResized() {
-        return hasResized;
+    public void setResizeCallback(IResizeCallback resizeCallback){
+        this.resizeCallback = resizeCallback;
     }
 
     public boolean isOpen() {
