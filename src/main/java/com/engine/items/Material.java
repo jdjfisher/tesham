@@ -1,5 +1,6 @@
-package com.graphics.component;
+package com.engine.items;
 
+import com.graphics.opengl.Texture;
 import com.maths.RNG;
 
 import java.awt.*;

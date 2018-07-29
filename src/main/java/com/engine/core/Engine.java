@@ -5,7 +5,6 @@ import com.engine.input.Keyboard;
 import com.engine.input.MouseButtons;
 import com.engine.input.MouseWheel;
 import com.engine.items.World;
-import com.graphics.RendererEngine;
 import com.utils.StopWatch;
 
 import javax.swing.*;
@@ -123,14 +122,14 @@ public class Engine {
 
     private void handleInput() {
         if(Keyboard.isKeyTapped(GLFW_KEY_F3)) {
-            toggleFullScreenMode();
+            window.toggleFullScreen();
         }
 
 //        if(Keyboard.isKeyTapped(GLFW_KEY_F1)){
 //            renderer.takeScreenshot();
 //        }
 
-        if(!isWindowFullScreen()){
+        if(!window.isFullScreen()){
             if(Cursor.inCameraMode()){
                 if (Keyboard.isKeyTapped(GLFW_KEY_ESCAPE)) {
                     Cursor.setCameraMode(false);
@@ -167,8 +166,10 @@ public class Engine {
         }
         frameCount++;
 
+        window.preRender();
+
         try {
-            world.render(window, renderer);
+            renderer.render(window, world);
         }catch (Exception e){
             e.printStackTrace();
         }

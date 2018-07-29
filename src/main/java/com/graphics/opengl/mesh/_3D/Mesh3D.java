@@ -1,6 +1,5 @@
 package com.graphics.component.mesh._3D;
 
-import com.graphics.ShaderProgram;
 import com.maths.vectors.Vector2f;
 import com.maths.vectors.Vector3f;
 import com.utils.DataUtils;
@@ -13,7 +12,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
-import static com.graphics.ShaderProgram.ShaderType.s3D;
 import static org.lwjgl.opengl.ARBVertexArrayObject.glBindVertexArray;
 import static org.lwjgl.opengl.ARBVertexArrayObject.glGenVertexArrays;
 import static org.lwjgl.opengl.GL11.*;
@@ -106,10 +104,6 @@ public class Mesh3D {
     }
 
     public void render() throws Exception{
-        if(ShaderProgram.getBoundShaderType() != s3D){
-            throw new Exception("Cannot render mesh with current shader");
-        }
-
         glBindVertexArray(vao);
 
         glDrawElements(GL_TRIANGLES, indexedVertexCount, GL_UNSIGNED_INT, 0);

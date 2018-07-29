@@ -1,6 +1,5 @@
 package com.graphics.component.mesh._2D;
 
-import com.graphics.ShaderProgram;
 import com.graphics.component.mesh._3D.FaceSI;
 import com.maths.vectors.Vector2f;
 import com.utils.DataUtils;
@@ -10,7 +9,6 @@ import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.util.ArrayList;
 
-import static com.graphics.ShaderProgram.ShaderType.s2D;
 import static org.lwjgl.opengl.ARBVertexArrayObject.glBindVertexArray;
 import static org.lwjgl.opengl.ARBVertexArrayObject.glGenVertexArrays;
 import static org.lwjgl.opengl.GL11.*;
@@ -69,10 +67,6 @@ public class Mesh2D {
     }
 
     public void render() throws Exception{
-        if(ShaderProgram.getBoundShaderType() != s2D) {
-            throw new Exception("Cannot render mesh with current shader");
-        }
-
         glBindVertexArray(vao);
 
         glEnableVertexAttribArray(0);

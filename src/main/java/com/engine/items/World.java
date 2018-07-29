@@ -1,17 +1,10 @@
 package com.engine.items;
 
 import com.componentSystem.*;
-import com.engine.core.Window;
-import com.engine.input.Cursor;
 import com.engine.input.Keyboard;
-import com.engine.input.MouseButtons;
-import com.graphics.RendererEngine;
-import com.maths.vectors.Vector2f;
 import com.maths.vectors.Vector3f;
 
 import static org.lwjgl.glfw.GLFW.*;
-import static org.lwjgl.glfw.GLFW.GLFW_KEY_LEFT_ALT;
-import static org.lwjgl.glfw.GLFW.GLFW_MOUSE_BUTTON_RIGHT;
 
 /**
  * Created by Jordan Fisher on 29/06/2017.
@@ -21,7 +14,7 @@ public class World {
     public static final Vector3f X_AXIS = new Vector3f(1,0,0);
     public static final Vector3f Y_AXIS = new Vector3f(0,1,0);
     public static final Vector3f Z_AXIS = new Vector3f(0,0,1);
-    public static final Vector3f WORLD_FORWARD_VECTOR = Z_AXIS;
+    public static final Vector3f FORWARD_VECTOR = Z_AXIS;
 
     private final Camera camera;
 
@@ -42,6 +35,9 @@ public class World {
 
         transformComponentManager.subscribe(e1);
         meshComponentManager.subscribe(e1);
+
+
+        transformComponentManager.getComponent(e1).getPosition().set(0, -4, 0);
     }
 
     public void handleInput(){
@@ -66,14 +62,23 @@ public class World {
         meshComponentManager.garbageCollector(entityManager);
     }
 
-    public void render(Window window, RendererEngine renderer) throws Exception{
-        window.preRender();
-        camera.preRender();
-
-        renderer.render(window, camera);
-    }
-
     public void dispose(){
 
+    }
+
+    public Camera getCamera() {
+        return camera;
+    }
+
+    public EntityManager getEntityManager() {
+        return entityManager;
+    }
+
+    public TransformComponentManager getTransformComponentManager() {
+        return transformComponentManager;
+    }
+
+    public MeshComponentManager getMeshComponentManager() {
+        return meshComponentManager;
     }
 }

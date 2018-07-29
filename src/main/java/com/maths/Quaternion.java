@@ -119,6 +119,10 @@ public class Quaternion {
         set(RotationAxisToQuaternion(theta, axisDirection));
     }
 
+    public void set(final Vector3f vec1, final Vector3f vec2){  //WIP
+        set(DirectionVectorsToQuaternion(vec1, vec2));
+    }
+
     public void setX(float x) {
         this.x = x;
     }
@@ -194,6 +198,10 @@ public class Quaternion {
                 sinZ * cosY * cosX - cosZ * sinY * sinX,
                 cosZ * cosY * cosX + sinZ * sinY * sinX
         );
+    }
+
+    public static Quaternion DirectionVectorsToQuaternion(Vector3f startDirectionVector, Vector3f endDirectionVector){  //WIP
+        return RotationAxisToQuaternion((float) FastMath.toDegrees(FastMath.acos(Vector3f.MultiplyDotProduct(startDirectionVector, endDirectionVector))), Vector3f.MultiplyCrossProduct(startDirectionVector, endDirectionVector));
     }
 
     public static Vector3f QuaternionToEulerAngles(final Quaternion quaternion){

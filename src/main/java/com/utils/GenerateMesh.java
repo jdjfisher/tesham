@@ -1,11 +1,13 @@
 package com.utils;
 
 
-import com.graphics.component.mesh._3D.FaceMI;
-import com.graphics.component.mesh._3D.FaceMI.IndexSet;
-import com.graphics.component.mesh._3D.FaceSI;
-import com.graphics.component.mesh._3D.Mesh3D;
-import com.graphics.component.mesh._3D.MultiIndexMeshData;
+import com.graphics.opengl.mesh._2D.Mesh2D;
+import com.graphics.opengl.mesh._2D.Vertex2D;
+import com.graphics.opengl.mesh._3D.FaceMI;
+import com.graphics.opengl.mesh._3D.FaceMI.IndexSet;
+import com.graphics.opengl.mesh._3D.FaceSI;
+import com.graphics.opengl.mesh._3D.Mesh3D;
+import com.graphics.opengl.mesh._3D.MultiIndexMeshData;
 import com.maths.vectors.Vector2f;
 import com.maths.vectors.Vector3f;
 import org.apache.commons.math3.util.FastMath;
@@ -17,6 +19,33 @@ import java.util.ArrayList;
  */
 public class GenerateMesh {
     private GenerateMesh() {
+    }
+
+    public static Mesh2D screenRenderQuad(){
+        return quad(2,2);
+    }
+
+    public static Mesh2D quad(float width, float height) {
+        float halfWidth = FastMath.abs(width / 2);
+        float halfHeight = FastMath.abs(height / 2);
+
+        Vertex2D[] vertexPositions = new Vertex2D[]{
+                new Vertex2D(new Vector2f(-halfWidth, halfHeight), new Vector2f(0, 1)),
+                new Vertex2D(new Vector2f(-halfWidth, -halfHeight), new Vector2f(0, 0)),
+                new Vertex2D(new Vector2f(halfWidth, -halfHeight), new Vector2f(1, 0)),
+                new Vertex2D(new Vector2f(halfWidth, halfHeight), new Vector2f(1, 1))
+        };
+
+        FaceSI[] faces = new FaceSI[]{
+                new FaceSI(
+                        0,
+                        1,
+                        2,
+                        3
+                )
+        };
+
+        return new Mesh2D(vertexPositions, faces);
     }
 
     public static Mesh3D plane(float width, float length){

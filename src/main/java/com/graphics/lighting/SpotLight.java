@@ -1,6 +1,6 @@
 package com.graphics.lighting;
 
-import com.graphics.component.mesh._3D.Mesh3D;
+import com.graphics.opengl.mesh._3D.Mesh3D;
 import com.utils.GenerateMesh;
 
 import java.awt.*;
@@ -15,8 +15,8 @@ public class SpotLight extends Lamp {
     private float cutOff;
     private float outerCutOff;
 
-    public SpotLight(String name, Color color, float intensity, float cutOff, float outerCutOff, Attenuation attenuation) {
-        super(name, color, intensity, attenuation);
+    public SpotLight(Color color, float intensity, float cutOff, float outerCutOff, Attenuation attenuation) {
+        super(color, intensity, attenuation);
         this.cutOff = cutOff;
         this.outerCutOff = outerCutOff;
     }

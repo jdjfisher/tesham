@@ -1,6 +1,5 @@
 package com.engine.core;
 
-import static com.engine.core.Options.*;
 import com.engine.input.Cursor;
 import com.engine.input.Keyboard;
 import com.engine.input.MouseButtons;
@@ -11,6 +10,7 @@ import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
 
+import static com.engine.core.Options.*;
 import static java.sql.Types.NULL;
 import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
 import static org.lwjgl.glfw.GLFW.*;

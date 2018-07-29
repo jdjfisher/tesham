@@ -14,4 +14,4 @@ uniform mat4 W_Matrix;
 void main(){
     gl_Position = PV_Matrix * W_Matrix * vec4(inVertexPosition, 1.0);
     vertexColour = inVertexNormal;
-}
+ }

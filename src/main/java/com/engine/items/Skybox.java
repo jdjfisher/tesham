@@ -1,9 +1,9 @@
 package com.engine.items;
 
-import com.graphics.component.*;
-import com.graphics.component.mesh._3D.FaceMI;
-import com.graphics.component.mesh._3D.Mesh3D;
-import com.graphics.component.mesh._3D.MultiIndexMeshData;
+import com.graphics.opengl.Texture;
+import com.graphics.opengl.mesh._3D.FaceMI;
+import com.graphics.opengl.mesh._3D.Mesh3D;
+import com.graphics.opengl.mesh._3D.MultiIndexMeshData;
 import com.maths.TransformationSet;
 import com.maths.vectors.Vector2f;
 import com.maths.vectors.Vector3f;

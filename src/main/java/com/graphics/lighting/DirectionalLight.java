@@ -1,21 +1,20 @@
 package com.graphics.lighting;
 
+import com.engine.items.World;
 import com.maths.Quaternion;
 import com.maths.vectors.Vector3f;
 
 import java.awt.*;
 
-import static com.engine.items.World.WORLD_FORWARD_VECTOR;
-
 public class DirectionalLight extends Light {
     private Quaternion rotation;
 
-    public DirectionalLight(String name, Color colour, float intensity){
-        this(name, colour, intensity, new Quaternion());
+    public DirectionalLight(Color colour, float intensity){
+        this(colour, intensity, new Quaternion());
     }
 
-    public DirectionalLight(String name, Color colour, float intensity, Quaternion rotation){
-        super(name, colour, intensity);
+    public DirectionalLight(Color colour, float intensity, Quaternion rotation){
+        super(colour, intensity);
         this.rotation = rotation;
     }
 
@@ -24,6 +23,6 @@ public class DirectionalLight extends Light {
     }
 
     public Vector3f getDirection(){
-        return Vector3f.Multiply(WORLD_FORWARD_VECTOR, rotation);
+        return Vector3f.Multiply(World.FORWARD_VECTOR, rotation);
     }
 }

@@ -1,6 +1,6 @@
 package com.graphics.lighting;
 
-import com.graphics.component.mesh._3D.Mesh3D;
+import com.graphics.opengl.mesh._3D.Mesh3D;
 import com.maths.TransformationSet;
 import com.utils.DataUtils;
 
@@ -10,8 +10,8 @@ public abstract class Lamp extends Light{
     private final TransformationSet transformationSet;
     private Attenuation attenuation;
 
-    public Lamp(String name, Color colour, float intensity, Attenuation attenuation) {
-        super(name, colour, intensity);
+    public Lamp(Color colour, float intensity, Attenuation attenuation) {
+        super(colour, intensity);
         this.transformationSet = new TransformationSet();
         this.attenuation = attenuation;
     }

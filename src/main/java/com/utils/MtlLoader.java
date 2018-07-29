@@ -1,7 +1,7 @@
 package com.utils;
 
-import com.graphics.component.Material;
-import com.graphics.component.Texture;
+import com.engine.items.Material;
+import com.graphics.opengl.Texture;
 
 import java.awt.*;
 import java.util.ArrayList;

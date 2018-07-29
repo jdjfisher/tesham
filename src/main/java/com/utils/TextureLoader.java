@@ -1,6 +1,6 @@
 package com.utils;
 
-import com.graphics.component.Texture;
+import com.graphics.opengl.Texture;
 
 import javax.imageio.ImageIO;
 import java.util.HashMap;
@@ -15,7 +15,7 @@ public class TextureLoader {
             if(loadedTextureMap.containsKey(filePath)){
                 return loadedTextureMap.get(filePath);
             }else {
-                Texture texture = new Texture(ImageIO.read(TextureLoader.class.getResource(filePath)));
+                Texture texture = Texture.fromImage(ImageIO.read(TextureLoader.class.getResource(filePath)));
                 loadedTextureMap.put(filePath, texture);
                 return texture;
             }

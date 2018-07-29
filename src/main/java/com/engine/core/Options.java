@@ -12,7 +12,6 @@ public  class Options {
         mappedNormals = prefs.getBoolean("mappedNormals", mappedNormals_DEFAULT);
         specularMapping = prefs.getBoolean("specularMapping", specularMapping_DEFAULT);
         HUDvisible = prefs.getBoolean("HUDvisible", HUDvisible_DEFAULT);
-        windowFullScreen = prefs.getBoolean("windowFullScreen", windowFullScreen_DEFAULT);
         frustumCull = prefs.getBoolean("frustumCull", frustumCull_DEFAULT);
         cullFaces = prefs.getBoolean("cullFaces", cullFaces_DEFAULT);
         showFaces = prefs.getBoolean("showFaces", showFaces_DEFAULT);
@@ -35,7 +34,6 @@ public  class Options {
         prefs.putBoolean("mappedNormals", mappedNormals);
         prefs.putBoolean("specularMapping", specularMapping);
         prefs.putBoolean("HUDvisible", HUDvisible);
-        prefs.putBoolean("windowFullScreen", windowFullScreen);
         prefs.putBoolean("frustumCull", frustumCull);
         prefs.putBoolean("cullFaces", cullFaces);
         prefs.putBoolean("showFaces", showFaces);
@@ -135,23 +133,6 @@ public  class Options {
 
     public static boolean isHUDvisible() {
         return HUDvisible;
-    }
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    private static boolean windowFullScreen;
-    private static final boolean windowFullScreen_DEFAULT = false;
-
-    public static void setWindowFullScreen(boolean state){
-        windowFullScreen = state;
-    }
-
-    public static void toggleFullScreenMode(){
-        windowFullScreen = !windowFullScreen;
-    }
-
-    public static boolean isWindowFullScreen() {
-        return windowFullScreen;
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

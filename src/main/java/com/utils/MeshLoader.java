@@ -1,8 +1,8 @@
 package com.utils;
 
-import com.graphics.component.mesh._3D.FaceMI;
-import com.graphics.component.mesh._3D.Mesh3D;
-import com.graphics.component.mesh._3D.MultiIndexMeshData;
+import com.graphics.opengl.mesh._3D.FaceMI;
+import com.graphics.opengl.mesh._3D.Mesh3D;
+import com.graphics.opengl.mesh._3D.MultiIndexMeshData;
 import com.maths.vectors.Vector2f;
 import com.maths.vectors.Vector3f;
 
@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-import static com.graphics.component.mesh._3D.FaceMI.IndexSet.NULL_INDEX;
+import static com.graphics.opengl.mesh._3D.FaceMI.IndexSet.NULL_INDEX;
 
 public class MeshLoader {
     private static final HashMap<String, Mesh3D> loadedMeshMap = new HashMap<>();

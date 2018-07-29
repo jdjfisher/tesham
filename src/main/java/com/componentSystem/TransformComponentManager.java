@@ -1,5 +1,6 @@
 package com.componentSystem;
 
+import com.maths.Matrix4f;
 import com.maths.Quaternion;
 import com.maths.RNG;
 import com.maths.vectors.Vector3f;
@@ -28,6 +29,24 @@ public class TransformComponentManager implements IComponentManager{
             this.position = position;
             this.rotation = rotation;
             this.scale = scale;
+        }
+
+        public Matrix4f getTransformation(){
+            Matrix4f result = Matrix4f.Identity();
+
+            if(!position.equals(Vector3f.Identity())){
+                result.multiply(Matrix4f.Translation(position));
+            }
+
+            if(!rotation.equals(Quaternion.Identity())) {
+                result.multiply(Matrix4f.QuaternionRotation(rotation));
+            }
+
+            if(scale != 1) {
+                result.multiply(Matrix4f.Enlargement(scale));
+            }
+
+            return result;
         }
 
         public Vector3f getPosition() {
@@ -74,7 +93,7 @@ public class TransformComponentManager implements IComponentManager{
     @Override
     public void update(float interval){
         for(TransformComponent component : components){
-            System.out.println(component.position);
+//            System.out.println(component.position);
         }
     }
 
@@ -99,5 +118,9 @@ public class TransformComponentManager implements IComponentManager{
 
     public TransformComponent getComponent(Entity entity){
         return components.get(indexMap.get(entity));
+    }
+
+    public ArrayList<TransformComponent> getComponents() {
+        return components;
     }
 }

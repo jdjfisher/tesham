@@ -1,10 +1,10 @@
 package com.utils;
 
 import com.engine.items.Model;
-import com.graphics.component.Material;
-import com.graphics.component.mesh._3D.FaceMI;
-import com.graphics.component.mesh._3D.Mesh3D;
-import com.graphics.component.mesh._3D.MultiIndexMeshData;
+import com.engine.items.Material;
+import com.graphics.opengl.mesh._3D.FaceMI;
+import com.graphics.opengl.mesh._3D.Mesh3D;
+import com.graphics.opengl.mesh._3D.MultiIndexMeshData;
 import com.maths.vectors.Vector2f;
 import com.maths.vectors.Vector3f;
 

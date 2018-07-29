@@ -1,7 +1,6 @@
 package com.engine.items;
 
-import com.graphics.component.Material;
-import com.graphics.component.mesh._3D.Mesh3D;
+import com.graphics.opengl.mesh._3D.Mesh3D;
 import com.maths.TransformationSet;
 import com.maths.vectors.Vector3f;
 
