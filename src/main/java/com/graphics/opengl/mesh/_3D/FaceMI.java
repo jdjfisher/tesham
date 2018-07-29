@@ -1,8 +1,8 @@
-package com.graphics.component.mesh._3D;
+package com.graphics.opengl.mesh._3D;
 
 import java.util.Objects;
 
-import static com.graphics.component.mesh._3D.FaceMI.IndexSet.NULL_INDEX;
+import static com.graphics.opengl.mesh._3D.FaceMI.IndexSet.NULL_INDEX;
 
 public class FaceMI {
     private final IndexSet[] indexSets;

@@ -1,30 +1,27 @@
-package com.graphics.component;
+package com.graphics.opengl;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
 import java.nio.ByteBuffer;
 
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL13.GL_TEXTURE0;
 import static org.lwjgl.opengl.GL13.glActiveTexture;
 import static org.lwjgl.opengl.GL20.GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS;
-import static org.lwjgl.opengl.GL20.nglUniform1f;
 import static org.lwjgl.opengl.GL30.glGenerateMipmap;
 
 /**
  * Created by Jordan Fisher on 04/06/2017.
  */
-public class Texture {
-    private static int ACTIVE_UNIT;
+public class Texture implements IResource{
+    public static Texture DEFAULT_TEXTURE;   //TODO move init
     private static Texture BOUND_TEXTURE;
-    public static Texture NULL_TEXTURE;   //TODO move init
+    private static int ACTIVE_UNIT;
 
     private final int id;
     private final int internalFormat;
     private final int format;
     private final int type;
-
     private boolean disposed;
     private int width;
     private int height;
@@ -76,8 +73,6 @@ public class Texture {
         this.height = height;
 
         create(width, height);
-
-        disposed = false;
     }
 
     public Texture(int internalFormat, int format, int type, int width, int height, int min, int mag, int s, int t, ByteBuffer buffer){
@@ -87,12 +82,11 @@ public class Texture {
         this.type = type;
         this.width = width;
         this.height = height;
+        this.disposed = false;
 
         create(width, height, buffer);
         setFilter(min, mag);
         setWrapping(s, t);
-
-        disposed = false;
     }
 
     public void create(int width, int height)
@@ -123,21 +117,24 @@ public class Texture {
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, t);
     }
 
-//    public void setWrappingClammed
-
     public void generateMipMaps()
     {
         bind();
+
         glGenerateMipmap(GL_TEXTURE_2D);
     }
 
     public void bind()
     {
         if(BOUND_TEXTURE == this)
+        {
             return;
+        }
 
         if(disposed)
+        {
             throw new RuntimeException(String.format("Texture: %d has been disposed", id));
+        }
 
         glBindTexture(GL_TEXTURE_2D, id);
 
@@ -158,7 +155,9 @@ public class Texture {
     public static void setActiveUnit(int textureUnit)
     {
         if (textureUnit == ACTIVE_UNIT)
+        {
             return;
+        }
 
         if(0 <= textureUnit && textureUnit <=  glGetInteger(GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS))
         {
@@ -174,30 +173,37 @@ public class Texture {
         return o != null && getId() == ((Texture) o).getId();
     }
 
+    @Override
     public void dispose()
     {
+        DEFAULT_TEXTURE.bindToUnit(ACTIVE_UNIT);
+
         if(disposed)
+        {
             throw new RuntimeException(String.format("Texture: %d has already been disposed", id));
+        }
 
         glDeleteTextures(id);
         disposed = true;
-
-        NULL_TEXTURE.bindToUnit(ACTIVE_UNIT);
     }
 
-    public int getId(){
+    public int getId()
+    {
         return id;
     }
 
-    public boolean isDisposed() {
+    public boolean isDisposed()
+    {
         return disposed;
     }
 
-    public int getWidth() {
+    public int getWidth()
+    {
         return width;
     }
 
-    public int getHeight() {
+    public int getHeight()
+    {
         return height;
     }
 }

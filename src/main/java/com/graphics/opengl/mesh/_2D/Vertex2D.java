@@ -1,4 +1,4 @@
-package com.graphics.component.mesh._2D;
+package com.graphics.opengl.mesh._2D;
 
 import com.maths.vectors.Vector2f;
 

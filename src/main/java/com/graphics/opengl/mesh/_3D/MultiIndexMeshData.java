@@ -1,4 +1,4 @@
-package com.graphics.component.mesh._3D;
+package com.graphics.opengl.mesh._3D;
 
 import com.maths.vectors.Vector2f;
 import com.maths.vectors.Vector3f;
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-import static com.graphics.component.mesh._3D.FaceMI.IndexSet.NULL_INDEX;
+import static com.graphics.opengl.mesh._3D.FaceMI.IndexSet.NULL_INDEX;
 
 public class MultiIndexMeshData {
     private ArrayList<Vector3f> vertexPositions;

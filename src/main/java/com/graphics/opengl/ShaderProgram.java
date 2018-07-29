@@ -1,6 +1,6 @@
-package com.graphics;
+package com.graphics.opengl;
 
-import com.graphics.component.Texture;
+import com.engine.items.World;
 import com.graphics.lighting.*;
 import com.maths.Matrix4f;
 import com.maths.vectors.Vector2f;
@@ -12,20 +12,15 @@ import org.apache.commons.math3.util.FastMath;
 
 import java.awt.*;
 import java.io.File;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.Objects;
-import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static com.engine.items.World.WORLD_FORWARD_VECTOR;
 import static com.utils.ReasourceLoader.loadFileAsString;
-import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL20.*;
 
-public class ShaderProgram {
-
+public class ShaderProgram implements IResource {
+    private static ShaderProgram DEFAULT_SHADER; ///TODO this
     private static final int NULL = 0;
     private static ShaderProgram BOUND_SHADER;
 
@@ -35,73 +30,68 @@ public class ShaderProgram {
     private final int programId;
 
     private final HashMap<String, Integer> uniforms;
-    private final HashMap<String, HashMap<String, String>> structs;
+    private final HashMap<String, HashMap<String, String>> structures;
 
-    public ShaderProgram(String shaderProgramName, String vertexShaderName, String fragmentShaderName) throws Exception {
-        this(shaderProgramName, vertexShaderName, null, fragmentShaderName);
-    }
-
-    public ShaderProgram(String shaderProgramName, String vertexShaderName, String geometryShaderName, String fragmentShaderName) throws Exception {
+    public ShaderProgram(String shaderProgramName, String vertexShaderName, String fragmentShaderName) throws Exception
+    {
         this.shaderProgramName = shaderProgramName;
-
-        programId = glCreateProgram();
+        this.programId = glCreateProgram();
 
         if (programId == 0)
+        {
             throw new Exception(String.format("Could not create %s shader program", shaderProgramName));
+        }
 
         final File vertexShaderFile = new File(String.format("./src/main/resources/shaders/vertex/%s.glsl", vertexShaderName));
         final File fragmentShaderFile = new File(String.format("./src/main/resources/shaders/fragment/%s.glsl", fragmentShaderName));
 
-        if (!vertexShaderFile.exists()) {
+        if (!vertexShaderFile.exists())
+        {
             throw new Exception(String.format("Could not find the %s vertex shader", vertexShaderName));
         }
-        if (!fragmentShaderFile.exists()) {
+        if (!fragmentShaderFile.exists())
+        {
             throw new Exception(String.format("Could not find the %s fragment shader", fragmentShaderName));
         }
 
-        String vertexShaderCode = loadFileAsString(vertexShaderFile);
-        String fragmentShaderCode = loadFileAsString(fragmentShaderFile);
+        final String vertexShaderCode = loadFileAsString(vertexShaderFile);
+        final String fragmentShaderCode = loadFileAsString(fragmentShaderFile);
 
         int vertexShaderId = createShaderAttachment(vertexShaderCode, vertexShaderName, GL_VERTEX_SHADER);
         int fragmentShaderId = createShaderAttachment(fragmentShaderCode, fragmentShaderName, GL_FRAGMENT_SHADER);
 
         glLinkProgram(programId);
-        if (glGetProgrami(programId, GL_LINK_STATUS) == NULL) {
+        if (glGetProgrami(programId, GL_LINK_STATUS) == NULL)
+        {
             throw new Exception(String.format("Error linking %s Shader program: %s", shaderProgramName, glGetProgramInfoLog(programId, 1024)));
         }
 
-        if (vertexShaderId != NULL) {
+        if (vertexShaderId != NULL)
+        {
             glDetachShader(programId, vertexShaderId);
             glDeleteShader(vertexShaderId);
         }
-
-        if (fragmentShaderId != NULL) {
+        if (fragmentShaderId != NULL)
+        {
             glDetachShader(programId, fragmentShaderId);
             glDeleteShader(fragmentShaderId);
         }
 
         glValidateProgram(programId);
-        if (glGetProgrami(programId, GL_VALIDATE_STATUS) == NULL) {
+        if (glGetProgrami(programId, GL_VALIDATE_STATUS) == NULL)
+        {
             throw new Exception(String.format("Warning validating %s shader program: %s", shaderProgramName, glGetShaderInfoLog(programId, 1024)));
         }
 
         uniforms = new HashMap<>();
-        structs = new HashMap<>();
+        structures = new HashMap<>();
 
         autoCreateUniforms(vertexShaderCode);
         autoCreateUniforms(fragmentShaderCode);
-
-//        System.out.println("////////////////");
-//
-//        for (String u : uniforms.keySet()) {
-//            System.out.println(u);
-//        }
-//
-//        Scanner s = new Scanner(System.in);
-//        s.next();
     }
 
-    private int createShaderAttachment(String shaderCode, String shaderName, int shaderTarget) throws Exception {
+    private int createShaderAttachment(String shaderCode, String shaderName, int shaderTarget) throws Exception
+    {
         String shaderTypeName;
 
         switch (shaderTarget) {
@@ -117,14 +107,16 @@ public class ShaderProgram {
         }
 
         int shaderId = glCreateShader(shaderTarget);
-        if (shaderId == NULL) {
+        if (shaderId == NULL)
+        {
             throw new Exception(String.format("Error creating %s %s shader", shaderName, shaderTypeName));
         }
 
         glShaderSource(shaderId, shaderCode);
         glCompileShader(shaderId);
 
-        if (glGetShaderi(shaderId, GL_COMPILE_STATUS) == NULL) {
+        if (glGetShaderi(shaderId, GL_COMPILE_STATUS) == NULL)
+        {
             throw new Exception(String.format("Error compiling %s %s shader: %s", shaderName, shaderTypeName, glGetShaderInfoLog(shaderId, 1024)));
         }
 
@@ -133,12 +125,15 @@ public class ShaderProgram {
         return shaderId;
     }
 
-    public void bind() {
-        if (BOUND_SHADER == this) {
+    public void bind()
+    {
+        if (BOUND_SHADER == this)
+        {
             return;
         }
 
-        if (disposed) {
+        if (disposed)
+        {
             throw new RuntimeException(String.format("Shader program: %s (%d) has been disposed", shaderProgramName, programId));
         }
 
@@ -147,15 +142,28 @@ public class ShaderProgram {
         BOUND_SHADER = this;
     }
 
-    public void dispose() {
-        if (disposed) {
+    public boolean isDisposed()
+    {
+        return disposed;
+    }
+
+    public int getId()
+    {
+        return programId;
+    }
+
+    @Override
+    public void dispose()
+    {
+        glUseProgram(NULL);
+
+        if (disposed)
+        {
             throw new RuntimeException(String.format("Shader program: %s (%d) has already been disposed", shaderProgramName, programId));
         }
 
         glDeleteProgram(programId);
         disposed = true;
-
-        glUseProgram(NULL);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -186,7 +194,7 @@ public class ShaderProgram {
                 variableDataTypeMap.put(variableName, dataType);
             }
 
-            structs.put(head, variableDataTypeMap);
+            structures.put(head, variableDataTypeMap);
         }
 
         matcher = uniformShaderLinePattern.matcher(shaderCode);
@@ -238,8 +246,8 @@ public class ShaderProgram {
                 createUniform(uniformName);
                 break;
             default:
-                if (structs.containsKey(dataType)) {
-                    HashMap<String, String> attributeMap = structs.get(dataType);
+                if (structures.containsKey(dataType)) {
+                    HashMap<String, String> attributeMap = structures.get(dataType);
                     for (String attribute : attributeMap.keySet()) {
                         createUniform(attributeMap.get(attribute), String.format("%s.%s", uniformName, attribute));
                     }
@@ -262,93 +270,115 @@ public class ShaderProgram {
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    private int getUniformId(String uniformName) {
-        if (uniforms.containsKey(uniformName)) {
+    private int getUniformId(String uniformName)
+    {
+        if (uniforms.containsKey(uniformName))
+        {
             return uniforms.get(uniformName);
-        } else {
+        }
+        else
+        {
             throw new RuntimeException(String.format("The %s shader does not contain the %s uniform", shaderProgramName, uniformName));
         }
     }
 
-    public void setUniform(String uniformName, boolean value) {
+    public void setUniform(String uniformName, boolean value)
+    {
         bind();
         glUniform1i(getUniformId(uniformName), value ? 1 : 0);
     }
 
-    public void setUniform(String uniformName, int value) {
+    public void setUniform(String uniformName, int value)
+    {
         bind();
         glUniform1i(getUniformId(uniformName), value);
     }
 
-    public void setUniform(String uniformName, float value) {
+    public void setUniform(String uniformName, float value)
+    {
         bind();
         glUniform1f(getUniformId(uniformName), value);
     }
 
-    public void setUniform(String uniformName, Vector2f vec) {
+    public void setUniform(String uniformName, Vector2f vec)
+    {
         bind();
         glUniform2f(getUniformId(uniformName), vec.getX(), vec.getY());
     }
 
-    public void setUniform(String uniformName, Vector3f vec) {
+    public void setUniform(String uniformName, Vector3f vec)
+    {
         bind();
         glUniform3f(getUniformId(uniformName), vec.getX(), vec.getY(), vec.getZ());
     }
 
-    public void setUniform(String uniformName, Vector4f vec) {
+    public void setUniform(String uniformName, Vector4f vec)
+    {
         bind();
         glUniform4f(getUniformId(uniformName), vec.getX(), vec.getY(), vec.getZ(), vec.getW());
     }
 
-    public void setUniform(String uniformName, Matrix4f mat) {
+    public void setUniform(String uniformName, Matrix4f mat)
+    {
+        bind();
         glUniformMatrix4fv(getUniformId(uniformName), false, mat.toFloatBuffer());
     }
 
-    public void setUniform(String uniformName, Color colour) {
+    public void setUniform(String uniformName, Color colour)
+    {
         setUniform(uniformName, DataUtils.toVector3f(colour));
     }
 
-    public void setUniform(String uniformName, Attenuation attenuation) {
+    public void setUniform(String uniformName, Attenuation attenuation)
+    {
         setUniform(uniformName + ".constant", attenuation.getConstant());
         setUniform(uniformName + ".linear", attenuation.getLinear());
         setUniform(uniformName + ".exponent", attenuation.getExponent());
     }
 
-    public void setUniform(String uniformName, Light light) {
+    public void setUniform(String uniformName, Light light)
+    {
         setUniform(uniformName + ".colour", light.getColor());
         setUniform(uniformName + ".intensity", light.getIntensity());
         setUniform(uniformName + ".enabled", light.isActive());
     }
 
-    public void setUniform(String uniformName, DirectionalLight directionalLight) {
+    public void setUniform(String uniformName, DirectionalLight directionalLight)
+    {
         setUniform(uniformName + ".light", (Light) directionalLight);
         setUniform(uniformName + ".direction", directionalLight.getDirection());
     }
 
-    public void setUniform(String uniformName, PointLight pointLight) {
+    public void setUniform(String uniformName, PointLight pointLight)
+    {
         setUniform(uniformName + ".light", (Light) pointLight);
         setUniform(uniformName + ".position", pointLight.getTransformationSet().getPosition());
         setUniform(uniformName + ".attenuation", pointLight.getAttenuation());
         setUniform(uniformName + ".range", pointLight.getRange());
     }
 
-    public void setUniform(String uniformName, PointLight[] pointLights) {
-        for (int i = 0; i < pointLights.length; i++) {
+    public void setUniform(String uniformName, PointLight[] pointLights)
+    {
+        for (int i = 0; i < pointLights.length; i++)
+        {
             setUniform(String.format("%s[%d]", uniformName, i), pointLights[i]);
         }
     }
 
-    public void setUniform(String uniformName, SpotLight spotLight) {
+    public void setUniform(String uniformName, SpotLight spotLight)
+    {
         setUniform(uniformName + ".light", (Light) spotLight);
         setUniform(uniformName + ".position", spotLight.getTransformationSet().getPosition());
         setUniform(uniformName + ".attenuation", spotLight.getAttenuation());
-        setUniform(uniformName + ".coneDirection", Vector3f.Multiply(Vector3f.Negative(WORLD_FORWARD_VECTOR), spotLight.getTransformationSet().getRotation()));
+        setUniform(uniformName + ".coneDirection", Vector3f.Multiply(Vector3f.Negative(World.FORWARD_VECTOR), spotLight.getTransformationSet().getRotation()));
         setUniform(uniformName + ".cutOff", (float) FastMath.cos(FastMath.toRadians(spotLight.getCutOff())));
         setUniform(uniformName + ".outerCutOff", (float) FastMath.cos(FastMath.toRadians(spotLight.getOuterCutOff())));
     }
 
-    public void setUniform(String uniformName, SpotLight[] spotLights) {
-        for (int i = 0; i < spotLights.length; i++) {
+    public void setUniform(String uniformName, SpotLight[] spotLights)
+    {
+        for (int i = 0; i < spotLights.length; i++)
+        {
             setUniform(String.format("%s[%d]", uniformName, i), spotLights[i]);
         }
     }

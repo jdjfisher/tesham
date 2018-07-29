@@ -1,6 +1,6 @@
-package com.graphics.component.mesh._2D;
+package com.graphics.opengl.mesh._2D;
 
-import com.graphics.component.mesh._3D.FaceSI;
+import com.graphics.opengl.mesh._3D.FaceSI;
 import com.maths.vectors.Vector2f;
 import com.utils.DataUtils;
 import org.lwjgl.BufferUtils;

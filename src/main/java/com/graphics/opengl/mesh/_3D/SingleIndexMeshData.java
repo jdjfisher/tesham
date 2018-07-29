@@ -1,4 +1,4 @@
-package com.graphics.component.mesh._3D;
+package com.graphics.opengl.mesh._3D;
 
 import java.util.ArrayList;
 

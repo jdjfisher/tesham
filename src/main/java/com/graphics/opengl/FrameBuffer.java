@@ -1,7 +1,4 @@
-package com.graphics;
-
-import com.graphics.component.RenderBuffer;
-import com.graphics.component.Texture;
+package com.graphics.opengl;
 
 import java.util.HashMap;
 
@@ -12,30 +9,35 @@ import static org.lwjgl.opengl.GL30.*;
 /**
  * Created by fisherj16 on 18/10/2017.
  */
-public class FrameBuffer {
-    private static final int default_FBO = 0;
+public class FrameBuffer implements IResource{
+    public static final FrameBuffer DEFAULT_FRAMEBUFFER = new FrameBuffer(0);
+    private static FrameBuffer BOUND_READ_FRAMEBUFFER; //TODO: IMPL
+    private static FrameBuffer BOUND_DRAW_FRAMEBUFFER; //TODO: IMPL
 
-    private final int frameBufferId;
-    private boolean disposed;
-
+    private final int id;
     private final HashMap<String, Texture> textureAttachments;
     private final HashMap<String, RenderBuffer> renderBufferAttachments;
+    private boolean disposed;
 
     public FrameBuffer()
     {
-        frameBufferId = glGenFramebuffers();
+        this(glGenFramebuffers());
+    }
+
+    private FrameBuffer(int id)
+    {
+        this.id = id;
 
         textureAttachments = new HashMap<>();
         renderBufferAttachments = new HashMap<>();
+        disposed = false;
     }
 
     public void test() throws Exception
     {
-        if(disposed)
-        {
-            throw new RuntimeException(String.format("FrameBuffer: %d has been disposed", frameBufferId));
-        }
-        else if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+        bind();
+
+        if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
         {
             throw new Exception("Framebuffer not complete!");
         }
@@ -43,6 +45,11 @@ public class FrameBuffer {
 
     public void resizeAttachments(int width, int height)
     {
+        if(disposed)
+        {
+            throw new RuntimeException(String.format("FrameBuffer: %d has been disposed", id));
+        }
+
         for (Texture texture2DAttachment : textureAttachments.values())
         {
             texture2DAttachment.create(width, height);
@@ -68,39 +75,57 @@ public class FrameBuffer {
 
     public void bindRead()
     {
-        if(disposed)
+        if(BOUND_READ_FRAMEBUFFER == this)
         {
-            throw new RuntimeException(String.format("FrameBuffer: %d has been disposed", frameBufferId));
+            return;
         }
 
-        glBindFramebuffer(GL_READ_FRAMEBUFFER, frameBufferId);
+        if(disposed)
+        {
+            throw new RuntimeException(String.format("FrameBuffer: %d has been disposed", id));
+        }
+
+        glBindFramebuffer(GL_READ_FRAMEBUFFER, id);
     }
 
     public void bindDraw()
     {
-        if(disposed)
+        if(BOUND_DRAW_FRAMEBUFFER == this)
         {
-            throw new RuntimeException(String.format("FrameBuffer: %d has been disposed", frameBufferId));
+            return;
         }
 
-        glBindFramebuffer(GL_DRAW_FRAMEBUFFER, frameBufferId);
+        if(disposed)
+        {
+            throw new RuntimeException(String.format("FrameBuffer: %d has been disposed", id));
+        }
+
+        glBindFramebuffer(GL_DRAW_FRAMEBUFFER, id);
     }
 
     public void bind()
     {
-        if(disposed)
+        if(BOUND_READ_FRAMEBUFFER == this && BOUND_DRAW_FRAMEBUFFER == this)
         {
-            throw new RuntimeException(String.format("FrameBuffer: %d has been disposed", frameBufferId));
+            return;
         }
 
-        glBindFramebuffer(GL_FRAMEBUFFER, frameBufferId);
-    }
-
-    public void dispose()
-    {
         if(disposed)
         {
-            throw new RuntimeException(String.format("FrameBuffer: %d has already been disposed", frameBufferId));
+            throw new RuntimeException(String.format("FrameBuffer: %d has been disposed", id));
+        }
+
+        glBindFramebuffer(GL_FRAMEBUFFER, id);
+    }
+
+    @Override
+    public void dispose()
+    {
+        DEFAULT_FRAMEBUFFER.bind();
+
+        if(disposed)
+        {
+            throw new RuntimeException(String.format("FrameBuffer: %d has already been disposed", id));
         }
 
         for (Texture texture2DAttachment : textureAttachments.values()){
@@ -111,19 +136,24 @@ public class FrameBuffer {
             renderBufferAttachment.dispose();
         }
 
-        glDeleteFramebuffers(frameBufferId);
+        glDeleteFramebuffers(id);
+        disposed = true;
     }
 
-    public static void bindDefaultFramebuffer(){
-        glBindFramebuffer(GL_FRAMEBUFFER, default_FBO);
+    @Override
+    public boolean equals(Object o)
+    {
+        return o != null && getId() == ((FrameBuffer) o).getId();
     }
 
-    public static void bindDefaultFramebufferRead(){
-        glBindFramebuffer(GL_READ_FRAMEBUFFER, default_FBO);
+    public int getId()
+    {
+        return id;
     }
 
-    public static void bindDefaultFramebufferDraw(){
-        glBindFramebuffer(GL_DRAW_FRAMEBUFFER, default_FBO);
+    public boolean isDisposed()
+    {
+        return disposed;
     }
 
     public static void clearBuffers(){
