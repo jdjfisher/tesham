@@ -19,8 +19,8 @@ import java.util.regex.Pattern;
 import static com.utils.ReasourceLoader.loadFileAsString;
 import static org.lwjgl.opengl.GL20.*;
 
-public class ShaderProgram implements IResource {
-    private static ShaderProgram DEFAULT_SHADER; ///TODO this
+public class ShaderProgram implements IResource
+{
     private static final int NULL = 0;
     private static ShaderProgram BOUND_SHADER;
 
@@ -37,7 +37,7 @@ public class ShaderProgram implements IResource {
         this.shaderProgramName = shaderProgramName;
         this.programId = glCreateProgram();
 
-        if (programId == 0)
+        if (programId == NULL)
         {
             throw new Exception(String.format("Could not create %s shader program", shaderProgramName));
         }
@@ -140,6 +140,12 @@ public class ShaderProgram implements IResource {
         glUseProgram(programId);
 
         BOUND_SHADER = this;
+    }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        return o != null && getId() == ((ShaderProgram) o).getId();
     }
 
     public boolean isDisposed()

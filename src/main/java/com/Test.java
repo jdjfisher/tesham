@@ -1,10 +1,5 @@
 package com;
 
-import com.componentSystem.Entity;
-import com.maths.Matrix4f;
-import com.maths.vectors.Vector3f;
-import com.utils.DataUtils;
-
 import java.util.ArrayList;
 
 public class Test {

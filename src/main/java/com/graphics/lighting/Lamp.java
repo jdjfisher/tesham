@@ -1,6 +1,6 @@
 package com.graphics.lighting;
 
-import com.graphics.opengl.mesh._3D.Mesh3D;
+import com.graphics.opengl.mesh.Mesh;
 import com.maths.TransformationSet;
 import com.utils.DataUtils;
 
@@ -20,7 +20,7 @@ public abstract class Lamp extends Light{
         return transformationSet;
     }
 
-    public abstract Mesh3D getMesh();
+    public abstract Mesh getMesh();
 
     public Attenuation getAttenuation() {
         return attenuation;

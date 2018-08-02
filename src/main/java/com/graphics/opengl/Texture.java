@@ -65,17 +65,30 @@ public class Texture implements IResource{
     }
 
     public Texture(int internalFormat, int format, int type, int width, int height){
-        this.id = glGenTextures();
-        this.internalFormat = internalFormat;
-        this.format = format;
-        this.type = type;
-        this.width = width;
-        this.height = height;
+        this(internalFormat, format, type, width, height, null);
+    }
 
-        create(width, height);
+    public Texture(int internalFormat, int format, int type, int width, int height, int min, int mag){
+        this(internalFormat, format, type, width, height, null);
+
+        setFilter(min, mag);
+    }
+
+    public Texture(int internalFormat, int format, int type, int width, int height, int min, int mag, int s, int t){
+        this(internalFormat, format, type, width, height, null);
+
+        setFilter(min, mag);
+        setWrapping(s, t);
     }
 
     public Texture(int internalFormat, int format, int type, int width, int height, int min, int mag, int s, int t, ByteBuffer buffer){
+        this(internalFormat, format, type, width, height, buffer);
+
+        setFilter(min, mag);
+        setWrapping(s, t);
+    }
+
+    public Texture(int internalFormat, int format, int type, int width, int height, ByteBuffer buffer){
         this.id = glGenTextures();
         this.internalFormat = internalFormat;
         this.format = format;
@@ -85,9 +98,9 @@ public class Texture implements IResource{
         this.disposed = false;
 
         create(width, height, buffer);
-        setFilter(min, mag);
-        setWrapping(s, t);
     }
+
+
 
     public void create(int width, int height)
     {
@@ -101,12 +114,22 @@ public class Texture implements IResource{
         glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, width, height, 0, format, type, buffer);
     }
 
+    public void setFilter(int min_and_mag)
+    {
+        setFilter(min_and_mag, min_and_mag);
+    }
+
     public void setFilter(int min, int mag)
     {
         bind();
 
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, min);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, mag);
+    }
+
+    public void setWrapping(int s_and_t)
+    {
+        setWrapping(s_and_t, s_and_t);
     }
 
     public void setWrapping(int s, int t)

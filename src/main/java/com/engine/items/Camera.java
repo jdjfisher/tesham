@@ -78,7 +78,7 @@ public class Camera {
             deltaCamPos.multiply(0.1f);
         }
 
-        if(Cursor.inCameraMode()) {
+        if(!Cursor.isVisible()) {
             Vector2f deltaCursorPos = Cursor.getDeltaPosition();
             deltaCursorPos.multiply(getMouseSensitivity());
             changeTilt(-deltaCursorPos.getY());
@@ -94,8 +94,9 @@ public class Camera {
         rotation = new Quaternion(-tilt, X_AXIS);
         rotation.multiply(pan, Y_AXIS);
 
-        viewMatrix = Matrix4f.QuaternionRotation(Quaternion.Conjugate(rotation));
+        viewMatrix = Matrix4f.Identity();
         viewMatrix.multiply(Matrix4f.Translation(Vector3f.Negative(position)));
+        viewMatrix.multiply(Matrix4f.QuaternionRotation(Quaternion.Conjugate(rotation)));
     }
 
     public Matrix4f getViewMatrix(){

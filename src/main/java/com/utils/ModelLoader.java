@@ -2,9 +2,9 @@ package com.utils;
 
 import com.engine.items.Model;
 import com.engine.items.Material;
-import com.graphics.opengl.mesh._3D.FaceMI;
-import com.graphics.opengl.mesh._3D.Mesh3D;
-import com.graphics.opengl.mesh._3D.MultiIndexMeshData;
+import com.graphics.opengl.mesh.FaceMI;
+import com.graphics.opengl.mesh.Mesh;
+import com.graphics.opengl.mesh.MultiIndexMeshData;
 import com.maths.vectors.Vector2f;
 import com.maths.vectors.Vector3f;
 
@@ -100,7 +100,7 @@ public class ModelLoader {
         ArrayList<Model> models = new ArrayList<>();
 
         for(String key : rawMeshs.keySet()){
-            models.add(new Model(new Mesh3D(rawMeshs.get(key)), materialMap.get(key)));
+            models.add(new Model(new Mesh(rawMeshs.get(key)), materialMap.get(key)));
         }
 
         return models;

@@ -31,28 +31,35 @@ public class Engine {
     private int frameCount;
     private boolean running = false;
 
-    public Engine() {
+    public Engine()
+    {
         this.window = new Window("3D Engine", 700, 600);
         this.renderer = new RendererEngine();
         this.world = new World();
         this.loopTimer = new StopWatch();
         this.fpsTimer = new StopWatch();
 
-        this.loopThread = new Thread(() -> {
-            try {
+        this.loopThread = new Thread(() ->
+        {
+            try
+            {
                 loadOptions();
                 window.init();
                 System.err.println("WINDOW INITIALISED");
-                renderer.init();
+                renderer.init(window);
                 System.err.println("RENDERER INITIALISED");
                 world.init();
                 System.err.println("GAME INITIALISED");
 
                 System.err.printf("SUCCESSFUL BOOT OpenGL: %s Card: %s\n/////////////////////////////////////////////////////////////////////////////////////\n\n", glGetString(GL_VERSION), glGetString(GL_RENDERER));
                 gameLoop();
-            } catch (Exception e) {
+            }
+            catch (Exception e)
+            {
                 e.printStackTrace();
-            } finally {
+            }
+            finally
+            {
                 world.dispose();
                 renderer.dispose();
                 window.dispose();
@@ -61,19 +68,24 @@ public class Engine {
             }
         });
 
-        try {
+        try
+        {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        }catch (Exception e){
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
     }
 
-    public void start() {
+    public void start()
+    {
         running = true;
         loopThread.start();
     }
 
-    private void gameLoop() {
+    private void gameLoop()
+    {
         float elapsedTime;
         float cumulativeTime = 0f;
         final float SECONDS_PER_UPDATE = 1f / (float)TARGET_UPDATES_PER_SECOND;
@@ -81,27 +93,32 @@ public class Engine {
         loopTimer.start();
         fpsTimer.start();
 
-        while (running && window.isOpen()) {
+        while (running && window.isOpen())
+        {
             elapsedTime = loopTimer.getElapsedTime();
             cumulativeTime += elapsedTime;
             loopTimer.start();
 
-            if(window.isFocused()) {
+            if(window.isFocused())
+            {
                 handleInput();
             }
 
-            while (cumulativeTime >= SECONDS_PER_UPDATE) {
+            while (cumulativeTime >= SECONDS_PER_UPDATE)
+            {
                 update(SECONDS_PER_UPDATE);
                 cumulativeTime -= SECONDS_PER_UPDATE;
             }
 
-            if(!window.isMinimized()) {
+            if(!window.isMinimized())
+            {
                 render();
             }
 
             window.pollEvents();
 
-            if (isVSyncEnabled()) {
+            if (isVSyncEnabled())
+            {
                 sync(SECONDS_PER_FRAME);
             }
 
@@ -109,42 +126,56 @@ public class Engine {
         }
     }
 
-    private void sync(float SECONDS_PER_FRAME) {
+    private void sync(float SECONDS_PER_FRAME)
+    {
         double expectedEndTime = loopTimer.getLoopStartTime() + SECONDS_PER_FRAME;
-        while (loopTimer.getTime() < expectedEndTime) {
-            try {
+        while (loopTimer.getTime() < expectedEndTime)
+        {
+            try
+            {
                 Thread.sleep(1);
-            } catch (InterruptedException e) {
+            }
+            catch (InterruptedException e)
+            {
                 e.printStackTrace();
             }
         }
     }
 
-    private void handleInput() {
-        if(Keyboard.isKeyTapped(GLFW_KEY_F3)) {
+    private void handleInput()
+    {
+        if(Keyboard.isKeyTapped(GLFW_KEY_F1))
+        {
+//            renderer.takeScreenshot();
+        }
+
+        if(Keyboard.isKeyTapped(GLFW_KEY_F2) && !Cursor.isVisible())
+        {
             window.toggleFullScreen();
         }
 
-//        if(Keyboard.isKeyTapped(GLFW_KEY_F1)){
-//            renderer.takeScreenshot();
-//        }
-
-        if(!window.isFullScreen()){
-            if(Cursor.inCameraMode()){
-                if (Keyboard.isKeyTapped(GLFW_KEY_ESCAPE)) {
-                    Cursor.setCameraMode(false);
+        if(!window.isFullScreen())
+        {
+            if(Cursor.isVisible())
+            {
+                if(MouseButtons.isButtonTapped(GLFW_MOUSE_BUTTON_1))
+                {
+                    Cursor.setVisibility(false);
+                }
+                if (Keyboard.isKeyTapped(GLFW_KEY_ESCAPE))
+                {
+                    stop();
                 }
             }else {
-                if(MouseButtons.isButtonTapped(GLFW_MOUSE_BUTTON_1)){
-                    Cursor.setCameraMode(true);
-                }
-                if (Keyboard.isKeyTapped(GLFW_KEY_ESCAPE)) {
-                    stop();
+                if (Keyboard.isKeyTapped(GLFW_KEY_ESCAPE))
+                {
+                    Cursor.setVisibility(true);
                 }
             }
         }
 
-        if(Cursor.onScreen()){
+        if(Cursor.onScreen())
+        {
             world.handleInput();
         }
 
@@ -154,12 +185,15 @@ public class Engine {
         MouseWheel.update();
     }
 
-    private void update(float interval) {
+    private void update(float interval)
+    {
         world.updateLogic(interval);
     }
 
-    private void render() {
-        if (fpsTimer.getElapsedTime() > 1) {
+    private void render()
+    {
+        if (fpsTimer.getElapsedTime() > 1)
+        {
             fpsTimer.restart();
             window.appendToTitle(String.format("FPS: %d", frameCount));
             frameCount = 0;
@@ -168,14 +202,18 @@ public class Engine {
 
         window.preRender();
 
-        try {
+        try
+        {
             renderer.render(window, world);
-        }catch (Exception e){
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
     }
 
-    public void stop() {
+    public void stop()
+    {
         running = false;
     }
 }

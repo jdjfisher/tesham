@@ -1,13 +1,9 @@
 package com.utils;
 
-
-import com.graphics.opengl.mesh._2D.Mesh2D;
-import com.graphics.opengl.mesh._2D.Vertex2D;
-import com.graphics.opengl.mesh._3D.FaceMI;
-import com.graphics.opengl.mesh._3D.FaceMI.IndexSet;
-import com.graphics.opengl.mesh._3D.FaceSI;
-import com.graphics.opengl.mesh._3D.Mesh3D;
-import com.graphics.opengl.mesh._3D.MultiIndexMeshData;
+import com.graphics.opengl.mesh.FaceMI;
+import com.graphics.opengl.mesh.FaceMI.IndexSet;
+import com.graphics.opengl.mesh.Mesh;
+import com.graphics.opengl.mesh.MultiIndexMeshData;
 import com.maths.vectors.Vector2f;
 import com.maths.vectors.Vector3f;
 import org.apache.commons.math3.util.FastMath;
@@ -21,34 +17,7 @@ public class GenerateMesh {
     private GenerateMesh() {
     }
 
-    public static Mesh2D screenRenderQuad(){
-        return quad(2,2);
-    }
-
-    public static Mesh2D quad(float width, float height) {
-        float halfWidth = FastMath.abs(width / 2);
-        float halfHeight = FastMath.abs(height / 2);
-
-        Vertex2D[] vertexPositions = new Vertex2D[]{
-                new Vertex2D(new Vector2f(-halfWidth, halfHeight), new Vector2f(0, 1)),
-                new Vertex2D(new Vector2f(-halfWidth, -halfHeight), new Vector2f(0, 0)),
-                new Vertex2D(new Vector2f(halfWidth, -halfHeight), new Vector2f(1, 0)),
-                new Vertex2D(new Vector2f(halfWidth, halfHeight), new Vector2f(1, 1))
-        };
-
-        FaceSI[] faces = new FaceSI[]{
-                new FaceSI(
-                        0,
-                        1,
-                        2,
-                        3
-                )
-        };
-
-        return new Mesh2D(vertexPositions, faces);
-    }
-
-    public static Mesh3D plane(float width, float length){
+    public static Mesh plane(float width, float length){
         float halfWidth = FastMath.abs(width / 2);
         float halfLength = FastMath.abs(length / 2);
 
@@ -75,10 +44,10 @@ public class GenerateMesh {
                 )
         };
 
-        return new Mesh3D(new MultiIndexMeshData(vertexPositions, null, textureCoordinates, faces));
+        return new Mesh(new MultiIndexMeshData(vertexPositions, null, textureCoordinates, faces));
     }
 
-    public static Mesh3D tetrahedron(float length) {
+    public static Mesh tetrahedron(float length) {
         length = FastMath.abs(length);
 
         float v = length / (float) FastMath.sqrt(2);
@@ -113,15 +82,15 @@ public class GenerateMesh {
                 )
         };
 
-        return new Mesh3D(new MultiIndexMeshData(vertexPositions, null, null, faces));
+        return new Mesh(new MultiIndexMeshData(vertexPositions, null, null, faces));
     }
 
-    public static Mesh3D cube(float sideLength) {
+    public static Mesh cube(float sideLength) {
         sideLength = FastMath.abs(sideLength);
         return cuboid(sideLength, sideLength, sideLength);
     }
 
-    public static Mesh3D cuboid(float width, float height, float length) {
+    public static Mesh cuboid(float width, float height, float length) {
         float halfWidth = FastMath.abs(width / 2);
         float halfHeight = FastMath.abs(height / 2);
         float halfLength = FastMath.abs(length / 2);
@@ -193,10 +162,10 @@ public class GenerateMesh {
                 ),
         };
 
-        return new Mesh3D(new MultiIndexMeshData(vertexPositions, null, textureCoordinates, faces));
+        return new Mesh(new MultiIndexMeshData(vertexPositions, null, textureCoordinates, faces));
     }
 
-    public static Mesh3D corner(float width, float height, float length) {
+    public static Mesh corner(float width, float height, float length) {
         float halfWidth = FastMath.abs(width / 2);
         float halfLength = FastMath.abs(length / 2);
 
@@ -232,10 +201,10 @@ public class GenerateMesh {
                 )
         };
 
-        return new Mesh3D(new MultiIndexMeshData(vertexPositions, null, null, faces));
+        return new Mesh(new MultiIndexMeshData(vertexPositions, null, null, faces));
     }
 
-    public static Mesh3D cylinder(float radius, int resolution, float length) {
+    public static Mesh cylinder(float radius, int resolution, float length) {
         resolution = resolution < 3 ? 3 : resolution;
         radius = FastMath.abs(radius);
         float halfLength = FastMath.abs(length / 2);
@@ -285,10 +254,10 @@ public class GenerateMesh {
                 resolution + 0
         ));
 
-        return new Mesh3D(new MultiIndexMeshData(vertexPositions, null, null, faces.toArray(new FaceMI[faces.size()])));
+        return new Mesh(new MultiIndexMeshData(vertexPositions, null, null, faces.toArray(new FaceMI[faces.size()])));
     }
 
-    public static Mesh3D tube(float outerRadius, float innerRadius, int resolution, float length){
+    public static Mesh tube(float outerRadius, float innerRadius, int resolution, float length){
         resolution = resolution < 3 ? 3 : resolution;
         innerRadius = FastMath.abs(innerRadius);
         outerRadius = FastMath.abs(outerRadius);
@@ -389,10 +358,10 @@ public class GenerateMesh {
                 innerBotVerticesOffset + resolution - 1
         ));
 
-        return new Mesh3D(new MultiIndexMeshData(vertexPositions, null, null, faces.toArray(new FaceMI[faces.size()])));
+        return new Mesh(new MultiIndexMeshData(vertexPositions, null, null, faces.toArray(new FaceMI[faces.size()])));
     }
 
-    public static Mesh3D cone(float radius, int resolution, float height){
+    public static Mesh cone(float radius, int resolution, float height){
         resolution = resolution < 3 ? 3 : resolution;
         radius = FastMath.abs(radius);
         float halfHeight = FastMath.abs(height / 2);
@@ -439,10 +408,10 @@ public class GenerateMesh {
                 0
         ));
 
-        return new Mesh3D(new MultiIndexMeshData(vertexPositions, null, null, faces.toArray(new FaceMI[faces.size()])));
+        return new Mesh(new MultiIndexMeshData(vertexPositions, null, null, faces.toArray(new FaceMI[faces.size()])));
     }
 
-    public static Mesh3D torus(float majorRadius, float minorRadius, int resolution){
+    public static Mesh torus(float majorRadius, float minorRadius, int resolution){
         Vector3f[] vertexPositions = new Vector3f[resolution * resolution];
 
         final int ringCount = resolution;
@@ -522,10 +491,10 @@ public class GenerateMesh {
                 0 + 0
         ));
 
-        return new Mesh3D(new MultiIndexMeshData(vertexPositions, null, null, faces.toArray(new FaceMI[faces.size()])));
+        return new Mesh(new MultiIndexMeshData(vertexPositions, null, null, faces.toArray(new FaceMI[faces.size()])));
     }
 
-    public static Mesh3D sphere(float radius, int resolution){
+    public static Mesh sphere(float radius, int resolution){
         resolution = resolution < 3 ? 3 : resolution;
         radius = FastMath.abs(radius);
 
@@ -622,10 +591,10 @@ public class GenerateMesh {
                 bottomRingIndexOffset + meridianCount - 1
         ));
 
-        return new Mesh3D(new MultiIndexMeshData(vertexPositions, null, null, faces.toArray(new FaceMI[faces.size()])));
+        return new Mesh(new MultiIndexMeshData(vertexPositions, null, null, faces.toArray(new FaceMI[faces.size()])));
     }
 
-    public static Mesh3D semiSphere(float radius, int resolution){
+    public static Mesh semiSphere(float radius, int resolution){
         resolution = resolution < 3 ? 3 : resolution;
 
         radius = FastMath.abs(radius);
@@ -722,6 +691,6 @@ public class GenerateMesh {
                 frontRingIndexOffset
         ));
 
-        return new Mesh3D(new MultiIndexMeshData(vertexPositions, null, null, faces.toArray(new FaceMI[faces.size()])));
+        return new Mesh(new MultiIndexMeshData(vertexPositions, null, null, faces.toArray(new FaceMI[faces.size()])));
     }
 }

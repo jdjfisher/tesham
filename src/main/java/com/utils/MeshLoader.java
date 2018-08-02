@@ -1,8 +1,8 @@
 package com.utils;
 
-import com.graphics.opengl.mesh._3D.FaceMI;
-import com.graphics.opengl.mesh._3D.Mesh3D;
-import com.graphics.opengl.mesh._3D.MultiIndexMeshData;
+import com.graphics.opengl.mesh.FaceMI;
+import com.graphics.opengl.mesh.Mesh;
+import com.graphics.opengl.mesh.MultiIndexMeshData;
 import com.maths.vectors.Vector2f;
 import com.maths.vectors.Vector3f;
 
@@ -11,18 +11,18 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-import static com.graphics.opengl.mesh._3D.FaceMI.IndexSet.NULL_INDEX;
+import static com.graphics.opengl.mesh.FaceMI.IndexSet.NULL_INDEX;
 
 public class MeshLoader {
-    private static final HashMap<String, Mesh3D> loadedMeshMap = new HashMap<>();
+    private static final HashMap<String, Mesh> loadedMeshMap = new HashMap<>();
 
     private MeshLoader(){}
 
-    public static Mesh3D loadMesh(String filePath) throws Exception {
+    public static Mesh loadMesh(String filePath) throws Exception {
         return loadMesh(filePath, false);
     }
 
-    public static Mesh3D loadMesh(String filePath, boolean flipFaces) throws Exception{
+    public static Mesh loadMesh(String filePath, boolean flipFaces) throws Exception{
         if (filePath.endsWith(".obj")) {
             if(loadedMeshMap.containsKey(filePath)){
                 return loadedMeshMap.get(filePath);
@@ -60,7 +60,7 @@ public class MeshLoader {
                     }
                 }
 
-                Mesh3D mesh = new Mesh3D(new MultiIndexMeshData(vertexPositions, vertexNormals, textureCoords, faces));
+                Mesh mesh = new Mesh(new MultiIndexMeshData(vertexPositions, vertexNormals, textureCoords, faces));
                 loadedMeshMap.put(filePath, mesh);
                 return mesh;
             }

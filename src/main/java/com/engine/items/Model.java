@@ -1,16 +1,16 @@
 package com.engine.items;
 
-import com.graphics.opengl.mesh._3D.Mesh3D;
+import com.graphics.opengl.mesh.Mesh;
 
 public class Model {
-    private Mesh3D mesh;
+    private Mesh mesh;
     private Material material;
 
-    public Model(Mesh3D mesh){
+    public Model(Mesh mesh){
         this(mesh, new Material());
     }
 
-    public Model(Mesh3D mesh, Material material) {
+    public Model(Mesh mesh, Material material) {
         this.mesh = mesh;
         this.material = material;
     }
@@ -19,11 +19,11 @@ public class Model {
         mesh.render();
     }
 
-    public Mesh3D getMesh() {
+    public Mesh getMesh() {
         return mesh;
     }
 
-    public void setMesh(Mesh3D mesh) {
+    public void setMesh(Mesh mesh) {
         this.mesh = mesh;
     }
 

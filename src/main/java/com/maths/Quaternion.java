@@ -71,7 +71,7 @@ public class Quaternion {
     }
 
     public void multiply(final Quaternion multiplier){
-        set(Multiply(this, multiplier));
+        set(Multiply(multiplier, this));
     }
 
     public void multiply(final float x, final float y, final float z, final float w){
@@ -83,11 +83,11 @@ public class Quaternion {
     }
 
     public void multiply(final float eulerX, final float eulerY, final float eulerZ){
-        set(Multiply(this, EulerAnglesToQuaternion(eulerX, eulerY, eulerZ)));
+        multiply(EulerAnglesToQuaternion(eulerX, eulerY, eulerZ));
     }
 
     public void multiply(final float theta, final Vector3f axisDirection){
-        set(Multiply(this, RotationAxisToQuaternion(theta, axisDirection)));
+        multiply(RotationAxisToQuaternion(theta, axisDirection));
     }
 
     public void multiply(final float scaler){
@@ -157,7 +157,7 @@ public class Quaternion {
 
     ///////////////////////////////////////////////STATIC///////////////////////////////////////////////////////////////
 
-    private static Quaternion Multiply(final Quaternion multiplicand, final Quaternion multiplier){
+    private static Quaternion Multiply(final Quaternion multiplier, final Quaternion multiplicand){
         return new Quaternion(
                 multiplicand.x * multiplier.w + multiplicand.y * multiplier.z - multiplicand.z * multiplier.y + multiplicand.w * multiplier.x,
                 -multiplicand.x * multiplier.z + multiplicand.y * multiplier.w + multiplicand.z * multiplier.x + multiplicand.w * multiplier.y,

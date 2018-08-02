@@ -35,10 +35,6 @@ public class Matrix4f{
         this.elements = elements;
     }
 
-    public void multiply(Matrix4f multiplier){
-        set(Multiply(this, multiplier));
-    }
-
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
@@ -107,6 +103,26 @@ public class Matrix4f{
         return DataUtils.toFloatBuffer(DataUtils.toFloatArray(elements));
     }
 
+    public void identity(){
+        set(Identity());
+    }
+
+    public void multiply(Matrix4f multiplier){
+        set(Multiply(multiplier, this));
+    }
+
+    public void translate(Vector3f translation){
+        multiply(Translation(translation));
+    }
+
+    public void stretch(Vector3f stretch){
+        multiply(Stretch(stretch));
+    }
+
+    public void rotate(Quaternion rotation){
+        multiply(QuaternionRotation(rotation));
+    }
+
     ///////////////////////////////////////////////////STATIC///////////////////////////////////////////////////////////
 
     public static Matrix4f Identity() {
@@ -120,21 +136,14 @@ public class Matrix4f{
         );
     }
 
-    public static Matrix4f Multiply(Matrix4f multiplicand, Matrix4f multiplier, Matrix4f... multipliers) {
-        final Matrix4f result = Multiply(multiplicand, multiplier);
-        for(Matrix4f Multiplier : multipliers){
-            result.multiply(Multiplier);
-        }
-        return result;
-    }
-
-    public static Matrix4f Multiply(Matrix4f multiplicand, Matrix4f multiplier) {
+    public static Matrix4f Multiply(Matrix4f multiplier, Matrix4f multiplicand) {
         final Matrix4f result = new Matrix4f();
+        float sum;
         for (int row = 0; row < ORDER; row++) {
             for (int col = 0; col < ORDER; col++) {
-                float sum = 0;
+                sum = 0;
                 for (int i = 0; i < ORDER; i++) {
-                    sum += (multiplier.elements[i][col] * multiplicand.elements[row][i]);
+                    sum += (multiplier.elements[row][i] * multiplicand.elements[i][col]);
                 }
                 result.elements[row][col] = sum;
             }

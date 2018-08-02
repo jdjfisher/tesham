@@ -1,9 +1,9 @@
 package com.engine.items;
 
 import com.graphics.opengl.Texture;
-import com.graphics.opengl.mesh._3D.FaceMI;
-import com.graphics.opengl.mesh._3D.Mesh3D;
-import com.graphics.opengl.mesh._3D.MultiIndexMeshData;
+import com.graphics.opengl.mesh.FaceMI;
+import com.graphics.opengl.mesh.Mesh;
+import com.graphics.opengl.mesh.MultiIndexMeshData;
 import com.maths.TransformationSet;
 import com.maths.vectors.Vector2f;
 import com.maths.vectors.Vector3f;
@@ -15,7 +15,7 @@ import static com.engine.core.Options.getViewDistanceFar;
  * Created by Jordan Fisher on 29/06/2017.
  */
 public class Skybox {
-    public static final Mesh3D mesh = createSkyboxMesh();
+    public static final Mesh mesh = createSkyboxMesh();
     private final TransformationSet transformationSet;
     private Texture texture;
 
@@ -40,7 +40,7 @@ public class Skybox {
         return texture;
     }
 
-    public Mesh3D getMesh(){
+    public Mesh getMesh(){
         return mesh;
     }
 
@@ -48,7 +48,7 @@ public class Skybox {
         return transformationSet;
     }
 
-    private static Mesh3D createSkyboxMesh(){
+    private static Mesh createSkyboxMesh(){
         float var = 0.5f;
 
         Vector3f[] vertices = new Vector3f[]{
@@ -130,6 +130,6 @@ public class Skybox {
                 )
         };
 
-        return new Mesh3D(new MultiIndexMeshData(vertices, null, textureCoords, faces));
+        return new Mesh(new MultiIndexMeshData(vertices, null, textureCoords, faces));
     }
 }

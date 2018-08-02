@@ -1,10 +1,11 @@
 package com.engine.items;
-
-import com.componentSystem.*;
-import com.engine.input.Keyboard;
+import com.componentSystem.borrowed.Component;
+import com.componentSystem.borrowed.Entity;
+import com.componentSystem.borrowed.components.TransformComponent;
 import com.maths.vectors.Vector3f;
 
-import static org.lwjgl.glfw.GLFW.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Jordan Fisher on 29/06/2017.
@@ -18,48 +19,23 @@ public class World {
 
     private final Camera camera;
 
-    private final EntityManager entityManager;
-    private final TransformComponentManager transformComponentManager;
-    private final MeshComponentManager meshComponentManager;
-
     public World() {
-        camera = new Camera(new Vector3f(0,0,5));
-
-        entityManager = new EntityManager();
-        transformComponentManager = new TransformComponentManager();
-        meshComponentManager = new MeshComponentManager();
+        camera = new Camera(new Vector3f(-1,1,6));
+        camera.facePoint(0,0,0);
     }
 
     public void init(){
-        Entity e1 = entityManager.create();
 
-        transformComponentManager.subscribe(e1);
-        meshComponentManager.subscribe(e1);
-
-
-        transformComponentManager.getComponent(e1).getPosition().set(0, -4, 0);
     }
 
     public void handleInput(){
         camera.handleInput();
 
-        if (Keyboard.isKeyTapped(GLFW_KEY_ENTER)){
-            Entity e2 = entityManager.create();
 
-            transformComponentManager.subscribe(e2);
-
-            transformComponentManager.getComponent(e2).getPosition().set(1,2,3);
-        }
     }
 
     public void updateLogic(float interval){
         camera.update(interval);
-
-        transformComponentManager.update(interval);
-        meshComponentManager.update(interval);
-
-        transformComponentManager.garbageCollector(entityManager);
-        meshComponentManager.garbageCollector(entityManager);
     }
 
     public void dispose(){
@@ -68,17 +44,5 @@ public class World {
 
     public Camera getCamera() {
         return camera;
-    }
-
-    public EntityManager getEntityManager() {
-        return entityManager;
-    }
-
-    public TransformComponentManager getTransformComponentManager() {
-        return transformComponentManager;
-    }
-
-    public MeshComponentManager getMeshComponentManager() {
-        return meshComponentManager;
     }
 }

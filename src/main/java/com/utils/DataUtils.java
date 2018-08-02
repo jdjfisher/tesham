@@ -1,5 +1,6 @@
 package com.utils;
 
+import com.maths.vectors.Vector2d;
 import com.maths.vectors.Vector2f;
 import com.maths.vectors.Vector3f;
 import com.maths.vectors.Vector4f;
@@ -8,6 +9,7 @@ import java.awt.*;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
 import java.util.Collection;
 
 public class DataUtils {
@@ -23,8 +25,18 @@ public class DataUtils {
 		return toFloatBuffer(toFloatArray(array));
 	}
 
+	public static FloatBuffer toFloatBuffer(Vector2f[] array){
+		return toFloatBuffer(toFloatArray(array));
+	}
+
 	public static FloatBuffer toFloatBuffer(float[] array){
 		FloatBuffer result = ByteBuffer.allocateDirect(array.length << 2).order(ByteOrder.nativeOrder()).asFloatBuffer();
+		result.put(array).flip();
+		return result;
+	}
+
+	public static IntBuffer toIntBuffer(int[] array){
+		IntBuffer result = ByteBuffer.allocateDirect(array.length << 2).order(ByteOrder.nativeOrder()).asIntBuffer();
 		result.put(array).flip();
 		return result;
 	}
@@ -92,5 +104,9 @@ public class DataUtils {
 		float[] rgb = new float[3];
 		colour.getColorComponents(rgb);
 		return new Vector3f(rgb[0], rgb[1], rgb[2]);
+	}
+
+	public static Vector2f toVector2f(Vector2d vector2d){
+		return new Vector2f((float) vector2d.getX(), (float) vector2d.getY());
 	}
 }

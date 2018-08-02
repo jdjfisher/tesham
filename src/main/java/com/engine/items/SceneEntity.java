@@ -1,6 +1,6 @@
 package com.engine.items;
 
-import com.graphics.opengl.mesh._3D.Mesh3D;
+import com.graphics.opengl.mesh.Mesh;
 import com.maths.TransformationSet;
 import com.maths.vectors.Vector3f;
 
@@ -19,12 +19,12 @@ public class SceneEntity {
     private final Vector3f velocity;
     private final Vector3f acceleration;
 
-    public SceneEntity(String name, Mesh3D mesh, Material material){
+    public SceneEntity(String name, Mesh mesh, Material material){
         this(name);
         this.models.add(new Model(mesh, material));
     }
 
-    public SceneEntity(String name, Mesh3D mesh){
+    public SceneEntity(String name, Mesh mesh){
         this(name);
         this.models.add(new Model(mesh));
     }

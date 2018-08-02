@@ -1,6 +1,6 @@
 package com.graphics.lighting;
 
-import com.graphics.opengl.mesh._3D.Mesh3D;
+import com.graphics.opengl.mesh.Mesh;
 import com.utils.GenerateMesh;
 
 import java.awt.*;
@@ -10,7 +10,7 @@ import java.awt.*;
  */
 public class SpotLight extends Lamp {
 
-    private static final Mesh3D SPOT_LIGHT_MESH = GenerateMesh.semiSphere(0.2f, 30);
+    private static final Mesh SPOT_LIGHT_MESH = GenerateMesh.semiSphere(0.2f, 30);
 
     private float cutOff;
     private float outerCutOff;
@@ -22,7 +22,7 @@ public class SpotLight extends Lamp {
     }
 
     @Override
-    public Mesh3D getMesh() {
+    public Mesh getMesh() {
         return SPOT_LIGHT_MESH;
     }
 
