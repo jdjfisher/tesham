@@ -46,7 +46,7 @@ struct SpotLight
     vec3 position;
     Attenuation attenuation;
     vec3 coneDirection;
-    float cutOff;
+    float innerCutOff;
     float outerCutOff;
 };
 
@@ -106,7 +106,7 @@ void main()
 
     float brightness = dot(fragmentColour.rgb, vec3(0.2126, 0.7152, 0.0722));
 
-    if(brightness > 10.0)
+    if(brightness > 50.0)
     {
         bloomHighlightsColour = vec4(fragmentColour.rgb, 1.0);
     }
@@ -188,7 +188,7 @@ vec3 calcSpotLight(SpotLight spotLight, vec3 fragmentPosition_W, vec3 fragmentNo
     float attenuationFactor = calcAttenuationFactor(spotLight.attenuation, distance_to_light);
 
     float theta = dot(fragment_to_light_direction, - normalize(spotLight.coneDirection));
-    float epsilon = spotLight.cutOff - spotLight.outerCutOff;
+    float epsilon = spotLight.innerCutOff - spotLight.outerCutOff;
     float spotLightConeIntensity = clamp((theta - spotLight.outerCutOff) / epsilon, 0.0, 1.0);
 
     return (specularDiffuseColour * spotLightConeIntensity) / attenuationFactor;

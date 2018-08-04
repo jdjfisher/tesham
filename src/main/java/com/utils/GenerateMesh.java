@@ -1,9 +1,9 @@
 package com.utils;
 
-import com.graphics.opengl.mesh.FaceMI;
-import com.graphics.opengl.mesh.FaceMI.IndexSet;
-import com.graphics.opengl.mesh.Mesh;
-import com.graphics.opengl.mesh.MultiIndexMeshData;
+import com.graphics.mesh.FaceMI;
+import com.graphics.mesh.FaceMI.IndexSet;
+import com.graphics.mesh.Mesh;
+import com.graphics.mesh.MultiIndexMeshData;
 import com.maths.vectors.Vector2f;
 import com.maths.vectors.Vector3f;
 import org.apache.commons.math3.util.FastMath;

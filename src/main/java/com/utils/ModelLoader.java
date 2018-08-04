@@ -2,9 +2,9 @@ package com.utils;
 
 import com.engine.items.Model;
 import com.engine.items.Material;
-import com.graphics.opengl.mesh.FaceMI;
-import com.graphics.opengl.mesh.Mesh;
-import com.graphics.opengl.mesh.MultiIndexMeshData;
+import com.graphics.mesh.FaceMI;
+import com.graphics.mesh.Mesh;
+import com.graphics.mesh.MultiIndexMeshData;
 import com.maths.vectors.Vector2f;
 import com.maths.vectors.Vector3f;
 

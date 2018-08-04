@@ -2,97 +2,83 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="27b6ee5b-ce47-41dd-9d38-1bbf0317e1bf" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/componentSystem/borrowed/Component.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/componentSystem/borrowed/ComponentType.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/componentSystem/borrowed/Entity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/componentSystem/borrowed/IDGenerator.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/componentSystem/borrowed/UniCallback.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/componentSystem/borrowed/components/TransformComponent.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/componentSystem/wip/components/KinematicsComponent.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/componentSystem/wip/components/TransformComponent.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/componentSystem/wip/managers/KinematicsComponentManager.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/componentSystem/wip/managers/TransformComponentManager.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/graphics/opengl/QuadMesh.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/graphics/opengl/mesh/FaceMI.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/graphics/opengl/mesh/FaceSI.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/graphics/opengl/mesh/Mesh.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/graphics/opengl/mesh/MultiIndexMeshData.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/graphics/opengl/mesh/SingleIndexMeshData.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/graphics/opengl/mesh/Vertex.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/shaders/fragment/fxaa.glsl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/shaders/fragment/gaussianBlur.glsl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/shaders/fragment/lamp.glsl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/shaders/fragment/toneMapping.glsl" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/componentSystem/IComponentManager.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/componentSystem/MeshComponentManager.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/componentSystem/MeshRenderingComponentManager.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/componentSystem/TestComponentManager.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/componentSystem/TransformComponentManager.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/engine/core/FrustumCuller.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/graphics/opengl/mesh/_2D/Mesh2D.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/graphics/opengl/mesh/_2D/Vertex2D.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/graphics/opengl/mesh/_3D/FaceMI.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/graphics/opengl/mesh/_3D/FaceSI.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/graphics/opengl/mesh/_3D/Mesh3D.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/graphics/opengl/mesh/_3D/MultiIndexMeshData.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/graphics/opengl/mesh/_3D/SingleIndexMeshData.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/graphics/opengl/mesh/_3D/Vertex3D.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/componentSystem/AbstractComponent.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/componentSystem/AbstractComponentManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/componentSystem/Entity.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/componentSystem/EntityManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/componentSystem/IComponentManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/componentSystem/MeshComponentManager$MeshComponent.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/componentSystem/MeshComponentManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/componentSystem/MeshRenderingComponentManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/componentSystem/TestComponentManager$TestComponent.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/componentSystem/TestComponentManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/componentSystem/TransformComponentManager$TransformComponent.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/componentSystem/TransformComponentManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/engine/core/FrustumCuller.class" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/componentSystem/AbstractComponent.java" afterPath="$PROJECT_DIR$/src/main/java/com/componentSystem/wip/core/AbstractComponent.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/componentSystem/AbstractComponentManager.java" afterPath="$PROJECT_DIR$/src/main/java/com/componentSystem/wip/core/AbstractComponentManager.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/componentSystem/Entity.java" afterPath="$PROJECT_DIR$/src/main/java/com/componentSystem/wip/core/Entity.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/componentSystem/EntityManager.java" afterPath="$PROJECT_DIR$/src/main/java/com/componentSystem/wip/core/EntityManager.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/componentSystem/ComponentTypeMask.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/componentSystem/components/MaterialComponent.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/componentSystem/components/MeshComponent.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/componentSystem/components/PointLightComponent.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/componentSystem/components/SpotLightComponent.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/engine/items/DirectionalLight.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/shaders/fragment/directTexture.glsl" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/componentSystem/borrowed/IDGenerator.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/engine/items/SceneEntity.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/game/Game.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/graphics/lighting/DirectionalLight.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/graphics/lighting/Lamp.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/graphics/lighting/PointLight.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/graphics/lighting/SpotLight.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/engine/items/SceneEntity.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/engine/items/World.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/graphics/lighting/Attenuation.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/graphics/lighting/DirectionalLight.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/graphics/lighting/Lamp.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/graphics/lighting/Light.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/graphics/lighting/SpotLight.class" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/componentSystem/borrowed/Component.java" afterPath="$PROJECT_DIR$/src/main/java/com/componentSystem/Component.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/componentSystem/borrowed/ComponentType.java" afterPath="$PROJECT_DIR$/src/main/java/com/componentSystem/ComponentType.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/componentSystem/borrowed/Entity.java" afterPath="$PROJECT_DIR$/src/main/java/com/componentSystem/Entity.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/componentSystem/borrowed/UniCallback.java" afterPath="$PROJECT_DIR$/src/main/java/com/utils/UniCallback.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/componentSystem/borrowed/components/TransformComponent.java" afterPath="$PROJECT_DIR$/src/main/java/com/componentSystem/components/TransformComponent.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/componentSystem/wip/components/KinematicsComponent.java" afterPath="$PROJECT_DIR$/src/main/java/com/wip/components/KinematicsComponent.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/componentSystem/wip/components/TransformComponent.java" afterPath="$PROJECT_DIR$/src/main/java/com/wip/components/TransformComponent.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/componentSystem/wip/core/AbstractComponent.java" afterPath="$PROJECT_DIR$/src/main/java/com/wip/core/AbstractComponent.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/componentSystem/wip/core/AbstractComponentManager.java" afterPath="$PROJECT_DIR$/src/main/java/com/wip/core/AbstractComponentManager.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/componentSystem/wip/core/Entity.java" afterPath="$PROJECT_DIR$/src/main/java/com/wip/core/Entity.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/componentSystem/wip/core/EntityManager.java" afterPath="$PROJECT_DIR$/src/main/java/com/wip/core/EntityManager.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/componentSystem/wip/managers/KinematicsComponentManager.java" afterPath="$PROJECT_DIR$/src/main/java/com/wip/managers/KinematicsComponentManager.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/componentSystem/wip/managers/TransformComponentManager.java" afterPath="$PROJECT_DIR$/src/main/java/com/wip/managers/TransformComponentManager.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/engine/items/World.java" afterPath="$PROJECT_DIR$/src/main/java/com/componentSystem/World.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/graphics/lighting/Attenuation.java" afterPath="$PROJECT_DIR$/src/main/java/com/engine/items/Attenuation.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/graphics/lighting/Light.java" afterPath="$PROJECT_DIR$/src/main/java/com/engine/items/Light.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/graphics/opengl/FrameBuffer.java" afterPath="$PROJECT_DIR$/src/main/java/com/graphics/FrameBuffer.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/graphics/opengl/IResource.java" afterPath="$PROJECT_DIR$/src/main/java/com/graphics/IResource.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/graphics/opengl/QuadMesh.java" afterPath="$PROJECT_DIR$/src/main/java/com/graphics/QuadMesh.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/graphics/opengl/RenderBuffer.java" afterPath="$PROJECT_DIR$/src/main/java/com/graphics/RenderBuffer.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/graphics/opengl/ShaderProgram.java" afterPath="$PROJECT_DIR$/src/main/java/com/graphics/ShaderProgram.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/graphics/opengl/Texture.java" afterPath="$PROJECT_DIR$/src/main/java/com/graphics/Texture.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/graphics/opengl/mesh/FaceMI.java" afterPath="$PROJECT_DIR$/src/main/java/com/graphics/mesh/FaceMI.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/graphics/opengl/mesh/FaceSI.java" afterPath="$PROJECT_DIR$/src/main/java/com/graphics/mesh/FaceSI.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/graphics/opengl/mesh/Mesh.java" afterPath="$PROJECT_DIR$/src/main/java/com/graphics/mesh/Mesh.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/graphics/opengl/mesh/MultiIndexMeshData.java" afterPath="$PROJECT_DIR$/src/main/java/com/graphics/mesh/MultiIndexMeshData.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/graphics/opengl/mesh/SingleIndexMeshData.java" afterPath="$PROJECT_DIR$/src/main/java/com/graphics/mesh/SingleIndexMeshData.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/graphics/opengl/mesh/Vertex.java" afterPath="$PROJECT_DIR$/src/main/java/com/graphics/mesh/Vertex.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/Launcher.class" afterPath="$PROJECT_DIR$/target/classes/com/Launcher.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/engine/core/Engine.class" afterPath="$PROJECT_DIR$/target/classes/com/engine/core/Engine.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/engine/input/Cursor.class" afterPath="$PROJECT_DIR$/target/classes/com/engine/input/Cursor.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/engine/core/Options.class" afterPath="$PROJECT_DIR$/target/classes/com/engine/core/Options.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/engine/items/Camera.class" afterPath="$PROJECT_DIR$/target/classes/com/engine/items/Camera.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/engine/items/Model.class" afterPath="$PROJECT_DIR$/target/classes/com/engine/items/Model.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/engine/items/SceneEntity.class" afterPath="$PROJECT_DIR$/target/classes/com/engine/items/SceneEntity.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/engine/items/Skybox.class" afterPath="$PROJECT_DIR$/target/classes/com/engine/items/Skybox.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/engine/items/World.class" afterPath="$PROJECT_DIR$/target/classes/com/engine/items/World.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/graphics/lighting/Lamp.class" afterPath="$PROJECT_DIR$/target/classes/com/graphics/lighting/Lamp.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/graphics/lighting/SpotLight.class" afterPath="$PROJECT_DIR$/target/classes/com/graphics/lighting/SpotLight.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/maths/Matrix4f.class" afterPath="$PROJECT_DIR$/target/classes/com/maths/Matrix4f.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/maths/Quaternion.class" afterPath="$PROJECT_DIR$/target/classes/com/maths/Quaternion.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/utils/DataUtils.class" afterPath="$PROJECT_DIR$/target/classes/com/utils/DataUtils.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/utils/GenerateMesh.class" afterPath="$PROJECT_DIR$/target/classes/com/utils/GenerateMesh.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/utils/MeshLoader.class" afterPath="$PROJECT_DIR$/target/classes/com/utils/MeshLoader.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/utils/ModelLoader.class" afterPath="$PROJECT_DIR$/target/classes/com/utils/ModelLoader.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/utils/MtlLoader.class" afterPath="$PROJECT_DIR$/target/classes/com/utils/MtlLoader.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/utils/TextureLoader.class" afterPath="$PROJECT_DIR$/target/classes/com/utils/TextureLoader.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/Test.java" afterPath="$PROJECT_DIR$/src/main/java/com/Test.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/Launcher.java" afterPath="$PROJECT_DIR$/src/main/java/com/Launcher.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/engine/core/Engine.java" afterPath="$PROJECT_DIR$/src/main/java/com/engine/core/Engine.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/engine/core/Options.java" afterPath="$PROJECT_DIR$/src/main/java/com/engine/core/Options.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/engine/core/RendererEngine.java" afterPath="$PROJECT_DIR$/src/main/java/com/engine/core/RendererEngine.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/engine/input/Cursor.java" afterPath="$PROJECT_DIR$/src/main/java/com/engine/input/Cursor.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/engine/items/Camera.java" afterPath="$PROJECT_DIR$/src/main/java/com/engine/items/Camera.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/engine/items/Material.java" afterPath="$PROJECT_DIR$/src/main/java/com/engine/items/Material.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/engine/items/Model.java" afterPath="$PROJECT_DIR$/src/main/java/com/engine/items/Model.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/engine/items/SceneEntity.java" afterPath="$PROJECT_DIR$/src/main/java/com/engine/items/SceneEntity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/engine/items/Skybox.java" afterPath="$PROJECT_DIR$/src/main/java/com/engine/items/Skybox.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/engine/items/World.java" afterPath="$PROJECT_DIR$/src/main/java/com/engine/items/World.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/graphics/lighting/Lamp.java" afterPath="$PROJECT_DIR$/src/main/java/com/graphics/lighting/Lamp.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/graphics/lighting/PointLight.java" afterPath="$PROJECT_DIR$/src/main/java/com/graphics/lighting/PointLight.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/graphics/lighting/SpotLight.java" afterPath="$PROJECT_DIR$/src/main/java/com/graphics/lighting/SpotLight.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/graphics/opengl/ShaderProgram.java" afterPath="$PROJECT_DIR$/src/main/java/com/graphics/opengl/ShaderProgram.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/graphics/opengl/Texture.java" afterPath="$PROJECT_DIR$/src/main/java/com/graphics/opengl/Texture.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/maths/Matrix4f.java" afterPath="$PROJECT_DIR$/src/main/java/com/maths/Matrix4f.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/maths/Quaternion.java" afterPath="$PROJECT_DIR$/src/main/java/com/maths/Quaternion.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/utils/DataUtils.java" afterPath="$PROJECT_DIR$/src/main/java/com/utils/DataUtils.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/utils/GenerateMesh.java" afterPath="$PROJECT_DIR$/src/main/java/com/utils/GenerateMesh.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/utils/MeshLoader.java" afterPath="$PROJECT_DIR$/src/main/java/com/utils/MeshLoader.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/utils/ModelLoader.java" afterPath="$PROJECT_DIR$/src/main/java/com/utils/ModelLoader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/utils/MtlLoader.java" afterPath="$PROJECT_DIR$/src/main/java/com/utils/MtlLoader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/utils/TextureLoader.java" afterPath="$PROJECT_DIR$/src/main/java/com/utils/TextureLoader.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/shaders/fragment/deferredLighting.glsl" afterPath="$PROJECT_DIR$/src/main/resources/shaders/fragment/deferredLighting.glsl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/shaders/fragment/sceneGeometry.glsl" afterPath="$PROJECT_DIR$/src/main/resources/shaders/fragment/sceneGeometry.glsl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/shaders/vertex/sceneGeometry.glsl" afterPath="$PROJECT_DIR$/src/main/resources/shaders/vertex/sceneGeometry.glsl" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -108,124 +94,139 @@
       <file leaf-file-name="RendererEngine.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/engine/core/RendererEngine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="184" column="35" lean-forward="true" selection-start-line="184" selection-start-column="35" selection-end-line="184" selection-end-column="35" />
+            <state relative-caret-position="2297">
+              <caret line="334" column="0" lean-forward="true" selection-start-line="334" selection-start-column="0" selection-end-line="334" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <marker date="1533228799712" expanded="true" signature="12477:12520" ph="{...}" />
+                <marker date="1533335041485" expanded="true" signature="13391:13434" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Entity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/componentSystem/Entity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="203">
+              <caret line="125" column="47" lean-forward="false" selection-start-line="125" selection-start-column="47" selection-end-line="125" selection-end-column="47" />
+              <folding>
+                <element signature="e#3941#3942#0" expanded="true" />
+                <element signature="e#4001#4002#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MeshComponent.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/componentSystem/components/MeshComponent.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" column="44" lean-forward="false" selection-start-line="5" selection-start-column="44" selection-end-line="5" selection-end-column="44" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#228#229#0" expanded="true" />
+                <element signature="e#260#261#0" expanded="true" />
+                <element signature="e#293#294#0" expanded="true" />
+                <element signature="e#320#321#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Mesh.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/graphics/mesh/Mesh.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="22" column="15" lean-forward="false" selection-start-line="22" selection-start-column="15" selection-end-line="22" selection-end-column="15" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Skybox.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/engine/items/Skybox.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-51">
+              <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Model.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/engine/items/Model.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-86">
+              <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GenerateMesh.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/utils/GenerateMesh.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-646">
+              <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Engine.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/engine/core/Engine.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="349">
+              <caret line="171" column="17" lean-forward="false" selection-start-line="171" selection-start-column="17" selection-end-line="171" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MaterialComponent.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/componentSystem/components/MaterialComponent.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="561">
+              <caret line="46" column="36" lean-forward="false" selection-start-line="46" selection-start-column="36" selection-end-line="46" selection-end-column="36" />
+              <folding>
+                <element signature="e#421#422#0" expanded="true" />
+                <element signature="e#459#460#0" expanded="true" />
+                <element signature="e#876#877#0" expanded="true" />
+                <element signature="e#922#923#0" expanded="true" />
+                <element signature="e#964#965#0" expanded="true" />
+                <element signature="e#1001#1002#0" expanded="true" />
+                <element signature="e#1042#1043#0" expanded="true" />
+                <element signature="e#1087#1088#0" expanded="true" />
+                <element signature="e#1148#1149#0" expanded="true" />
+                <element signature="e#1200#1201#0" expanded="true" />
+                <element signature="e#1237#1238#0" expanded="true" />
+                <element signature="e#1269#1270#0" expanded="true" />
+                <element signature="e#1305#1306#0" expanded="true" />
+                <element signature="e#1345#1346#0" expanded="true" />
+                <element signature="e#1396#1397#0" expanded="true" />
+                <element signature="e#1438#1439#0" expanded="true" />
+                <element signature="e#1477#1478#0" expanded="true" />
+                <element signature="e#1511#1512#0" expanded="true" />
+                <element signature="e#1549#1550#0" expanded="true" />
+                <element signature="e#1591#1592#0" expanded="true" />
+                <element signature="e#1646#1647#0" expanded="true" />
+                <element signature="e#1692#1693#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="World.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/engine/items/World.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/componentSystem/World.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="595">
-              <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+            <state relative-caret-position="138">
+              <caret line="153" column="46" lean-forward="true" selection-start-line="153" selection-start-column="46" selection-end-line="153" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#884#885#0" expanded="true" />
-                <element signature="e#923#924#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Matrix4f.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/maths/Matrix4f.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="19" column="5" lean-forward="false" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
-              <folding>
-                <element signature="e#340#341#0" expanded="true" />
-                <element signature="e#384#385#0" expanded="true" />
-                <marker date="1533227835501" expanded="true" signature="4060:4183" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Component.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/componentSystem/borrowed/Component.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="66" column="5" lean-forward="true" selection-start-line="66" selection-start-column="5" selection-end-line="66" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Entity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/componentSystem/borrowed/Entity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3009">
-              <caret line="204" column="21" lean-forward="false" selection-start-line="204" selection-start-column="21" selection-end-line="204" selection-end-column="21" />
-              <folding>
-                <element signature="e#2458#2459#0" expanded="true" />
-                <element signature="e#2533#2534#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UniCallback.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/componentSystem/borrowed/UniCallback.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="32" column="26" lean-forward="true" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TransformComponent.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/componentSystem/borrowed/components/TransformComponent.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2557#2558#0" expanded="true" />
-                <element signature="e#2594#2595#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Camera.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/engine/items/Camera.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1462">
-              <caret line="103" column="5" lean-forward="false" selection-start-line="103" selection-start-column="5" selection-end-line="103" selection-end-column="5" />
-              <folding>
-                <element signature="e#2934#2935#0" expanded="true" />
-                <element signature="e#2967#2968#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="basic.glsl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/shaders/vertex/basic.glsl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="2" lean-forward="false" selection-start-line="16" selection-start-column="2" selection-end-line="16" selection-end-column="2" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Quaternion.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/maths/Quaternion.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="782">
-              <caret line="73" column="12" lean-forward="false" selection-start-line="73" selection-start-column="12" selection-end-line="73" selection-end-column="12" />
-              <folding>
-                <element signature="e#1716#1717#0" expanded="true" />
-                <element signature="e#1763#1764#0" expanded="true" />
-                <element signature="e#2396#2397#0" expanded="true" />
-                <element signature="e#2439#2440#0" expanded="true" />
+                <element signature="e#2601#2602#0" expanded="true" />
+                <element signature="e#2672#2673#0" expanded="true" />
+                <element signature="e#3597#3598#0" expanded="true" />
+                <element signature="e#3631#3632#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -237,6 +238,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="GLSL Shader" />
         <option value="Class" />
       </list>
     </option>
@@ -263,6 +265,11 @@
       <find>TextureSampler</find>
       <find>Matrix4f.Multiply</find>
       <find>updat</find>
+      <find>orang</find>
+      <find>enabled</find>
+      <find>brightness &gt;</find>
+      <find>Name</find>
+      <find>){</find>
     </findStrings>
     <replaceStrings>
       <replace>Strin</replace>
@@ -286,30 +293,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/graphics/lighting/DirectionalLight.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/shaders/fragment/sceneGeometry.glsl" />
-        <option value="$PROJECT_DIR$/src/main/java/com/componentSystem/TransformComponentManager.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/componentSystem/AbstractComponentManager.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/engine/input/Cursor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/componentSystem/core/AbstractComponent.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/componentSystem/deprecated/TransformComponentManager.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/componentSystem/deprecated/TComponentManager.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/componentSystem/deprecated/IComponentManager.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/componentSystem/deprecated/MeshComponentManager.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/componentSystem/managers/TestComponentManager.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/componentSystem/components/TransformComponent.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/shaders/fragment/fxaa.glsl" />
-        <option value="$PROJECT_DIR$/src/main/java/com/componentSystem/managers/TransformComponentManager.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/componentSystem/components/KinematicsComponent.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/componentSystem/managers/KinematicsComponentManager.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/engine/core/Engine.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/utils/DataUtils.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/utils/GenerateMesh.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/shaders/fragment/lamp.glsl" />
-        <option value="$PROJECT_DIR$/src/main/java/com/graphics/opengl/Texture.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/shaders/fragment/toneMapping.glsl" />
-        <option value="$PROJECT_DIR$/src/main/resources/shaders/fragment/gaussianBlur.glsl" />
-        <option value="$PROJECT_DIR$/src/main/resources/shaders/fragment/deferredLighting.glsl" />
         <option value="$PROJECT_DIR$/src/main/java/com/componentSystem/core/EntityManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/componentSystem/core/AbstractComponentManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/componentSystem/core/Entity.java" />
@@ -328,15 +311,39 @@
         <option value="$PROJECT_DIR$/src/main/java/com/componentSystem/borrowed/IDGenerator.java" />
         <option value="$PROJECT_DIR$/src/main/resources/shaders/vertex/basic.glsl" />
         <option value="$PROJECT_DIR$/src/main/resources/shaders/vertex/sceneGeometry.glsl" />
-        <option value="$PROJECT_DIR$/src/main/java/com/engine/core/Options.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/graphics/opengl/QuadMesh.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/engine/items/Camera.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/maths/Matrix4f.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/maths/Quaternion.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/componentSystem/borrowed/Component.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/engine/core/RendererEngine.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/engine/items/World.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/componentSystem/borrowed/components/TransformComponent.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/componentSystem/UniCallback.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/utils/UniCallback.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/componentSystem/Component.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/graphics/opengl/mesh/Mesh.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/componentSystem/Entity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/componentSystem/ComponentTypeMask.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/componentSystem/LightComponent.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/graphics/lighting/Light.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/engine/items/Light.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/engine/items/Attenuation.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/graphics/Texture.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/componentSystem/components/DirectionalLightComponent.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/engine/items/DirectionalLightComponent.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/engine/items/DirectionalLight.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/shaders/fragment/directTexture.glsl" />
+        <option value="$PROJECT_DIR$/src/main/java/com/componentSystem/components/TransformComponent.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/componentSystem/components/PointLightComponent.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/graphics/ShaderProgram.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/componentSystem/components/SpotLightComponent.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/shaders/fragment/deferredLighting.glsl" />
+        <option value="$PROJECT_DIR$/src/main/java/com/componentSystem/components/MaterialComponent.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/engine/core/Options.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/engine/core/Engine.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/componentSystem/World.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/componentSystem/components/MeshComponent.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/engine/core/RendererEngine.java" />
       </list>
     </option>
   </component>
@@ -345,6 +352,70 @@
     <option name="y" value="-8" />
     <option name="width" value="1936" />
     <option name="height" value="1066" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>Android</id>
+          </State>
+          <State>
+            <id>Android &gt; Lint &gt; Correctness</id>
+          </State>
+          <State>
+            <id>Android &gt; Lint &gt; Security</id>
+          </State>
+          <State>
+            <id>Android Lint for Kotlin</id>
+          </State>
+          <State>
+            <id>Code style issuesJava</id>
+          </State>
+          <State>
+            <id>Declaration redundancyJava</id>
+          </State>
+          <State>
+            <id>DeclarationGroovy</id>
+          </State>
+          <State>
+            <id>GeneralJava</id>
+          </State>
+          <State>
+            <id>Groovy</id>
+          </State>
+          <State>
+            <id>Initialization issuesJava</id>
+          </State>
+          <State>
+            <id>Java</id>
+          </State>
+          <State>
+            <id>Memory issuesJava</id>
+          </State>
+          <State>
+            <id>Method metricsJava</id>
+          </State>
+          <State>
+            <id>Performance issuesJava</id>
+          </State>
+          <State>
+            <id>Probable bugsJava</id>
+          </State>
+          <State>
+            <id>Visibility issuesJava</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>Javadoc issuesJava</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -361,8 +432,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -413,17 +485,6 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="componentSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="borrowed" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="3D_Engine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="3D_Engine" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="componentSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="borrowed" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -434,16 +495,6 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="engine" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="3D_Engine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="3D_Engine" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="3D_Engine" type="b2602c69:ProjectViewProjectNode" />
@@ -471,29 +522,7 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="graphics" type="462c0819:PsiDirectoryNode" />
-              <item name="lighting" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="3D_Engine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="3D_Engine" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="graphics" type="462c0819:PsiDirectoryNode" />
-              <item name="opengl" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="3D_Engine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="3D_Engine" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="graphics" type="462c0819:PsiDirectoryNode" />
-              <item name="opengl" type="462c0819:PsiDirectoryNode" />
-              <item name="mesh" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="3D_Engine" type="b2602c69:ProjectViewProjectNode" />
@@ -532,7 +561,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -541,6 +569,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -549,11 +578,11 @@
       <recent name="C:\Users\Jordan Fisher\Documents\Programming\Java\3D_Engine\src\main\resources\shaders\ssao" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.componentSystem.components" />
       <recent name="com.componentSystem.borrowed" />
       <recent name="com.componentSystem.borrowed.components" />
       <recent name="com.engine.core" />
       <recent name="com.componentSystem" />
-      <recent name="com.maths.vectors" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Jordan Fisher\Documents\Programming\Java\3D_Engine\src\main\java\com\componentSystem\borrowed" />
@@ -708,59 +737,31 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32795697" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26021504" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29139784" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29139784" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25746268" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27665246" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-    </layout>
-    <layout-to-restore>
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33010754" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19829424" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
-    </layout-to-restore>
+    </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -770,182 +771,10 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$MAVEN_REPOSITORY$/org/lwjgl/lwjgl/3.1.1/lwjgl-3.1.1.jar!/org/lwjgl/BufferUtils.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="17" column="19" lean-forward="false" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/graphics/opengl/mesh/Mesh.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="31" column="42" lean-forward="false" selection-start-line="31" selection-start-column="42" selection-end-line="31" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/utils/DataUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="37" column="28" lean-forward="false" selection-start-line="37" selection-start-column="28" selection-end-line="37" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/graphics/opengl/mesh/_2D/Mesh2D.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/shaders/vertex/texturedQuad.glsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/utils/GenerateMesh.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/graphics/opengl/Texture.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="918">
-          <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/shaders/fragment/gaussianBlur.glsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="6" lean-forward="false" selection-start-line="24" selection-start-column="6" selection-end-line="24" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/shaders/fragment/lamp.glsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="6" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/shaders/fragment/toneMapping.glsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="20" lean-forward="false" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/shaders/fragment/deferredLighting.glsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1836">
-          <caret line="108" column="22" lean-forward="false" selection-start-line="108" selection-start-column="22" selection-end-line="108" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/componentSystem/deprecated/MeshComponentManager.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/componentSystem/deprecated/TComponentManager.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/graphics/lighting/SpotLight.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/componentSystem/wip/core/Entity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="11" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/componentSystem/wip/core/AbstractComponentManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="21" lean-forward="true" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/componentSystem/wip/core/EntityManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/componentSystem/wip/core/AbstractComponent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/componentSystem/wip/managers/KinematicsComponentManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="13" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/componentSystem/wip/managers/TransformComponentManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/componentSystem/wip/components/KinematicsComponent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/componentSystem/wip/components/TransformComponent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="15" column="26" lean-forward="false" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/componentSystem/borrowed/components/CollisionComponent2D.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/componentSystem/borrowed/components/CollisionComponent3D.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/componentSystem/borrowed/components/SpriteComponent.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/componentSystem/borrowed/components/PolygonRenderComponent.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/componentSystem/borrowed/components/BoundsRenderComponent2D.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/shaders/fragment/basic.glsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/javax/xml/crypto/dsig/Transform.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="65" column="17" lean-forward="false" selection-start-line="65" selection-start-column="17" selection-end-line="65" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/graphics/opengl/ShaderProgram.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5151">
-          <caret line="329" column="65" lean-forward="false" selection-start-line="329" selection-start-column="65" selection-end-line="329" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/awt/Component.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-9899">
           <caret line="185" column="22" lean-forward="false" selection-start-line="185" selection-start-column="22" selection-end-line="185" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/componentSystem/borrowed/IDGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -954,7 +783,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -962,14 +790,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2414">
           <caret line="199" column="73" lean-forward="false" selection-start-line="199" selection-start-column="73" selection-end-line="199" selection-end-column="73" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/componentSystem/borrowed/ComponentType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="32" column="6" lean-forward="false" selection-start-line="32" selection-start-column="6" selection-end-line="32" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -980,51 +800,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/engine/core/Engine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="901">
-          <caret line="65" column="16" lean-forward="false" selection-start-line="65" selection-start-column="16" selection-end-line="65" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/engine/core/Options.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="88" lean-forward="false" selection-start-line="23" selection-start-column="88" selection-end-line="23" selection-end-column="88" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/graphics/opengl/QuadMesh.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/engine/core/Window.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="207" column="27" lean-forward="true" selection-start-line="207" selection-start-column="27" selection-end-line="207" selection-end-column="27" />
-          <folding>
-            <element signature="e#5886#5887#0" expanded="false" />
-            <element signature="e#5926#5927#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/engine/items/Camera.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1462">
           <caret line="103" column="5" lean-forward="false" selection-start-line="103" selection-start-column="5" selection-end-line="103" selection-end-column="5" />
-          <folding>
-            <element signature="e#2934#2935#0" expanded="true" />
-            <element signature="e#2967#2968#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1032,7 +811,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="16" column="2" lean-forward="false" selection-start-line="16" selection-start-column="2" selection-end-line="16" selection-end-column="2" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1040,86 +818,346 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="782">
           <caret line="73" column="12" lean-forward="false" selection-start-line="73" selection-start-column="12" selection-end-line="73" selection-end-column="12" />
-          <folding>
-            <element signature="e#1716#1717#0" expanded="true" />
-            <element signature="e#1763#1764#0" expanded="true" />
-            <element signature="e#2396#2397#0" expanded="true" />
-            <element signature="e#2439#2440#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/componentSystem/borrowed/UniCallback.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="32" column="26" lean-forward="true" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/componentSystem/borrowed/Component.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="66" column="5" lean-forward="true" selection-start-line="66" selection-start-column="5" selection-end-line="66" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/maths/Matrix4f.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
+        <state relative-caret-position="187">
           <caret line="19" column="5" lean-forward="false" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/game/Game.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/utils/UniCallback.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="30" column="17" lean-forward="false" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/utils/IDGenerator.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/componentSystem/ComponentType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="32" column="6" lean-forward="false" selection-start-line="32" selection-start-column="6" selection-end-line="32" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/componentSystem/ComponentTypeMask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/componentSystem/LightComponent.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/graphics/lighting/Lamp.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/graphics/lighting/PointLight.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/graphics/lighting/SpotLight.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/graphics/lighting/DirectionalLight.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/engine/items/Attenuation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/graphics/IResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="17" lean-forward="false" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/graphics/QuadMesh.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/graphics/RenderBuffer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/graphics/Texture.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/engine/items/DirectionalLight.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="18" column="11" lean-forward="false" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/engine/items/Light.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="11" lean-forward="false" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/lwjgl/lwjgl-opengl/3.1.1/lwjgl-opengl-3.1.1.jar!/org/lwjgl/opengl/GL30.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="913" column="23" lean-forward="false" selection-start-line="913" selection-start-column="23" selection-end-line="913" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/graphics/FrameBuffer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="373">
+          <caret line="90" column="16" lean-forward="false" selection-start-line="90" selection-start-column="16" selection-end-line="90" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/shaders/fragment/directTexture.glsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="1" lean-forward="false" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/shaders/fragment/toneMapping.glsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="28" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/shaders/fragment/lamp.glsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="22" lean-forward="false" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/componentSystem/components/PointLightComponent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="38" column="48" lean-forward="false" selection-start-line="38" selection-start-column="48" selection-end-line="38" selection-end-column="48" />
           <folding>
-            <element signature="e#340#341#0" expanded="true" />
-            <element signature="e#384#385#0" expanded="true" />
-            <marker date="1533227835501" expanded="true" signature="4060:4183" ph="{...}" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#874#875#0" expanded="false" />
+            <element signature="e#929#930#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/graphics/ShaderProgram.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5967">
+          <caret line="384" column="106" lean-forward="false" selection-start-line="384" selection-start-column="106" selection-end-line="384" selection-end-column="106" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/componentSystem/components/SpotLightComponent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+          <folding>
+            <element signature="e#1094#1095#0" expanded="true" />
+            <element signature="e#1140#1141#0" expanded="true" />
+            <element signature="e#1177#1178#0" expanded="true" />
+            <element signature="e#1211#1212#0" expanded="true" />
+            <element signature="e#1346#1347#0" expanded="true" />
+            <element signature="e#1401#1402#0" expanded="true" />
+            <element signature="e#1439#1440#0" expanded="true" />
+            <element signature="e#1494#1495#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/shaders/fragment/deferredLighting.glsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3060">
+          <caret line="180" column="59" lean-forward="false" selection-start-line="180" selection-start-column="59" selection-end-line="180" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/componentSystem/components/TransformComponent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="46" column="29" lean-forward="false" selection-start-line="46" selection-start-column="29" selection-end-line="46" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/componentSystem/Component.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-359">
+          <caret line="34" column="22" lean-forward="false" selection-start-line="34" selection-start-column="22" selection-end-line="34" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/engine/core/Window.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="98" column="22" lean-forward="false" selection-start-line="98" selection-start-column="22" selection-end-line="98" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/lwjgl/lwjgl-opengl/3.1.1/lwjgl-opengl-3.1.1.jar!/org/lwjgl/opengl/GL11.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="398">
+          <caret line="424" column="47" lean-forward="true" selection-start-line="424" selection-start-column="47" selection-end-line="424" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/engine/core/Options.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="176" column="39" lean-forward="false" selection-start-line="176" selection-start-column="39" selection-end-line="176" selection-end-column="39" />
+          <folding>
+            <element signature="e#6475#6476#0" expanded="true" />
+            <element signature="e#6521#6522#0" expanded="true" />
+            <element signature="e#6568#6569#0" expanded="true" />
+            <element signature="e#6604#6605#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/engine/core/Engine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="349">
+          <caret line="171" column="17" lean-forward="false" selection-start-line="171" selection-start-column="17" selection-end-line="171" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/componentSystem/components/MaterialComponent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="46" column="36" lean-forward="false" selection-start-line="46" selection-start-column="36" selection-end-line="46" selection-end-column="36" />
+          <folding>
+            <element signature="e#421#422#0" expanded="true" />
+            <element signature="e#459#460#0" expanded="true" />
+            <element signature="e#876#877#0" expanded="true" />
+            <element signature="e#922#923#0" expanded="true" />
+            <element signature="e#964#965#0" expanded="true" />
+            <element signature="e#1001#1002#0" expanded="true" />
+            <element signature="e#1042#1043#0" expanded="true" />
+            <element signature="e#1087#1088#0" expanded="true" />
+            <element signature="e#1148#1149#0" expanded="true" />
+            <element signature="e#1200#1201#0" expanded="true" />
+            <element signature="e#1237#1238#0" expanded="true" />
+            <element signature="e#1269#1270#0" expanded="true" />
+            <element signature="e#1305#1306#0" expanded="true" />
+            <element signature="e#1345#1346#0" expanded="true" />
+            <element signature="e#1396#1397#0" expanded="true" />
+            <element signature="e#1438#1439#0" expanded="true" />
+            <element signature="e#1477#1478#0" expanded="true" />
+            <element signature="e#1511#1512#0" expanded="true" />
+            <element signature="e#1549#1550#0" expanded="true" />
+            <element signature="e#1591#1592#0" expanded="true" />
+            <element signature="e#1646#1647#0" expanded="true" />
+            <element signature="e#1692#1693#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/utils/GenerateMesh.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-646">
+          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/engine/items/SceneEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="25" lean-forward="false" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/engine/items/Skybox.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-51">
+          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/engine/items/Model.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-86">
+          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/componentSystem/Entity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="125" column="47" lean-forward="false" selection-start-line="125" selection-start-column="47" selection-end-line="125" selection-end-column="47" />
+          <folding>
+            <element signature="e#3941#3942#0" expanded="true" />
+            <element signature="e#4001#4002#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/componentSystem/World.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="153" column="46" lean-forward="true" selection-start-line="153" selection-start-column="46" selection-end-line="153" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2601#2602#0" expanded="true" />
+            <element signature="e#2672#2673#0" expanded="true" />
+            <element signature="e#3597#3598#0" expanded="true" />
+            <element signature="e#3631#3632#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/componentSystem/components/MeshComponent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="44" lean-forward="false" selection-start-line="5" selection-start-column="44" selection-end-line="5" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#228#229#0" expanded="true" />
+            <element signature="e#260#261#0" expanded="true" />
+            <element signature="e#293#294#0" expanded="true" />
+            <element signature="e#320#321#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/engine/core/RendererEngine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="184" column="35" lean-forward="true" selection-start-line="184" selection-start-column="35" selection-end-line="184" selection-end-column="35" />
+        <state relative-caret-position="2297">
+          <caret line="334" column="0" lean-forward="true" selection-start-line="334" selection-start-column="0" selection-end-line="334" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1533228799712" expanded="true" signature="12477:12520" ph="{...}" />
+            <marker date="1533335041485" expanded="true" signature="13391:13434" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/componentSystem/borrowed/Entity.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/graphics/mesh/Mesh.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3009">
-          <caret line="204" column="21" lean-forward="false" selection-start-line="204" selection-start-column="21" selection-end-line="204" selection-end-column="21" />
-          <folding>
-            <element signature="e#2458#2459#0" expanded="true" />
-            <element signature="e#2533#2534#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/engine/items/World.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#884#885#0" expanded="true" />
-            <element signature="e#923#924#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/componentSystem/borrowed/components/TransformComponent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2557#2558#0" expanded="true" />
-            <element signature="e#2594#2595#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="68">
+          <caret line="22" column="15" lean-forward="false" selection-start-line="22" selection-start-column="15" selection-end-line="22" selection-end-column="15" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1200,6 +1238,17 @@
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
           <last-edited>Maven: commons-io:commons-io:2.5</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
           <splitter-proportions>
             <option name="proportions">
               <list>

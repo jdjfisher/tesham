@@ -4,7 +4,7 @@ import com.engine.input.Cursor;
 import com.engine.input.Keyboard;
 import com.engine.input.MouseButtons;
 import com.engine.input.MouseWheel;
-import com.engine.items.World;
+import com.componentSystem.World;
 import com.utils.StopWatch;
 
 import javax.swing.*;
@@ -154,6 +154,16 @@ public class Engine {
             window.toggleFullScreen();
         }
 
+        if(Keyboard.isKeyTapped(GLFW_KEY_1))
+        {
+            Options.toggleCullFaces();
+        }
+
+        if(Keyboard.isKeyTapped(GLFW_KEY_2))
+        {
+            Options.toggleWireframeMode();
+        }
+
         if(!window.isFullScreen())
         {
             if(Cursor.isVisible())
@@ -201,6 +211,7 @@ public class Engine {
         frameCount++;
 
         window.preRender();
+        world.preRender();
 
         try
         {

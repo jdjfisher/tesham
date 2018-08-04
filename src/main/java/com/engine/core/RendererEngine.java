@@ -1,25 +1,17 @@
 package com.engine.core;
 
 
-import com.engine.items.World;
-import com.graphics.opengl.*;
-import com.graphics.opengl.mesh.Mesh;
-import com.graphics.lighting.Attenuation;
-import com.graphics.lighting.DirectionalLight;
-import com.graphics.lighting.PointLight;
-import com.graphics.lighting.SpotLight;
+import com.componentSystem.World;
+import com.componentSystem.components.*;
+import com.graphics.*;
+import com.graphics.mesh.Mesh;
 import com.maths.Matrix4f;
-import com.maths.RNG;
 import com.maths.vectors.Vector2f;
-import com.maths.vectors.Vector3f;
-import com.utils.DataUtils;
 import com.utils.GenerateMesh;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 
-import static com.engine.core.Options.getAmbientLightBrightness;
 import static org.lwjgl.opengl.ARBFramebufferObject.GL_COLOR_ATTACHMENT0;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL12.GL_CLAMP_TO_EDGE;
@@ -32,7 +24,7 @@ public class RendererEngine {
 
     private ShaderProgram basicShader;
     private ShaderProgram sceneGeometryShader;
-    private ShaderProgram deferredLighitngShader;
+    private ShaderProgram deferredLightingShader;
     private ShaderProgram lampShader;
     private ShaderProgram blurShader;
     private ShaderProgram toneMappingShader;
@@ -46,14 +38,11 @@ public class RendererEngine {
 
     private QuadMesh quadMesh;
 
-    //Temp (Move to component system)
+    // Temp (Move to component system)
 
     private Mesh sphereMesh;
     private Mesh pyramidMesh;
-    private DirectionalLight directionalLight;
-    private HashMap<String, PointLight> pointLights;
-    private HashMap<String, SpotLight> spotLights;
-    private ArrayList<Vector3f> randomPositions;
+    private Mesh semiSphereMesh;
 
     //
 
@@ -68,7 +57,7 @@ public class RendererEngine {
 
         basicShader = new ShaderProgram("basic", "basic", "basic");
         sceneGeometryShader = new ShaderProgram("sceneGeometry", "sceneGeometry", "sceneGeometry");
-        deferredLighitngShader = new ShaderProgram("deferredLighitng", "texturedQuad", "deferredLighting");
+        deferredLightingShader = new ShaderProgram("deferredLighitng", "texturedQuad", "deferredLighting");
         lampShader = new ShaderProgram("lamp", "basic", "lamp");
         blurShader = new ShaderProgram("gaussianBlur", "texturedQuad", "gaussianBlur");
         toneMappingShader = new ShaderProgram("toneMapping", "texturedQuad", "toneMapping");
@@ -123,23 +112,8 @@ public class RendererEngine {
 
         sphereMesh = GenerateMesh.sphere(1, 50);
         pyramidMesh = GenerateMesh.cone(0.5f,3,1);
+        semiSphereMesh = GenerateMesh.semiSphere(0.2f, 30);
         quadMesh = new QuadMesh();
-
-        //Temp
-
-        directionalLight = new DirectionalLight(Color.WHITE, 0.01f);
-        directionalLight.getRotation().set(World.FORWARD_VECTOR, new Vector3f(0,1,0));
-        pointLights = new HashMap<>();
-        pointLights.put("p1", new PointLight(new Color(233, 99, 22), 10f, new Attenuation(1.0f, 0.22f, 0.20f)));
-        spotLights = new HashMap<>();
-        spotLights.put("s1", new SpotLight(Color.WHITE, 5, 25f, 30f, new Attenuation(1.0f, 0.027f, 0.0028f)));
-
-        final int k = 15;
-        randomPositions = new ArrayList<>();
-        for (int i = 0; i < 20; i++)
-        {
-            randomPositions.add(new Vector3f(RNG.Int(-k, k), RNG.Int(-k, k), RNG.Int(-k, k)));
-        }
 
         disposed = false;
     }
@@ -153,10 +127,17 @@ public class RendererEngine {
             throw new RuntimeException("Render engine has been disposed");
         }
 
-//        spotLights.get("s1").getTransformationSet().getRotation().set(world.getCamera().getRotation());
-//        spotLights.get("s1").getTransformationSet().getPosition().set(world.getCamera().getPosition());
+        if(Options.isCullingFacesEnabled()){
+            if(!glIsEnabled(GL_CULL_FACE)){
+                glEnable(GL_CULL_FACE);
+            }
+        }else {
+            if(glIsEnabled(GL_CULL_FACE)){
+                glDisable(GL_CULL_FACE);
+            }
+        }
 
-        world.getCamera().preRender();
+        glPolygonMode(GL_FRONT_AND_BACK, Options.isWireframeMode() ? GL_LINE : GL_FILL);
 
 //        basicRender(window, world);
         litRender(window, world);
@@ -169,12 +150,11 @@ public class RendererEngine {
 
         basicShader.setUniform("PV_Matrix", Matrix4f.Multiply(window.getPerspectiveMatrix(), world.getCamera().getViewMatrix()));
 
-        for(Vector3f pos : randomPositions)
-        {
-            basicShader.setUniform("W_Matrix", Matrix4f.Translation(pos));
+        world.forEachEntity(e ->{
+            basicShader.setUniform("W_Matrix", e.getComponent(TransformComponent.class).getLocalTransform());
 
             sphereMesh.render();
-        }
+        });
     }
 
     private void litRender(Window window, World world) throws Exception
@@ -184,80 +164,132 @@ public class RendererEngine {
         gBuffer.bind();
         FrameBuffer.clearBuffers();
 
-
         sceneGeometryShader.setUniform("hasNormalMap", false);
         sceneGeometryShader.setUniform("hasDiffuseTexture", false);
         sceneGeometryShader.setUniform("hasSpecularMap", false);
-        sceneGeometryShader.setUniform("reflectance", 16);
-        sceneGeometryShader.setUniform("diffuseColour", DataUtils.toVector3f(Color.ORANGE));
 
         sceneGeometryShader.setUniform("PV_Matrix", PV_Matrix);
 
-        for (Vector3f vec : randomPositions)
+        world.forEachEntity(e ->
         {
-            sceneGeometryShader.setUniform("W_Matrix", Matrix4f.Translation(vec));
+            if(e.hasComponent(MeshComponent.class) && e.hasComponent(MaterialComponent.class))// oi
+            {
+                MaterialComponent material = e.getComponent(MaterialComponent.class);
 
-            sphereMesh.render();
+                sceneGeometryShader.setUniform("W_Matrix", e.transformComponent.getLocalTransform());
+                sceneGeometryShader.setUniform("diffuseColour", material.getColour());
+                sceneGeometryShader.setUniform("reflectance", material.getReflectance());
+
+//                e.getComponent(MeshComponent.class).getMesh().render();
+
+                sphereMesh.render();
+            }
+        });
+
+        if(Options.isWireframeMode())
+        {
+            glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
         }
 
         preToneMappingBuffer.bind();
         FrameBuffer.clearBuffers();
         
-        deferredLighitngShader.setUniform("fragmentPosition_W_Sampler", 0);
-        deferredLighitngShader.setUniform("fragmentNormal_W_Sampler", 1);
-        deferredLighitngShader.setUniform("diffuseComponent_Sampler", 2);
+        deferredLightingShader.setUniform("fragmentPosition_W_Sampler", 0);
+        deferredLightingShader.setUniform("fragmentNormal_W_Sampler", 1);
+        deferredLightingShader.setUniform("diffuseComponent_Sampler", 2);
         
         gBuffer.getTexture2DAttachment("fragmentPosition_W_Texture").bindToUnit(0);
         gBuffer.getTexture2DAttachment("fragmentNormal_W_Texture").bindToUnit(1);
         gBuffer.getTexture2DAttachment("diffuseComponent_Texture").bindToUnit(2);
 
-        deferredLighitngShader.setUniform("cameraPosition", world.getCamera().getPosition());
-        deferredLighitngShader.setUniform("ambientLightBrightness", getAmbientLightBrightness());
-        deferredLighitngShader.setUniform("directionalLight", directionalLight);
-        deferredLighitngShader.setUniform("activePointLights", pointLights.size());
-        deferredLighitngShader.setUniform("pointLights", pointLights.values().toArray(new PointLight[pointLights.values().size()]));
-        deferredLighitngShader.setUniform("activeSpotLights", spotLights.size());
-        deferredLighitngShader.setUniform("spotLights", spotLights.values().toArray(new SpotLight[spotLights.values().size()]));
+        deferredLightingShader.setUniform("cameraPosition", world.getCamera().getPosition());
+        deferredLightingShader.setUniform("ambientLightBrightness", Options.getAmbientLightBrightness());
+        deferredLightingShader.setUniform("directionalLight", world.getDirectionalLight());
+
+        ArrayList<PointLightComponent> pointLights = new ArrayList<>();
+
+        world.forEachEntityWithComponent(PointLightComponent.class, e ->
+        {
+            PointLightComponent plc = e.getComponent(PointLightComponent.class);
+
+            if(plc.getLight().isEnabled())
+            {
+                pointLights.add(plc);
+            }
+        });
+
+        deferredLightingShader.setUniform("activePointLights", pointLights.size());
+        deferredLightingShader.setUniform("pointLights", pointLights.toArray(new PointLightComponent[pointLights.size()]));
+
+        ArrayList<SpotLightComponent> spotLights = new ArrayList<>();
+
+        world.forEachEntityWithComponent(SpotLightComponent.class, e ->
+        {
+            SpotLightComponent slc = e.getComponent(SpotLightComponent.class);
+
+            if(slc.getLight().isEnabled())
+            {
+                spotLights.add(slc);
+            }
+        });
+
+        deferredLightingShader.setUniform("activeSpotLights", spotLights.size());
+        deferredLightingShader.setUniform("spotLights", spotLights.toArray(new SpotLightComponent[spotLights.size()]));
 
         quadMesh.render();
 
-//        FrameBuffer.blit(gBuffer, preToneMappingBuffer, window.getWidth(), window.getHeight(), GL_DEPTH_BUFFER_BIT, GL_NEAREST);
+        FrameBuffer.blit(gBuffer, preToneMappingBuffer, window.getWidth(), window.getHeight(), GL_DEPTH_BUFFER_BIT, GL_NEAREST);
+
 
         lampShader.setUniform("PV_Matrix", PV_Matrix);
 
-//        for()
-//        {
-//            lampShader.setUniform("W_Matrix", Matrix4f.Translation());
-//            lampShader.setUniform("lampIntensity", );
-//            lampShader.setUniform("lampColour", );
-//            .render();
-//        }
 
-        blurShader.setUniform("texture_Sampler", 3);
+        world.forEachEntityWithComponent(PointLightComponent.class, e ->
+        {
+            PointLightComponent plc = e.getComponent(PointLightComponent.class);
+            lampShader.setUniform("W_Matrix", e.transformComponent.getLocalTransform());
+            lampShader.setUniform("lampIntensity", plc.getLight().getIntensity());
+            lampShader.setUniform("lampColour", plc.getLight().getColor());
+
+            sphereMesh.render();
+        });
+
+        world.forEachEntityWithComponent(SpotLightComponent.class, e ->
+        {
+            SpotLightComponent slc = e.getComponent(SpotLightComponent.class);
+            lampShader.setUniform("W_Matrix", e.transformComponent.getLocalTransform());
+            lampShader.setUniform("lampIntensity", slc.getLight().getIntensity());
+            lampShader.setUniform("lampColour", slc.getLight().getColor());
+
+            semiSphereMesh.render();
+        });
+
 
         boolean horizontal = false;
+        blurShader.setUniform("texture_Sampler", 3);
+        preToneMappingBuffer.getTexture2DAttachment("bloomHighlights_Texture").bindToUnit(3);
 
         for(int i = 0; i < 10; i++)
         {
-            horizontal = !horizontal;
             blurShader.setUniform("horizontal", horizontal);
-            (horizontal ? horizontalBlurBuffer : verticalBlurBuffer).getTexture2DAttachment("preBlur_Texture").bindToUnit(3);
+            (horizontal ? horizontalBlurBuffer : verticalBlurBuffer).bind();
             quadMesh.render();
-        }
+            (horizontal ? horizontalBlurBuffer : verticalBlurBuffer).getTexture2DAttachment("preBlur_Texture").bindToUnit(3);
 
+            horizontal = !horizontal;
+        }
 
         preFxaaBuffer.bind();
         FrameBuffer.clearBuffers();
 
+        toneMappingShader.setUniform("bloomHighlights_Sampler", 3);
         toneMappingShader.setUniform("primaryScene_Sampler", 4);
-        toneMappingShader.setUniform("bloomHighlights_Sampler", 5);
         toneMappingShader.setUniform("useHDR", true);
         toneMappingShader.setUniform("correctGamma", true);
         toneMappingShader.setUniform("exposure", 0.45f);
         toneMappingShader.setUniform("gamma", 0.8f);
 
         preToneMappingBuffer.getTexture2DAttachment("primaryScene_Texture").bindToUnit(4);
-        (horizontal ? horizontalBlurBuffer : verticalBlurBuffer).getTexture2DAttachment("preBlur_Texture").bindToUnit(5);
 
         quadMesh.render();
 
@@ -267,9 +299,9 @@ public class RendererEngine {
 
         fxaaShader.setUniform("enabled", true);
         fxaaShader.setUniform("screenResolution", new Vector2f(window.getWidth(), window.getHeight()));
-        fxaaShader.setUniform("preFxaa_Sampler", 6);
+        fxaaShader.setUniform("preFxaa_Sampler", 5);
 
-        preFxaaBuffer.getTexture2DAttachment("preFxaa_Texture").bindToUnit(6);
+        preFxaaBuffer.getTexture2DAttachment("preFxaa_Texture").bindToUnit(5);
 
         quadMesh.render();
     }
@@ -284,7 +316,7 @@ public class RendererEngine {
 
         basicShader.dispose();
         sceneGeometryShader.dispose();
-        deferredLighitngShader.dispose();
+        deferredLightingShader.dispose();
         lampShader.dispose();
         blurShader.dispose();
         toneMappingShader.dispose();
@@ -298,6 +330,7 @@ public class RendererEngine {
 
         sphereMesh.dispose();
         pyramidMesh.dispose();
+        semiSphereMesh.dispose();
         quadMesh.dispose();
 
         disposed = true;

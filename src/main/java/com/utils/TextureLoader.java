@@ -1,6 +1,6 @@
 package com.utils;
 
-import com.graphics.opengl.Texture;
+import com.graphics.Texture;
 
 import javax.imageio.ImageIO;
 import java.util.HashMap;

@@ -1,7 +1,6 @@
 package com;
 
 import com.engine.core.Engine;
-import com.engine.items.World;
 
 public class Launcher {
     public static void main(String[] args) {

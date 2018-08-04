@@ -2,7 +2,6 @@ package com.engine.items;
 
 import com.engine.input.Cursor;
 import com.engine.input.Keyboard;
-import com.engine.input.MouseButtons;
 import com.maths.Maths;
 import com.maths.Matrix4f;
 import com.maths.Quaternion;
@@ -10,8 +9,8 @@ import com.maths.vectors.Vector2f;
 import com.maths.vectors.Vector3f;
 import org.apache.commons.math3.util.FastMath;
 
-import static com.engine.items.World.X_AXIS;
-import static com.engine.items.World.Y_AXIS;
+import static com.componentSystem.World.X_AXIS;
+import static com.componentSystem.World.Y_AXIS;
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_LEFT_ALT;
 

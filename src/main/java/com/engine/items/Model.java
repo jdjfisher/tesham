@@ -1,6 +1,6 @@
 package com.engine.items;
 
-import com.graphics.opengl.mesh.Mesh;
+import com.graphics.mesh.Mesh;
 
 public class Model {
     private Mesh mesh;

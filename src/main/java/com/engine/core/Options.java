@@ -14,7 +14,7 @@ public  class Options {
         HUDvisible = prefs.getBoolean("HUDvisible", HUDvisible_DEFAULT);
         frustumCull = prefs.getBoolean("frustumCull", frustumCull_DEFAULT);
         cullFaces = prefs.getBoolean("cullFaces", cullFaces_DEFAULT);
-        showFaces = prefs.getBoolean("showFaces", showFaces_DEFAULT);
+        wireframeMode = prefs.getBoolean("wireframeMode", wireframeMode_DEFAULT);
         vSync = prefs.getBoolean("vSync", vSync_DEFAULT);
         antiAliasing = prefs.getBoolean("antiAliasing", antiAliasing_DEFAULT);
         freeze = prefs.getBoolean("freeze", freeze_DEFAULT);
@@ -36,7 +36,7 @@ public  class Options {
         prefs.putBoolean("HUDvisible", HUDvisible);
         prefs.putBoolean("frustumCull", frustumCull);
         prefs.putBoolean("cullFaces", cullFaces);
-        prefs.putBoolean("showFaces", showFaces);
+        prefs.putBoolean("wireframeMode", wireframeMode);
         prefs.putBoolean("vSync", vSync);
         prefs.putBoolean("antiAliasing", antiAliasing);
         prefs.putBoolean("freeze", freeze);
@@ -171,19 +171,19 @@ public  class Options {
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    private static boolean showFaces;
-    private static final boolean showFaces_DEFAULT = true;
+    private static boolean wireframeMode;
+    private static final boolean wireframeMode_DEFAULT = false;
 
-    public static void setShowFaces(boolean state){
-        showFaces = state;
+    public static void setWireframeMode(boolean state){
+        wireframeMode = state;
     }
 
-    public static void toggleShowFaces(){
-        showFaces = !showFaces;
+    public static void toggleWireframeMode(){
+        wireframeMode = !wireframeMode;
     }
 
-    public static boolean isShowingFacesEnabled() {
-        return showFaces;
+    public static boolean isWireframeMode() {
+        return wireframeMode;
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
