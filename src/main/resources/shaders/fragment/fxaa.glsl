@@ -26,7 +26,7 @@ void main() {
   if (enabled) {
       fragmentColour = fxaa(preFxaa_Sampler, outTextureCoord, screenResolution);
   } else {
-      fragmentColour = texture2D(preFxaa_Sampler, outTextureCoord);
+      fragmentColour = texture(preFxaa_Sampler, outTextureCoord);
   }
 }
 
@@ -34,11 +34,11 @@ vec4 fxaa(sampler2D texure, vec2 textureCoord, vec2 screenResolution) {
     mediump vec2 inverseVP = 1.0 / screenResolution;
     vec2 fragCoord = textureCoord * screenResolution;
 
-    vec3 rgbNW = texture2D(texure, (fragCoord + vec2(-1.0, -1.0)) * inverseVP).xyz;
-    vec3 rgbNE = texture2D(texure, (fragCoord + vec2(1.0, -1.0)) * inverseVP).xyz;
-    vec3 rgbSW = texture2D(texure, (fragCoord + vec2(-1.0, 1.0)) * inverseVP).xyz;
-    vec3 rgbSE = texture2D(texure, (fragCoord + vec2(1.0, 1.0)) * inverseVP).xyz;
-    vec4 rgbaM = texture2D(texure, vec2(fragCoord * inverseVP));
+    vec3 rgbNW = texture(texure, (fragCoord + vec2(-1.0, -1.0)) * inverseVP).xyz;
+    vec3 rgbNE = texture(texure, (fragCoord + vec2(1.0, -1.0)) * inverseVP).xyz;
+    vec3 rgbSW = texture(texure, (fragCoord + vec2(-1.0, 1.0)) * inverseVP).xyz;
+    vec3 rgbSE = texture(texure, (fragCoord + vec2(1.0, 1.0)) * inverseVP).xyz;
+    vec4 rgbaM = texture(texure, vec2(fragCoord * inverseVP));
     vec3 rgbM  = rgbaM.xyz;
     float aM = rgbaM.a;
 
@@ -63,11 +63,11 @@ vec4 fxaa(sampler2D texure, vec2 textureCoord, vec2 screenResolution) {
           max(vec2(-FXAA_SPAN_MAX, -FXAA_SPAN_MAX), dir * rcpDirMin)) * inverseVP;
 
     vec3 rgbA = 0.5 * (
-        texture2D(texure, fragCoord * inverseVP + dir * (1.0 / 3.0 - 0.5)).xyz +
-        texture2D(texure, fragCoord * inverseVP + dir * (2.0 / 3.0 - 0.5)).xyz);
+        texture(texure, fragCoord * inverseVP + dir * (1.0 / 3.0 - 0.5)).xyz +
+        texture(texure, fragCoord * inverseVP + dir * (2.0 / 3.0 - 0.5)).xyz);
     vec3 rgbB = rgbA * 0.5 + 0.25 * (
-        texture2D(texure, fragCoord * inverseVP + dir * -0.5).xyz +
-        texture2D(texure, fragCoord * inverseVP + dir * 0.5).xyz);
+        texture(texure, fragCoord * inverseVP + dir * -0.5).xyz +
+        texture(texure, fragCoord * inverseVP + dir * 0.5).xyz);
 
     float lumaB = dot(rgbB, luma);
 

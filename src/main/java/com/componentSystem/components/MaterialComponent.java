@@ -22,8 +22,17 @@ public class MaterialComponent extends Component
 
     public MaterialComponent(Color colour, float reflectance)
     {
+        this(colour, reflectance, null, null, null);
+    }
+
+
+    public MaterialComponent(Color colour, float reflectance, Texture diffuseTexture, Texture normalMap, Texture specularMap)
+    {
         this.colour = colour;
         this.reflectance = reflectance;
+        this.diffuseTexture = diffuseTexture;
+        this.normalMap = normalMap;
+        this.specularMap = specularMap;
     }
 
     public Color getColour()

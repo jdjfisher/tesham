@@ -25,6 +25,7 @@ public class RendererEngine {
     private ShaderProgram basicShader;
     private ShaderProgram sceneGeometryShader;
     private ShaderProgram deferredLightingShader;
+    private ShaderProgram skyboxShader;
     private ShaderProgram lampShader;
     private ShaderProgram blurShader;
     private ShaderProgram toneMappingShader;
@@ -38,14 +39,6 @@ public class RendererEngine {
 
     private QuadMesh quadMesh;
 
-    // Temp (Move to component system)
-
-    private Mesh sphereMesh;
-    private Mesh pyramidMesh;
-    private Mesh semiSphereMesh;
-
-    //
-
     public RendererEngine()
     {
         disposed = true;
@@ -58,6 +51,7 @@ public class RendererEngine {
         basicShader = new ShaderProgram("basic", "basic", "basic");
         sceneGeometryShader = new ShaderProgram("sceneGeometry", "sceneGeometry", "sceneGeometry");
         deferredLightingShader = new ShaderProgram("deferredLighitng", "texturedQuad", "deferredLighting");
+        skyboxShader = new ShaderProgram("skybox", "basic", "skybox");
         lampShader = new ShaderProgram("lamp", "basic", "lamp");
         blurShader = new ShaderProgram("gaussianBlur", "texturedQuad", "gaussianBlur");
         toneMappingShader = new ShaderProgram("toneMapping", "texturedQuad", "toneMapping");
@@ -109,10 +103,6 @@ public class RendererEngine {
             preFxaaBuffer.resizeAttachments(width, height);
         });
 
-
-        sphereMesh = GenerateMesh.sphere(1, 50);
-        pyramidMesh = GenerateMesh.cone(0.5f,3,1);
-        semiSphereMesh = GenerateMesh.semiSphere(0.2f, 30);
         quadMesh = new QuadMesh();
 
         disposed = false;
@@ -139,36 +129,15 @@ public class RendererEngine {
 
         glPolygonMode(GL_FRONT_AND_BACK, Options.isWireframeMode() ? GL_LINE : GL_FILL);
 
-//        basicRender(window, world);
-        litRender(window, world);
-    }
-
-    private void basicRender(Window window, World world) throws Exception
-    {
-        FrameBuffer.DEFAULT_FRAMEBUFFER.bind();
-        FrameBuffer.clearBuffers();
-
-        basicShader.setUniform("PV_Matrix", Matrix4f.Multiply(window.getPerspectiveMatrix(), world.getCamera().getViewMatrix()));
-
-        world.forEachEntity(e ->{
-            basicShader.setUniform("W_Matrix", e.getComponent(TransformComponent.class).getLocalTransform());
-
-            sphereMesh.render();
-        });
-    }
-
-    private void litRender(Window window, World world) throws Exception
-    {
         Matrix4f PV_Matrix = Matrix4f.Multiply(window.getPerspectiveMatrix(), world.getCamera().getViewMatrix());
 
         gBuffer.bind();
         FrameBuffer.clearBuffers();
 
-        sceneGeometryShader.setUniform("hasNormalMap", false);
-        sceneGeometryShader.setUniform("hasDiffuseTexture", false);
-        sceneGeometryShader.setUniform("hasSpecularMap", false);
-
         sceneGeometryShader.setUniform("PV_Matrix", PV_Matrix);
+        sceneGeometryShader.setUniform("diffuseTexture_Sampler", 0);
+        sceneGeometryShader.setUniform("normalMap_Sampler", 1);
+        sceneGeometryShader.setUniform("specularMap_Sampler", 2);
 
         world.forEachEntity(e ->
         {
@@ -176,13 +145,41 @@ public class RendererEngine {
             {
                 MaterialComponent material = e.getComponent(MaterialComponent.class);
 
-                sceneGeometryShader.setUniform("W_Matrix", e.transformComponent.getLocalTransform());
+                sceneGeometryShader.setUniform("W_Matrix", e.transformComponent.getWorldTransform());
                 sceneGeometryShader.setUniform("diffuseColour", material.getColour());
                 sceneGeometryShader.setUniform("reflectance", material.getReflectance());
 
-//                e.getComponent(MeshComponent.class).getMesh().render();
+                if(material.hasDiffuseTexture())
+                {
+                    material.getDiffuseTexture().bindToUnit(0);
+                    sceneGeometryShader.setUniform("hasDiffuseTexture", true); // Store bool for the current state of uniform and test that before updating uniform
+                }
+                else
+                {
+                    sceneGeometryShader.setUniform("hasDiffuseTexture", false);
+                }
 
-                sphereMesh.render();
+                if(material.hasNormalMap())
+                {
+                    material.getNormalMap().bindToUnit(1);
+                    sceneGeometryShader.setUniform("hasNormalMap", true);
+                }
+                else
+                {
+                    sceneGeometryShader.setUniform("hasNormalMap", false);
+                }
+
+                if(material.hasSpecularMap())
+                {
+                    material.getSpecularMap().bindToUnit(2);
+                    sceneGeometryShader.setUniform("hasSpecularMap", true);
+                }
+                else
+                {
+                    sceneGeometryShader.setUniform("hasSpecularMap", false);
+                }
+
+                e.getComponent(MeshComponent.class).getMesh().render();
             }
         });
 
@@ -194,13 +191,13 @@ public class RendererEngine {
         preToneMappingBuffer.bind();
         FrameBuffer.clearBuffers();
         
-        deferredLightingShader.setUniform("fragmentPosition_W_Sampler", 0);
-        deferredLightingShader.setUniform("fragmentNormal_W_Sampler", 1);
-        deferredLightingShader.setUniform("diffuseComponent_Sampler", 2);
+        deferredLightingShader.setUniform("fragmentPosition_W_Sampler", 3);
+        deferredLightingShader.setUniform("fragmentNormal_W_Sampler", 4);
+        deferredLightingShader.setUniform("diffuseComponent_Sampler", 5);
         
-        gBuffer.getTexture2DAttachment("fragmentPosition_W_Texture").bindToUnit(0);
-        gBuffer.getTexture2DAttachment("fragmentNormal_W_Texture").bindToUnit(1);
-        gBuffer.getTexture2DAttachment("diffuseComponent_Texture").bindToUnit(2);
+        gBuffer.getTexture2DAttachment("fragmentPosition_W_Texture").bindToUnit(3);
+        gBuffer.getTexture2DAttachment("fragmentNormal_W_Texture").bindToUnit(4);
+        gBuffer.getTexture2DAttachment("diffuseComponent_Texture").bindToUnit(5);
 
         deferredLightingShader.setUniform("cameraPosition", world.getCamera().getPosition());
         deferredLightingShader.setUniform("ambientLightBrightness", Options.getAmbientLightBrightness());
@@ -244,37 +241,43 @@ public class RendererEngine {
         lampShader.setUniform("PV_Matrix", PV_Matrix);
 
 
-        world.forEachEntityWithComponent(PointLightComponent.class, e ->
+        world.forEachEntity(e ->
         {
-            PointLightComponent plc = e.getComponent(PointLightComponent.class);
-            lampShader.setUniform("W_Matrix", e.transformComponent.getLocalTransform());
-            lampShader.setUniform("lampIntensity", plc.getLight().getIntensity());
-            lampShader.setUniform("lampColour", plc.getLight().getColor());
+            if(e.hasComponent(MeshComponent.class) && e.hasComponent(PointLightComponent.class))
+            {
+                PointLightComponent plc = e.getComponent(PointLightComponent.class);
+                lampShader.setUniform("W_Matrix", e.transformComponent.getWorldTransform());
+                lampShader.setUniform("lampIntensity", plc.getLight().getIntensity());
+                lampShader.setUniform("lampColour", plc.getLight().getColor());
 
-            sphereMesh.render();
+                e.getComponent(MeshComponent.class).getMesh().render();
+            }
         });
 
-        world.forEachEntityWithComponent(SpotLightComponent.class, e ->
+        world.forEachEntity(e ->
         {
-            SpotLightComponent slc = e.getComponent(SpotLightComponent.class);
-            lampShader.setUniform("W_Matrix", e.transformComponent.getLocalTransform());
-            lampShader.setUniform("lampIntensity", slc.getLight().getIntensity());
-            lampShader.setUniform("lampColour", slc.getLight().getColor());
+            if(e.hasComponent(MeshComponent.class) && e.hasComponent(SpotLightComponent.class))
+            {
+                SpotLightComponent slc = e.getComponent(SpotLightComponent.class);
+                lampShader.setUniform("W_Matrix", e.transformComponent.getWorldTransform());
+                lampShader.setUniform("lampIntensity", slc.getLight().getIntensity());
+                lampShader.setUniform("lampColour", slc.getLight().getColor());
 
-            semiSphereMesh.render();
+                e.getComponent(MeshComponent.class).getMesh().render();
+            }
         });
 
 
         boolean horizontal = false;
-        blurShader.setUniform("texture_Sampler", 3);
-        preToneMappingBuffer.getTexture2DAttachment("bloomHighlights_Texture").bindToUnit(3);
+        blurShader.setUniform("texture_Sampler", 6);
+        preToneMappingBuffer.getTexture2DAttachment("bloomHighlights_Texture").bindToUnit(6);
 
         for(int i = 0; i < 10; i++)
         {
             blurShader.setUniform("horizontal", horizontal);
             (horizontal ? horizontalBlurBuffer : verticalBlurBuffer).bind();
             quadMesh.render();
-            (horizontal ? horizontalBlurBuffer : verticalBlurBuffer).getTexture2DAttachment("preBlur_Texture").bindToUnit(3);
+            (horizontal ? horizontalBlurBuffer : verticalBlurBuffer).getTexture2DAttachment("preBlur_Texture").bindToUnit(6);
 
             horizontal = !horizontal;
         }
@@ -282,14 +285,14 @@ public class RendererEngine {
         preFxaaBuffer.bind();
         FrameBuffer.clearBuffers();
 
-        toneMappingShader.setUniform("bloomHighlights_Sampler", 3);
-        toneMappingShader.setUniform("primaryScene_Sampler", 4);
+        toneMappingShader.setUniform("bloomHighlights_Sampler", 6);
+        toneMappingShader.setUniform("primaryScene_Sampler", 7);
         toneMappingShader.setUniform("useHDR", true);
         toneMappingShader.setUniform("correctGamma", true);
         toneMappingShader.setUniform("exposure", 0.45f);
         toneMappingShader.setUniform("gamma", 0.8f);
 
-        preToneMappingBuffer.getTexture2DAttachment("primaryScene_Texture").bindToUnit(4);
+        preToneMappingBuffer.getTexture2DAttachment("primaryScene_Texture").bindToUnit(7);
 
         quadMesh.render();
 
@@ -299,9 +302,9 @@ public class RendererEngine {
 
         fxaaShader.setUniform("enabled", true);
         fxaaShader.setUniform("screenResolution", new Vector2f(window.getWidth(), window.getHeight()));
-        fxaaShader.setUniform("preFxaa_Sampler", 5);
+        fxaaShader.setUniform("preFxaa_Sampler", 8);
 
-        preFxaaBuffer.getTexture2DAttachment("preFxaa_Texture").bindToUnit(5);
+        preFxaaBuffer.getTexture2DAttachment("preFxaa_Texture").bindToUnit(8);
 
         quadMesh.render();
     }
@@ -317,6 +320,7 @@ public class RendererEngine {
         basicShader.dispose();
         sceneGeometryShader.dispose();
         deferredLightingShader.dispose();
+        skyboxShader.dispose();
         lampShader.dispose();
         blurShader.dispose();
         toneMappingShader.dispose();
@@ -328,9 +332,6 @@ public class RendererEngine {
         verticalBlurBuffer.dispose();
         preFxaaBuffer.dispose();
 
-        sphereMesh.dispose();
-        pyramidMesh.dispose();
-        semiSphereMesh.dispose();
         quadMesh.dispose();
 
         disposed = true;
