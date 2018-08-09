@@ -25,13 +25,11 @@ import static org.lwjgl.opengl.GL20.*;
 
 public class ShaderProgram implements IResource
 {
-    private static final int NULL = 0;
     private static ShaderProgram BOUND_SHADER;
 
-    private final String shaderProgramName;
-    private boolean disposed;
-
     private final int programId;
+    private boolean disposed;
+    private final String shaderProgramName;
 
     private final HashMap<String, Integer> uniforms;
     private final HashMap<String, HashMap<String, String>> structures;
@@ -41,7 +39,7 @@ public class ShaderProgram implements IResource
         this.shaderProgramName = shaderProgramName;
         this.programId = glCreateProgram();
 
-        if (programId == NULL)
+        if (programId == 0)
         {
             throw new Exception(String.format("Could not create %s shader program", shaderProgramName));
         }
@@ -65,24 +63,24 @@ public class ShaderProgram implements IResource
         int fragmentShaderId = createShaderAttachment(fragmentShaderCode, fragmentShaderName, GL_FRAGMENT_SHADER);
 
         glLinkProgram(programId);
-        if (glGetProgrami(programId, GL_LINK_STATUS) == NULL)
+        if (glGetProgrami(programId, GL_LINK_STATUS) == 0)
         {
             throw new Exception(String.format("Error linking %s Shader program: %s", shaderProgramName, glGetProgramInfoLog(programId, 1024)));
         }
 
-        if (vertexShaderId != NULL)
+        if (vertexShaderId != 0)
         {
             glDetachShader(programId, vertexShaderId);
             glDeleteShader(vertexShaderId);
         }
-        if (fragmentShaderId != NULL)
+        if (fragmentShaderId != 0)
         {
             glDetachShader(programId, fragmentShaderId);
             glDeleteShader(fragmentShaderId);
         }
 
         glValidateProgram(programId);
-        if (glGetProgrami(programId, GL_VALIDATE_STATUS) == NULL)
+        if (glGetProgrami(programId, GL_VALIDATE_STATUS) == 0)
         {
             throw new Exception(String.format("Warning validating %s shader program: %s", shaderProgramName, glGetShaderInfoLog(programId, 1024)));
         }
@@ -111,7 +109,7 @@ public class ShaderProgram implements IResource
         }
 
         int shaderId = glCreateShader(shaderTarget);
-        if (shaderId == NULL)
+        if (shaderId == 0)
         {
             throw new Exception(String.format("Error creating %s %s shader", shaderName, shaderTypeName));
         }
@@ -119,7 +117,7 @@ public class ShaderProgram implements IResource
         glShaderSource(shaderId, shaderCode);
         glCompileShader(shaderId);
 
-        if (glGetShaderi(shaderId, GL_COMPILE_STATUS) == NULL)
+        if (glGetShaderi(shaderId, GL_COMPILE_STATUS) == 0)
         {
             throw new Exception(String.format("Error compiling %s %s shader: %s", shaderName, shaderTypeName, glGetShaderInfoLog(shaderId, 1024)));
         }
@@ -165,7 +163,7 @@ public class ShaderProgram implements IResource
     @Override
     public void dispose()
     {
-        glUseProgram(NULL);
+        glUseProgram(0);
 
         if (disposed)
         {

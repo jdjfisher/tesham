@@ -2,6 +2,7 @@ package com.utils;
 
 import com.graphics.mesh.FaceMI;
 import com.graphics.mesh.FaceMI.IndexSet;
+import com.graphics.mesh.FaceSI;
 import com.graphics.mesh.Mesh;
 import com.graphics.mesh.MultiIndexMeshData;
 import com.maths.vectors.Vector2f;
@@ -89,6 +90,40 @@ public class GenerateMesh {
         sideLength = FastMath.abs(sideLength);
         return cuboid(sideLength, sideLength, sideLength);
     }
+
+//    public static Mesh thing(int n){
+////        Vector3f[] veretxPositions = new Vector3f[n * n * n];
+//
+//        float l = 1.0f;
+//        float step = l / n;
+//        float hl = l / 2f;
+//
+////        for(int i = 0; i < n; i++) {
+////            for(int j = 0; j < n; j++) {
+////                for(int k = 0; k < n; k++) {
+////                    veretxPositions[i * n * n + j * n + k] = new Vector3f(i * step, j * step, k * step);
+////                }
+////            }
+////        }
+//
+//        ArrayList<Vector3f> vertexPositions = new ArrayList<>();
+//
+//        //front
+//
+//        for (float x = -hl; x <= hl; x += step){
+//            for (float y = -hl; y <= hl; y += step) {
+//                vertexPositions.add(new Vector3f(x, y, hl));
+//            }
+//        }
+//
+//        for (int i = 0; i < n; i++) {
+//
+//        }
+//
+//        FaceMI[] faces = new FaceMI[0];
+//
+//        return new Mesh(new MultiIndexMeshData(vertexPositions, null, null, faces));
+//    }
 
     public static Mesh cuboid(float width, float height, float length) {
         float halfWidth = FastMath.abs(width / 2);

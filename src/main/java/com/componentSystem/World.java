@@ -2,19 +2,16 @@ package com.componentSystem;
 import com.componentSystem.components.*;
 import com.engine.input.Keyboard;
 import com.engine.items.*;
-import com.graphics.Texture;
 import com.graphics.mesh.Mesh;
 import com.maths.RNG;
 import com.maths.vectors.Vector3f;
 import com.utils.GenerateMesh;
-import com.utils.TextureLoader;
-import com.utils.UniCallback;
+import com.utils.functionalInterfaces.UniCallback;
 import org.apache.commons.math3.util.FastMath;
 
 import java.awt.*;
 import java.util.ArrayList;
 
-import static org.lwjgl.glfw.GLFW.GLFW_KEY_ENTER;
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_F;
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_G;
 

@@ -11,8 +11,8 @@ import static org.lwjgl.opengl.GL30.*;
  */
 public class FrameBuffer implements IResource{
     public static final FrameBuffer DEFAULT_FRAMEBUFFER = new FrameBuffer(0);
-    private static FrameBuffer BOUND_READ_FRAMEBUFFER; //TODO: IMPL
-    private static FrameBuffer BOUND_DRAW_FRAMEBUFFER; //TODO: IMPL
+    private static FrameBuffer BOUND_READ_FRAMEBUFFER = DEFAULT_FRAMEBUFFER;
+    private static FrameBuffer BOUND_DRAW_FRAMEBUFFER = DEFAULT_FRAMEBUFFER;
 
     private final int id;
     private final HashMap<String, Texture> textureAttachments;
@@ -86,6 +86,8 @@ public class FrameBuffer implements IResource{
         }
 
         glBindFramebuffer(GL_READ_FRAMEBUFFER, id);
+
+        BOUND_READ_FRAMEBUFFER = this;
     }
 
     public void bindDraw()
@@ -101,6 +103,8 @@ public class FrameBuffer implements IResource{
         }
 
         glBindFramebuffer(GL_DRAW_FRAMEBUFFER, id);
+
+        BOUND_DRAW_FRAMEBUFFER = this;
     }
 
     public void bind()
@@ -116,6 +120,8 @@ public class FrameBuffer implements IResource{
         }
 
         glBindFramebuffer(GL_FRAMEBUFFER, id);
+
+        BOUND_READ_FRAMEBUFFER = BOUND_DRAW_FRAMEBUFFER = this;
     }
 
     @Override

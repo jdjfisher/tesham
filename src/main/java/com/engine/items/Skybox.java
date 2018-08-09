@@ -1,134 +1,152 @@
 package com.engine.items;
-//
-//import com.graphics.Texture;
-//import com.graphics.mesh.FaceMI;
-//import com.graphics.mesh.Mesh;
-//import com.graphics.mesh.MultiIndexMeshData;
-//import com.maths.vectors.Vector2f;
-//import com.maths.vectors.Vector3f;
-//import org.apache.commons.math3.util.FastMath;
-//
-//import static com.engine.core.Options.getViewDistanceFar;
-//
-///**
-// * Created by Jordan Fisher on 29/06/2017.
-// */
-public class Skybox {
-//    public static final Mesh mesh = createSkyboxMesh();
-//    private final TransformationSet transformationSet;
-//    private Texture texture;
-//
-//    public Skybox(){
-//        transformationSet = new TransformationSet();
-//    }
-//
-//    public void update(Vector3f cameraPosition){
-//        transformationSet.getPosition().set(cameraPosition);
-//        transformationSet.setScale(2 * (float)FastMath.sqrt(FastMath.pow(getViewDistanceFar(), 2) / 3) - 1);
-//    }
-//
-//    public void setTexture(Texture texture){
-//        this.texture = texture;
-//    }
-//
-//    public boolean hasTexture(){
-//        return texture != null;
-//    }
-//
-//    public Texture getTexture() {
-//        return texture;
-//    }
-//
-//    public Mesh getMesh(){
-//        return mesh;
-//    }
-//
-//    public TransformationSet getTransformationSet() {
-//        return transformationSet;
-//    }
-//
-//    private static Mesh createSkyboxMesh(){
-//        float var = 0.5f;
-//
-//        Vector3f[] vertices = new Vector3f[]{
-//                new Vector3f(-var,  var,  var),//V0
-//                new Vector3f(-var,  var, -var),//V1
-//                new Vector3f( var,  var, -var),//V2
-//                new Vector3f( var,  var,  var),//V3
-//                new Vector3f(-var, -var,  var),//V4
-//                new Vector3f(-var, -var, -var),//V5
-//                new Vector3f( var, -var, -var),//V6
-//                new Vector3f( var, -var,  var) //V7
-//        };
-//
-//        Vector2f[] textureCoords = new Vector2f[]{
-//                new Vector2f(1f / 4,1f),     //T0
-//                new Vector2f(2f / 4,1f),     //T1
-//                new Vector2f(0f    ,3f / 4), //T2
-//                new Vector2f(1f / 4,3f / 4), //T3
-//                new Vector2f(2f / 4,3f / 4), //T4
-//                new Vector2f(3f / 4,3f / 4), //T5
-//                new Vector2f(0f    ,2f / 4), //T6
-//                new Vector2f(1f / 4,2f / 4), //T7
-//                new Vector2f(2f / 4,2f / 4), //T8
-//                new Vector2f(3f / 4,2f / 4), //T9
-//                new Vector2f(1f / 4,1f / 4), //T10
-//                new Vector2f(2f / 4,1f / 4), //T11
-//                new Vector2f(1f / 4,0f),     //T12
-//                new Vector2f(2f / 4,0f)      //T13
-//        };
-//
-//        FaceMI[] faces = new FaceMI[]{
-//                //front
-//                new FaceMI(
-//                        0, 3,
-//                        3, 4,
-//                        7, 8,
-//                        4, 7
-//
-//                ),
-//
-//                //left
-//                new FaceMI(
-//                        1, 2,
-//                        0, 3,
-//                        4, 7,
-//                        5, 6
-//                ),
-//
-//                //right
-//                new FaceMI(
-//                        3, 4,
-//                        2, 5,
-//                        6, 9,
-//                        7, 8
-//                ),
-//
-//                //back
-//                new FaceMI(
-//                        2, 13,
-//                        1, 12,
-//                        5, 10,
-//                        6, 11
-//                ),
-//
-//                //top
-//                new FaceMI(
-//                        1, 0,
-//                        2, 1,
-//                        3, 4,
-//                        0, 3
-//                ),
-//
-//                //bottom
-//                new FaceMI(
-//                        4, 7,
-//                        7, 8,
-//                        6, 11,
-//                        5, 10
-//                )
-//        };
-//
-//        return new Mesh(new MultiIndexMeshData(vertices, null, textureCoords, faces));
-//    }
+
+import com.graphics.IResource;
+import com.graphics.Texture;
+import com.utils.DataUtils;
+import org.lwjgl.opengl.ARBVertexArrayObject;
+
+import java.nio.ByteBuffer;
+
+import static org.lwjgl.opengl.ARBInternalformatQuery2.GL_TEXTURE_CUBE_MAP;
+import static org.lwjgl.opengl.ARBVertexArrayObject.glGenVertexArrays;
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL12.GL_CLAMP_TO_EDGE;
+import static org.lwjgl.opengl.GL12.GL_TEXTURE_WRAP_R;
+import static org.lwjgl.opengl.GL13.GL_TEXTURE_CUBE_MAP_POSITIVE_X;
+import static org.lwjgl.opengl.GL15.*;
+import static org.lwjgl.opengl.GL15.GL_ARRAY_BUFFER;
+import static org.lwjgl.opengl.GL15.GL_STATIC_DRAW;
+import static org.lwjgl.opengl.GL20.glEnableVertexAttribArray;
+import static org.lwjgl.opengl.GL20.glVertexAttribPointer;
+import static org.lwjgl.opengl.GL30.glBindVertexArray;
+import static org.lwjgl.opengl.GL30.glDeleteVertexArrays;
+
+public class Skybox implements IResource
+{
+    private final Texture[] textures;
+    private int cubeMapId;
+    private int vao;
+    private int vbo;
+    private boolean disposed;
+
+    public Skybox()
+    {
+        textures = new Texture[6];
+        disposed = true;
+    }
+
+    public void init()
+    {
+
+        cubeMapId = glGenTextures();
+        glBindTexture(GL_TEXTURE_CUBE_MAP, cubeMapId);
+
+        for (int i = 0; i < 6; i++)
+        {
+            glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGB, 0, 0, 0, GL_RGB, GL_UNSIGNED_BYTE, (ByteBuffer) null);
+        }
+
+        glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+        glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+        glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+
+        vao = glGenVertexArrays();
+        vbo = glGenBuffers();
+
+        glBindVertexArray(vao);
+
+        glBindBuffer(GL_ARRAY_BUFFER, vbo);
+        glBufferData(GL_ARRAY_BUFFER, DataUtils.toFloatBuffer(new float[]{
+                -1.0f,  1.0f, -1.0f,
+                -1.0f, -1.0f, -1.0f,
+                1.0f, -1.0f, -1.0f,
+                1.0f, -1.0f, -1.0f,
+                1.0f,  1.0f, -1.0f,
+                -1.0f,  1.0f, -1.0f,
+
+                -1.0f, -1.0f,  1.0f,
+                -1.0f, -1.0f, -1.0f,
+                -1.0f,  1.0f, -1.0f,
+                -1.0f,  1.0f, -1.0f,
+                -1.0f,  1.0f,  1.0f,
+                -1.0f, -1.0f,  1.0f,
+
+                1.0f, -1.0f, -1.0f,
+                1.0f, -1.0f,  1.0f,
+                1.0f,  1.0f,  1.0f,
+                1.0f,  1.0f,  1.0f,
+                1.0f,  1.0f, -1.0f,
+                1.0f, -1.0f, -1.0f,
+
+                -1.0f, -1.0f,  1.0f,
+                -1.0f,  1.0f,  1.0f,
+                1.0f,  1.0f,  1.0f,
+                1.0f,  1.0f,  1.0f,
+                1.0f, -1.0f,  1.0f,
+                -1.0f, -1.0f,  1.0f,
+
+                -1.0f,  1.0f, -1.0f,
+                1.0f,  1.0f, -1.0f,
+                1.0f,  1.0f,  1.0f,
+                1.0f,  1.0f,  1.0f,
+                -1.0f,  1.0f,  1.0f,
+                -1.0f,  1.0f, -1.0f,
+
+                -1.0f, -1.0f, -1.0f,
+                -1.0f, -1.0f,  1.0f,
+                1.0f, -1.0f, -1.0f,
+                1.0f, -1.0f, -1.0f,
+                -1.0f, -1.0f,  1.0f,
+                1.0f, -1.0f,  1.0f
+        }), GL_STATIC_DRAW);
+
+        // vertex positions
+        glEnableVertexAttribArray(0);
+        glVertexAttribPointer(0, 3, GL_FLOAT, false, 12, 0);
+
+        glBindVertexArray(0);
+
+        disposed = false;
+    }
+
+    public void render()
+    {
+        if(disposed)
+        {
+            throw new RuntimeException("Skybox is disposed");
+        }
+
+        glBindTexture(GL_TEXTURE_CUBE_MAP, cubeMapId);
+
+        glBindVertexArray(vao);
+
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+
+        glBindVertexArray(0);
+    }
+
+    @Override
+    public void dispose()
+    {
+        if(disposed)
+        {
+            throw new RuntimeException("Skybox is already disposed");
+        }
+
+        glDeleteTextures(cubeMapId);
+
+        // Disable
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+        // Delete the VBOs
+        glDeleteBuffers(vbo);
+
+        // Delete the VAO
+        glBindVertexArray(0);
+        glDeleteVertexArrays(vao);
+
+        disposed = true;
+    }
 }

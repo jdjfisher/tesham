@@ -48,8 +48,8 @@ public class QuadMesh implements IResource
         glVertexAttribPointer(1, 2, GL_FLOAT, false, 16, 8);
 
         glBindVertexArray(0);
-        
-        
+
+
         disposed = false;
     }
 
@@ -62,13 +62,7 @@ public class QuadMesh implements IResource
 
         glBindVertexArray(vao);
 
-        glEnableVertexAttribArray(0);
-        glEnableVertexAttribArray(1);
-        
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-
-        glDisableVertexAttribArray(0);
-        glDisableVertexAttribArray(1);
 
         glBindVertexArray(0);
     }
@@ -95,6 +89,6 @@ public class QuadMesh implements IResource
         
         disposed = true;
     }
-    
-    
+
+
 }

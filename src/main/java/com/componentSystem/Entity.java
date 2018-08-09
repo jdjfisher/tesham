@@ -26,7 +26,7 @@ package com.componentSystem;
 
 
 import com.componentSystem.components.TransformComponent;
-import com.utils.UniCallback;
+import com.utils.functionalInterfaces.UniCallback;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -19,10 +19,10 @@ public class Texture implements IResource{
     private static int ACTIVE_UNIT;
 
     private final int id;
+    private boolean disposed;
     private final int internalFormat;
     private final int format;
     private final int type;
-    private boolean disposed;
     private int width;
     private int height;
 
