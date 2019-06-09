@@ -11,7 +11,7 @@ import com.maths.vectors.Vector2f;
 import com.maths.vectors.Vector3f;
 import com.maths.vectors.Vector4f;
 import com.utils.DataUtils;
-import com.utils.ReasourceLoader;
+import com.utils.ResourceLoader;
 import org.apache.commons.math3.util.FastMath;
 
 import java.awt.*;
@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static com.utils.ReasourceLoader.loadFileAsString;
+import static com.utils.ResourceLoader.loadFileAsString;
 import static org.lwjgl.opengl.GL20.*;
 
 public class ShaderProgram implements IResource
@@ -226,7 +226,7 @@ public class ShaderProgram implements IResource
                     if (arraySizePointerString.matches("\\d+")) {
                         createUniformArray(dataType, uniformName, Integer.parseInt(arraySizePointerString));
                     } else {
-                        createUniformArray(dataType, uniformName, ReasourceLoader.getGLSLConstIntValue(arraySizePointerString, shaderCode));
+                        createUniformArray(dataType, uniformName, ResourceLoader.getGLSLConstIntValue(arraySizePointerString, shaderCode));
                     }
                     break;
                 default:

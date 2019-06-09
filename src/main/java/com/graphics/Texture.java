@@ -100,8 +100,6 @@ public class Texture implements IResource{
         create(width, height, buffer);
     }
 
-
-
     public void create(int width, int height)
     {
         create(width, height,null);

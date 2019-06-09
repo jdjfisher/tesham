@@ -4,7 +4,7 @@ import static org.lwjgl.opengl.GL30.*;
 import static org.lwjgl.opengl.GL30.GL_RENDERBUFFER;
 import static org.lwjgl.opengl.GL30.glDeleteRenderbuffers;
 
-public class RenderBuffer implements IResource{ //TODO: add disposed, add bind check
+public class RenderBuffer implements IResource{
     private static RenderBuffer BOUND_RENDER_BUFFER;
 
     private final int id;

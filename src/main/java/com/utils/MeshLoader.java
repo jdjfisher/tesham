@@ -27,7 +27,7 @@ public class MeshLoader {
             if(loadedMeshMap.containsKey(filePath)){
                 return loadedMeshMap.get(filePath);
             }else {
-                List<String> lines = ReasourceLoader.readAllLines(filePath);
+                List<String> lines = ResourceLoader.readAllLines(filePath);
 
                 ArrayList<Vector3f> vertexPositions = new ArrayList<>();
                 ArrayList<Vector3f> vertexNormals = new ArrayList<>();

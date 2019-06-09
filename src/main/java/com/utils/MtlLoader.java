@@ -20,7 +20,7 @@ public class MtlLoader {
         final ArrayList<String> rawMaterialData = new ArrayList<>();
         Matcher matcher;
 
-        List<String> lines = ReasourceLoader.readAllLines(String.format("/models/%1$s/%1$s.mtl", modelName));
+        List<String> lines = ResourceLoader.readAllLines(String.format("/models/%1$s/%1$s.mtl", modelName));
 
         for (String line : lines) {
             matcher = newMaterialPattern.matcher(line);

@@ -45,13 +45,13 @@ public class Engine {
             {
                 loadOptions();
                 window.init();
-                System.err.println("WINDOW INITIALISED");
+                System.out.println("WINDOW INITIALISED");
                 renderer.init(window);
-                System.err.println("RENDERER INITIALISED");
+                System.out.println("RENDERER INITIALISED");
                 world.init();
-                System.err.println("GAME INITIALISED");
+                System.out.println("GAME INITIALISED");
 
-                System.err.printf("SUCCESSFUL BOOT OpenGL: %s Card: %s\n/////////////////////////////////////////////////////////////////////////////////////\n\n", glGetString(GL_VERSION), glGetString(GL_RENDERER));
+                System.out.printf("SUCCESSFUL BOOT OpenGL: %s Card: %s\n\n", glGetString(GL_VERSION), glGetString(GL_RENDERER));
                 gameLoop();
             }
             catch (Exception e)
@@ -64,7 +64,7 @@ public class Engine {
                 renderer.dispose();
                 window.dispose();
                 saveOptions();
-                System.err.println("\n/////////////////////////////////////////////////////////////////////////////////////\nENGINE TERMINATED");
+                System.out.println("\nENGINE TERMINATED");
             }
         });
 

@@ -1,5 +1,7 @@
 package com;
 
+import com.utils.functionalInterfaces.UniCallback;
+
 import java.util.ArrayList;
 
 import static org.lwjgl.opengl.GL11.glGenTextures;
@@ -8,13 +10,21 @@ public class Test {
 
     public static void main(String[] args) {
 
+        UniCallback<String> lamda = s -> System.out.println(s);
+
+        lamda.invoke("lamda");
+
+        UniCallback<String> mefref = System.out::println;
+
+        mefref.invoke("mefref");
+
+
 //        ArrayList<Integer> c = new ArrayList<>();
 //        c.add(3);
 //        c.add(6);
 //        c.add(9);
 
-
-        int a = glGenTextures();
+//        int a = glGenTextures();
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
