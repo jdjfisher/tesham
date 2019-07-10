@@ -19,26 +19,36 @@ uniform sampler2D diffuseTexture_Sampler;
 uniform sampler2D normalMap_Sampler;
 uniform sampler2D specularMap_Sampler;
 
-void main(){
+void main()
+{
     fragmentPosition_W_Texture = outFragmentPosition_W;
 
-    if(hasNormalMap){
+    if(hasNormalMap)
+    {
         fragmentNormal_W_Texture.rgb = normalize(outTBN * normalize((texture(normalMap_Sampler, outTextureCoord).rgb) * 2.0 - 1.0));
-    }else{
+    }
+    else
+    {
         fragmentNormal_W_Texture.rgb = outFragmentNormal_W;
     }
 
     fragmentNormal_W_Texture.a = reflectance;
 
-    if(hasDiffuseTexture){
+    if(hasDiffuseTexture)
+    {
         diffuseComponent_Texture.rgb = texture(diffuseTexture_Sampler, outTextureCoord).rgb;
-    }else{
+    }
+    else
+    {
         diffuseComponent_Texture.rgb = diffuseColour;
     }
 
-    if(hasSpecularMap){
+    if(hasSpecularMap)
+    {
         diffuseComponent_Texture.a = texture(specularMap_Sampler, outTextureCoord).r;
-    }else{
+    }
+    else
+    {
         diffuseComponent_Texture.a = 1.0;
     }
 }

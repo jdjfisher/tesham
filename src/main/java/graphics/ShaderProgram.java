@@ -13,6 +13,7 @@ import maths.vectors.Vector4f;
 import utils.DataUtils;
 import utils.ResourceLoader;
 import org.apache.commons.math3.util.FastMath;
+import utils.functionalInterfaces.IResource;
 
 import java.awt.*;
 import java.io.File;

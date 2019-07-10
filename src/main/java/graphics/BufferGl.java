@@ -1,5 +1,7 @@
 package graphics;
 
+import utils.functionalInterfaces.IResource;
+
 public class BufferGl implements IResource
 {
     public void bind()

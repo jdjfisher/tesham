@@ -1,5 +1,7 @@
 package graphics;
 
+import utils.functionalInterfaces.IResource;
+
 import static org.lwjgl.opengl.GL11.glBindTexture;
 import static org.lwjgl.opengl.GL11.glGenTextures;
 import static org.lwjgl.opengl.GL13.GL_TEXTURE_CUBE_MAP;

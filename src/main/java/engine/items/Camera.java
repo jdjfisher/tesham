@@ -275,7 +275,7 @@ public class Camera
 
     public void changeCameraMovementSpeed(float value)
     {
-        setCameraMovementSpeed(getCameraMovementSpeed() + value);
+        setCameraMovementSpeed(cameraMovementSpeed + value);
     }
 
     public float getCameraMovementSpeed()

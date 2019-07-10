@@ -1,5 +1,7 @@
 package graphics;
 
+import utils.functionalInterfaces.IResource;
+
 import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.opengl.GL30.*;
 

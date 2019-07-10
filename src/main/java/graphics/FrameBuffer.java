@@ -1,5 +1,7 @@
 package graphics;
 
+import utils.functionalInterfaces.IResource;
+
 import java.util.HashMap;
 
 import static org.lwjgl.opengl.GL11.*;

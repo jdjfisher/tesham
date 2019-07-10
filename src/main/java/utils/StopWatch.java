@@ -3,10 +3,8 @@ package utils;
 
 public class StopWatch
 {
-
-    private double loopStartTime;
-    private double loopEndTime;
-    private double loopElapsedTime;
+    private float startTime;
+    private float endTime;
     private boolean running;
 
     public StopWatch()
@@ -17,13 +15,13 @@ public class StopWatch
     public void start()
     {
         running = true;
-        loopEndTime = 0;
-        loopStartTime = getTime();
+        endTime = 0;
+        startTime = getTime();
     }
 
     public void stop()
     {
-        loopEndTime = getTime();
+        endTime = getTime();
         running = false;
     }
 
@@ -33,27 +31,18 @@ public class StopWatch
         start();
     }
 
-    public double getTime()
+    public float getTime()
     {
-        return System.nanoTime() / 1000_000_000.0;
+        return System.nanoTime() / 1000_000_000.0f;
     }
 
     public float getElapsedTime()
     {
-        if (running)
-        {
-            loopElapsedTime = getTime() - loopStartTime;
-        }
-        else
-        {
-            loopElapsedTime = loopEndTime - loopStartTime;
-        }
-
-        return (float) loopElapsedTime;
+        return (running ? getTime() : endTime) - startTime;
     }
 
-    public double getLoopStartTime()
+    public double getStartTime()
     {
-        return loopStartTime;
+        return startTime;
     }
 }

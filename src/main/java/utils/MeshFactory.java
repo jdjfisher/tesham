@@ -13,9 +13,9 @@ import java.util.ArrayList;
 /**
  * Created by Jordan Fisher on 20/05/2017.
  */
-public class GenerateMesh
+public class MeshFactory
 {
-    private GenerateMesh()
+    private MeshFactory()
     {
     }
 

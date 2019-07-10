@@ -79,7 +79,7 @@ public class DataUtils
         float[] result = new float[array.length * 4];
         for (int i = 0; i < array.length; i++)
         {
-            result[i * 4 + 0] = array[i].getX();
+            result[i * 4    ] = array[i].getX();
             result[i * 4 + 1] = array[i].getY();
             result[i * 4 + 2] = array[i].getZ();
             result[i * 4 + 3] = array[i].getW();
@@ -92,7 +92,7 @@ public class DataUtils
         float[] result = new float[array.length * 3];
         for (int i = 0; i < array.length; i++)
         {
-            result[i * 3 + 0] = array[i].getX();
+            result[i * 3    ] = array[i].getX();
             result[i * 3 + 1] = array[i].getY();
             result[i * 3 + 2] = array[i].getZ();
         }

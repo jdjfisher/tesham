@@ -1,14 +1,8 @@
 #version 330
 
-#ifndef FXAA_REDUCE_MIN
-    #define FXAA_REDUCE_MIN   (1.0/ 128.0)
-#endif
-#ifndef FXAA_REDUCE_MUL
-    #define FXAA_REDUCE_MUL   (1.0 / 8.0)
-#endif
-#ifndef FXAA_SPAN_MAX
-    #define FXAA_SPAN_MAX     8.0
-#endif
+#define FXAA_REDUCE_MIN   (1.0/ 128.0)
+#define FXAA_REDUCE_MUL   (1.0 / 8.0)
+#define FXAA_SPAN_MAX     8.0
 
 in vec2 outTextureCoord;
 
@@ -22,15 +16,20 @@ uniform bool enabled;
 
 vec4 fxaa(sampler2D preFxaa_Sampler, vec2 textureCoord, vec2 screenResolution);
 
-void main() {
-  if (enabled) {
-      fragmentColour = fxaa(preFxaa_Sampler, outTextureCoord, screenResolution);
-  } else {
-      fragmentColour = texture(preFxaa_Sampler, outTextureCoord);
-  }
+void main()
+{
+    if (enabled)
+    {
+        fragmentColour = fxaa(preFxaa_Sampler, outTextureCoord, screenResolution);
+    }
+    else
+    {
+        fragmentColour = texture(preFxaa_Sampler, outTextureCoord);
+    }
 }
 
-vec4 fxaa(sampler2D texure, vec2 textureCoord, vec2 screenResolution) {
+vec4 fxaa(sampler2D texure, vec2 textureCoord, vec2 screenResolution)
+{
     mediump vec2 inverseVP = 1.0 / screenResolution;
     vec2 fragCoord = textureCoord * screenResolution;
 
@@ -71,9 +70,12 @@ vec4 fxaa(sampler2D texure, vec2 textureCoord, vec2 screenResolution) {
 
     float lumaB = dot(rgbB, luma);
 
-    if ((lumaB < lumaMin) || (lumaB > lumaMax)){
+    if ((lumaB < lumaMin) || (lumaB > lumaMax))
+    {
         return vec4(rgbA, aM);
-    }else{
+    }
+    else
+    {
         return vec4(rgbB, aM);
     }
 }

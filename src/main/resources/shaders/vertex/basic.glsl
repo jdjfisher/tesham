@@ -12,7 +12,8 @@ out vec3 vertexColour;
 uniform mat4 PV_Matrix;
 uniform mat4 W_Matrix;
 
-void main(){
+void main()
+{
     gl_Position = PV_Matrix * W_Matrix * vec4(inVertexPosition, 1.0);
     outTextureCoord = inTextureCoord;
     vertexColour = inVertexNormal;

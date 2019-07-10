@@ -9,6 +9,9 @@ import maths.vectors.Vector2i;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
+import org.lwjgl.opengl.INTELConservativeRasterization;
+import utils.functionalInterfaces.BiCallback;
+import utils.functionalInterfaces.IResizeCallback;
 
 import static engine.core.Options.*;
 import static java.sql.Types.NULL;
@@ -30,7 +33,7 @@ public class Window
     private int fullScreenWidth;
     private int fullScreenHeight;
 
-    private IResizeCallback resizeCallback;
+    private BiCallback<Integer, Integer> resizeCallback;
     private boolean fullScreen;
 
     private Matrix4f perspectiveMatrix;
@@ -264,7 +267,7 @@ public class Window
         return refreshRate;
     }
 
-    public void setResizeCallback(IResizeCallback resizeCallback)
+    public void setResizeCallback(BiCallback<Integer, Integer> resizeCallback)
     {
         this.resizeCallback = resizeCallback;
     }

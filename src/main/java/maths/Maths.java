@@ -1,6 +1,5 @@
 package maths;
 
-import maths.vectors.Vector3f;
 import org.apache.commons.math3.util.FastMath;
 
 /**
@@ -8,15 +7,13 @@ import org.apache.commons.math3.util.FastMath;
  */
 public class Maths
 {
-    private static final float e = 2.7182818284590452353602874713527f;
-
     private Maths()
     {
     }
 
     public static float sigmoid(float f)
     {
-        return 1f / (1 + (float) FastMath.pow(e, -f));
+        return 1f / (1 + (float) FastMath.pow(FastMath.E, -f));
     }
 
     public static float floorMod(float x, float y)

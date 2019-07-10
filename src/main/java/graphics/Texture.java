@@ -1,5 +1,7 @@
 package graphics;
 
+import utils.functionalInterfaces.IResource;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.nio.ByteBuffer;

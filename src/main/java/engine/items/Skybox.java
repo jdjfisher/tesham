@@ -1,6 +1,6 @@
 package engine.items;
 
-import graphics.IResource;
+import utils.functionalInterfaces.IResource;
 import graphics.Texture;
 import utils.DataUtils;
 

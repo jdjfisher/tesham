@@ -1,5 +1,7 @@
 package graphics;
 
+import utils.functionalInterfaces.IResource;
+
 import static org.lwjgl.opengl.GL30.*;
 
 public class RenderBuffer implements IResource

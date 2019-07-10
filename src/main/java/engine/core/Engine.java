@@ -16,8 +16,6 @@ import static org.lwjgl.opengl.GL11.*;
 
 public class Engine
 {
-    public static final Preferences prefs = Preferences.userNodeForPackage(Engine.class);
-
     private static final int TARGET_UPDATES_PER_SECOND = 300;
 
     private final Window window;
@@ -45,13 +43,10 @@ public class Engine
             {
                 loadOptions();
                 window.init();
-                System.out.println("WINDOW INITIALISED");
                 renderer.init(window);
-                System.out.println("RENDERER INITIALISED");
                 world.init();
-                System.out.println("WORLD INITIALISED");
 
-                System.out.printf("SUCCESSFUL BOOT OpenGL: %s Card: %s\n\n", glGetString(GL_VERSION), glGetString(GL_RENDERER));
+                System.out.printf("Successful Boot, OpenGL: %s Card: %s\n\n", glGetString(GL_VERSION), glGetString(GL_RENDERER));
                 gameLoop();
             }
             catch (Exception e)
@@ -64,7 +59,6 @@ public class Engine
                 renderer.dispose();
                 window.dispose();
                 saveOptions();
-                System.out.println("\nENGINE TERMINATED");
             }
         });
 
@@ -88,8 +82,8 @@ public class Engine
     {
         float elapsedTime;
         float cumulativeTime = 0f;
-        final float SECONDS_PER_UPDATE = 1f / (float) TARGET_UPDATES_PER_SECOND;
-        final float SECONDS_PER_FRAME = 1f / window.getRefreshRate();
+        final float secondsPerUpdate = 1f / (float) TARGET_UPDATES_PER_SECOND;
+        final float secondsPerFrame = 1f / window.getRefreshRate();
         loopTimer.start();
         fpsTimer.start();
 
@@ -104,10 +98,10 @@ public class Engine
                 handleInput();
             }
 
-            while (cumulativeTime >= SECONDS_PER_UPDATE)
+            while (cumulativeTime >= secondsPerUpdate)
             {
-                update(SECONDS_PER_UPDATE);
-                cumulativeTime -= SECONDS_PER_UPDATE;
+                update(secondsPerUpdate);
+                cumulativeTime -= secondsPerUpdate;
             }
 
             if (!window.isMinimized())
@@ -119,16 +113,16 @@ public class Engine
 
             if (isVSyncEnabled())
             {
-                sync(SECONDS_PER_FRAME);
+                sync(secondsPerFrame);
             }
 
             loopTimer.stop();
         }
     }
 
-    private void sync(float SECONDS_PER_FRAME)
+    private void sync(float secondsPerFrame)
     {
-        double expectedEndTime = loopTimer.getLoopStartTime() + SECONDS_PER_FRAME;
+        double expectedEndTime = loopTimer.getStartTime() + secondsPerFrame;
         while (loopTimer.getTime() < expectedEndTime)
         {
             try
@@ -146,7 +140,7 @@ public class Engine
     {
         if (Keyboard.isKeyTapped(GLFW_KEY_F1))
         {
-//            renderer.takeScreenshot();
+            renderer.takeScreenshot();
         }
 
         if (Keyboard.isKeyTapped(GLFW_KEY_F2) && !Cursor.isVisible())
@@ -162,6 +156,11 @@ public class Engine
         if (Keyboard.isKeyTapped(GLFW_KEY_2))
         {
             Options.toggleWireframeMode();
+        }
+
+        if (Keyboard.isKeyTapped(GLFW_KEY_3))
+        {
+            Options.toggleVSync();
         }
 
         if (!window.isFullScreen())

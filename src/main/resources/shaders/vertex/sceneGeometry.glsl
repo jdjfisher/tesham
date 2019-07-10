@@ -15,7 +15,8 @@ uniform mat4 PV_Matrix;
 uniform mat4 W_Matrix;
 uniform bool hasNormalMap;
 
-void main(){
+void main()
+{
     vec4 vertexPosition_W = W_Matrix * vec4(inVertexPosition, 1.0);
     outFragmentPosition_W = vertexPosition_W.xyz;
     gl_Position = PV_Matrix * vertexPosition_W;
@@ -26,7 +27,8 @@ void main(){
 
     outTextureCoord = inTextureCoord;
 
-    if(hasNormalMap){
+    if(hasNormalMap)
+    {
         vec3 T = normalize(N_Matrix * inTangent);
         vec3 B = normalize(N_Matrix * inBitangent);
         outTBN = mat3(T, B, outFragmentNormal_W);

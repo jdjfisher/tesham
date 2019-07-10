@@ -6,7 +6,7 @@ import engine.items.*;
 import graphics.mesh.Mesh;
 import maths.RNG;
 import maths.vectors.Vector3f;
-import utils.GenerateMesh;
+import utils.MeshFactory;
 import utils.functionalInterfaces.UniCallback;
 import org.apache.commons.math3.util.FastMath;
 
@@ -54,9 +54,9 @@ public class World
 
     public void init() throws Exception
     {
-        sphereMesh = GenerateMesh.sphere(1, 50);
-        planeMesh = GenerateMesh.plane(50, 50);
-        semiSphereMesh = GenerateMesh.semiSphere(0.4f, 20);
+        sphereMesh = MeshFactory.sphere(1, 50);
+        planeMesh = MeshFactory.plane(50, 50);
+        semiSphereMesh = MeshFactory.semiSphere(0.4f, 20);
 
         int k = 4;
 

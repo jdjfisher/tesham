@@ -1,12 +1,14 @@
 package engine.core;
 
-import static engine.core.Engine.prefs;
+import java.util.prefs.Preferences;
 
 /**
  * Created by Jordan Fisher on 08/07/2017.
  */
 public class Options
 {
+    public static final Preferences prefs = Preferences.userNodeForPackage(Options.class);
+
     public static void loadOptions()
     {
         debug = prefs.getBoolean("debug", debug_DEFAULT);

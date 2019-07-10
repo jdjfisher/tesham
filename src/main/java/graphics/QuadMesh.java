@@ -1,6 +1,7 @@
 package graphics;
 
 import utils.DataUtils;
+import utils.functionalInterfaces.IResource;
 
 import static org.lwjgl.opengl.ARBVertexArrayObject.glBindVertexArray;
 import static org.lwjgl.opengl.ARBVertexArrayObject.glGenVertexArrays;

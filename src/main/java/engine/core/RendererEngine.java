@@ -11,6 +11,7 @@ import maths.Matrix4f;
 import maths.vectors.Vector2f;
 
 import java.awt.*;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 
 import static org.lwjgl.opengl.ARBFramebufferObject.GL_COLOR_ATTACHMENT0;
@@ -21,6 +22,7 @@ import static org.lwjgl.opengl.GL30.*;
 public class RendererEngine
 {
     private boolean disposed;
+    private boolean exportBuffer;
 
     private ShaderProgram basicShader;
     private ShaderProgram sceneGeometryShader;
@@ -42,6 +44,7 @@ public class RendererEngine
     public RendererEngine()
     {
         disposed = true;
+        exportBuffer = false;
     }
 
     public void init(Window window) throws Exception
@@ -312,6 +315,22 @@ public class RendererEngine
         quadMesh.render();
     }
 
+    public void takeScreenshot(){
+        exportBuffer = true;
+    }
+
+    private void doScreenshot(Window window)
+    {
+        if(exportBuffer)
+        {
+            exportBuffer = false;
+
+            ByteBuffer pixels = ByteBuffer.allocateDirect(4 * window.getWidth() * window.getHeight());
+
+            glReadBuffer(GL_BACK);
+            glReadPixels(0, 0, window.getWidth(), window.getHeight(), GL_RGBA, GL_UNSIGNED_BYTE, pixels);
+        }
+    }
 
     public void dispose()
     {

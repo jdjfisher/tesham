@@ -1,4 +1,4 @@
-package graphics;
+package utils.functionalInterfaces;
 
 public interface IResource
 {

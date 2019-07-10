@@ -9,19 +9,27 @@ out vec4 fragmentColour;
 uniform sampler2D texture_Sampler;
 uniform bool horizontal;
 
-void main(){
+void main()
+{
      vec2 tex_offset = 1.0 / textureSize(texture_Sampler, 0); // gets size of single texel
      vec3 result = texture(texture_Sampler, outTextureCoord).rgb * weight[0];
-     if(horizontal){
-         for(int i = 1; i < 5; ++i){
+
+     if(horizontal)
+     {
+         for(int i = 1; i < 5; ++i)
+         {
             result += texture(texture_Sampler, outTextureCoord + vec2(tex_offset.x * i, 0.0)).rgb * weight[i];
             result += texture(texture_Sampler, outTextureCoord - vec2(tex_offset.x * i, 0.0)).rgb * weight[i];
          }
-     }else{
-         for(int i = 1; i < 5; ++i){
+     }
+     else
+     {
+         for(int i = 1; i < 5; ++i)
+         {
              result += texture(texture_Sampler, outTextureCoord + vec2(0.0, tex_offset.y * i)).rgb * weight[i];
              result += texture(texture_Sampler, outTextureCoord - vec2(0.0, tex_offset.y * i)).rgb * weight[i];
          }
      }
+
      fragmentColour = vec4(result, 1.0);
 }
