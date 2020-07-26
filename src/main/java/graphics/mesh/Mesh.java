@@ -218,7 +218,7 @@ public class Mesh
     }
 
     private static void calcNormalsSmooth(ArrayList<Vertex> vertices, ArrayList<FaceSI> faces)
-    { // https://www.youtube.com/watch?v=PMgjVJogIbc
+    {
         HashMap<Vector3f, Vector3f> normalMap = new HashMap<>();
 
         for (FaceSI face : faces)

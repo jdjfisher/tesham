@@ -1,5 +1,3 @@
-package com;
-
 import engine.core.Engine;
 
 public class Launcher

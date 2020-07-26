@@ -46,7 +46,7 @@ public class Texture implements IResource
             {
                 int pixel = pixels[y * width + x];
                 buffer.put((byte) ((pixel >> 16) & 0xFF));// Red component
-                buffer.put((byte) ((pixel >> 8) & 0xFF));// Green component
+                buffer.put((byte) ((pixel >> 8) & 0xFF)); // Green component
                 buffer.put((byte) (pixel & 0xFF));        // Blue component
                 buffer.put((byte) ((pixel >> 24) & 0xFF));// Alpha component
             }

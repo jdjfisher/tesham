@@ -8,7 +8,6 @@ import engine.input.MouseWheel;
 import utils.StopWatch;
 
 import javax.swing.*;
-import java.util.prefs.Preferences;
 
 import static engine.core.Options.*;
 import static org.lwjgl.glfw.GLFW.*;

@@ -9,9 +9,7 @@ import maths.vectors.Vector2i;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
-import org.lwjgl.opengl.INTELConservativeRasterization;
 import utils.functionalInterfaces.BiCallback;
-import utils.functionalInterfaces.IResizeCallback;
 
 import static engine.core.Options.*;
 import static java.sql.Types.NULL;
