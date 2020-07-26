@@ -16,8 +16,8 @@
         </plugins>
     </build>
 
-    <groupId>3D_Engine</groupId>
-    <artifactId>3D_Engine</artifactId>
+    <groupId>tesham</groupId>
+    <artifactId>tesham</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
