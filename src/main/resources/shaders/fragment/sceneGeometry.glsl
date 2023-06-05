@@ -1,4 +1,4 @@
-#version 450 core
+#version 430 core
 layout (location = 0) out vec3 fragmentPosition_W_Texture;
 layout (location = 1) out vec4 fragmentNormal_W_Texture;
 layout (location = 2) out vec4 diffuseComponent_Texture;
