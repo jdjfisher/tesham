@@ -265,15 +265,15 @@ public class Quaternion
 
     private static Quaternion RotationAxisToQuaternion(final float theta, final Vector3f axisDirection)
     {
-        final double θ = FastMath.toRadians(theta);
-        final float sinHalfθ = (float) FastMath.sin(θ / 2);
-        final float cosHalfθ = (float) FastMath.cos(θ / 2);
+        final double Theta = FastMath.toRadians(theta);
+        final float sinHalfTheta = (float) FastMath.sin(Theta / 2);
+        final float cosHalfTheta = (float) FastMath.cos(Theta / 2);
 
         return new Quaternion(
-                axisDirection.getX() * sinHalfθ,
-                axisDirection.getY() * sinHalfθ,
-                axisDirection.getZ() * sinHalfθ,
-                cosHalfθ + 0
+                axisDirection.getX() * sinHalfTheta,
+                axisDirection.getY() * sinHalfTheta,
+                axisDirection.getZ() * sinHalfTheta,
+                cosHalfTheta + 0
         );
     }
 

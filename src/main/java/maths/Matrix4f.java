@@ -273,13 +273,13 @@ public class Matrix4f
     {
         final Matrix4f result = Identity();
         final double theta = FastMath.toRadians(eulerX);
-        final float sinθ = (float) FastMath.sin(theta);
-        final float cosθ = (float) FastMath.cos(theta);
+        final float sinTheta = (float) FastMath.sin(theta);
+        final float cosTheta = (float) FastMath.cos(theta);
 
-        result.elements[1][1] = cosθ;
-        result.elements[1][2] = -sinθ;
-        result.elements[2][1] = sinθ;
-        result.elements[2][2] = cosθ;
+        result.elements[1][1] = cosTheta;
+        result.elements[1][2] = -sinTheta;
+        result.elements[2][1] = sinTheta;
+        result.elements[2][2] = cosTheta;
         return result;
     }
 
@@ -287,13 +287,13 @@ public class Matrix4f
     {
         final Matrix4f result = Identity();
         final double theta = FastMath.toRadians(eulerY);
-        final float sinθ = (float) FastMath.sin(theta);
-        final float cosθ = (float) FastMath.cos(theta);
+        final float sinTheta = (float) FastMath.sin(theta);
+        final float cosTheta = (float) FastMath.cos(theta);
 
-        result.elements[0][0] = cosθ;
-        result.elements[0][2] = sinθ;
-        result.elements[2][0] = -sinθ;
-        result.elements[2][2] = cosθ;
+        result.elements[0][0] = cosTheta;
+        result.elements[0][2] = sinTheta;
+        result.elements[2][0] = -sinTheta;
+        result.elements[2][2] = cosTheta;
         return result;
     }
 
@@ -301,13 +301,13 @@ public class Matrix4f
     {
         final Matrix4f result = Identity();
         final double theta = FastMath.toRadians(eulerZ);
-        final float sinθ = (float) FastMath.sin(theta);
-        final float cosθ = (float) FastMath.cos(theta);
+        final float sinTheta = (float) FastMath.sin(theta);
+        final float cosTheta = (float) FastMath.cos(theta);
 
-        result.elements[0][0] = cosθ;
-        result.elements[0][1] = -sinθ;
-        result.elements[1][0] = sinθ;
-        result.elements[1][1] = cosθ;
+        result.elements[0][0] = cosTheta;
+        result.elements[0][1] = -sinTheta;
+        result.elements[1][0] = sinTheta;
+        result.elements[1][1] = cosTheta;
         return result;
     }
 
