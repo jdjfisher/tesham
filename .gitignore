@@ -24,6 +24,8 @@ hs_err_pid*
 
 # Misc
 /target
+/build
+.gradle
 .vscode
 .classpath
 .settings
